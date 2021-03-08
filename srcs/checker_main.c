@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/08 16:41:31 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/08 17:10:09 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ int		main(int argc, char const *argv[])
 		tmp = tmp->next;
 	}
 	ft_printf("\n");
-	return 0;
+	return (0);
 }

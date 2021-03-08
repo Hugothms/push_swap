@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/08 16:45:17 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/08 16:49:21 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,13 +33,14 @@ LIBFTLINK		=	-L $(LIBFTDIR) -lft
 
 
 ########################### PROGRAM
-all:		$(NAME)
+all:		checker $(NAME)
 
-$(NAME):	complib checker echoCompil $(OBJS) echoOK echoSuccess
+$(NAME):	complib echoCompil $(OBJS) echoOK echoSuccess
 	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBFTLINK)
 
 checker:	complib echoCompil2 $(OBJS_CHECKER) echoOK echoSuccess
 	$(CC) $(LDFLAGS) -o $@ $(OBJS_CHECKER) $(LIBFTLINK)
+
 ########################### LIBS
 complib:
 	$(MAKE) -C $(LIBFTDIR)

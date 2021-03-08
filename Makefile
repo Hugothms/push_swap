@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/08 15:39:12 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/08 16:45:17 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,10 @@ LIBFTLINK		=	-L $(LIBFTDIR) -lft
 ########################### PROGRAM
 all:		$(NAME)
 
-$(NAME):	complib echoCompil $(OBJS) echoOK echoSuccess
+$(NAME):	complib checker echoCompil $(OBJS) echoOK echoSuccess
 	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBFTLINK)
 
-checker:	complib echoCompil $(OBJS_CHECKER) echoOK echoSuccess
+checker:	complib echoCompil2 $(OBJS_CHECKER) echoOK echoSuccess
 	$(CC) $(LDFLAGS) -o $@ $(OBJS_CHECKER) $(LIBFTLINK)
 ########################### LIBS
 complib:
@@ -79,15 +79,17 @@ WHITE = \033[0;37m
 
 ########################### ECHO
 echoCompil:
-	echo "$(YELLOW)===> Compiling $(RED)$(NAME)$(NC)\n"
+	echo "$(YELLOW)Compiling $(RED)$(NAME)$(NC)"
+echoCompil2:
+	echo "$(YELLOW)Compiling $(RED)checker$(NC)"
 echoOK:
-	echo "$(GREEN) OK$(NC)\n"
+	echo "$(GREEN) OK$(NC)"
 echoSuccess :
 	echo "$(GREEN)===> Compilation Success$(NC)\n"
 echoCLEAN :
-	echo "\n$(PURPLE)===> Cleanning OBJS$(NC)"
+	echo "$(PURPLE)Cleanning OBJS$(NC)\n"
 echoFCLEAN :
-	echo "$(PURPLE)===> Cleanning Exec & Lib$(NC)\n"
+	echo "$(PURPLE)Cleanning Exec & Lib$(NC)\n"
 
 ########################### TEST
 test:		$(NAME)

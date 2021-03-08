@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/04 11:49:24 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/08 16:25:44 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/08 16:45:40 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -183,9 +183,9 @@ WHITE = \033[0;37m
 ###########################ECHO
 
 echoCL:
-	echo "$(YELLOW)===> Compiling Libft$(NC)\n"
+	echo "$(YELLOW)Compiling Libft$(NC)"
 echoOK:
-	echo "$(GREEN) OK$(NC)\n"
+	echo "$(GREEN) OK$(NC)"
 echoCS :
 	echo "$(GREEN)===> Compilation Success$(NC)"
 echoAR :

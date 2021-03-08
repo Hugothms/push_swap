@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/08 16:57:55 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/08 16:49:21 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,11 @@ LIBFTLINK		=	-L $(LIBFTDIR) -lft
 ########################### PROGRAM
 all:		checker $(NAME)
 
-$(NAME):	complib $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS) $(LIBFTLINK)
+$(NAME):	complib echoCompil $(OBJS) echoOK echoSuccess
+	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBFTLINK)
 
-checker:	complib $(OBJS_CHECKER)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS_CHECKER) $(LIBFTLINK)
+checker:	complib echoCompil2 $(OBJS_CHECKER) echoOK echoSuccess
+	$(CC) $(LDFLAGS) -o $@ $(OBJS_CHECKER) $(LIBFTLINK)
 
 ########################### LIBS
 complib:
@@ -47,22 +47,22 @@ complib:
 
 ########################### OBJECTS
 %.o:		%.c $(HEADER)
-	$(CC) -c $(CFLAGS) $(LDFLAGS) -I $(INCL) -o $@ $<
-	@# printf "$(GREEN)██"
+	$(CC) -c $(LDFLAGS) -I $(INCL) -o $@ $<
+	printf "$(GREEN)██"
 
 ########################### CLEAN
-clean:
+clean: echoCLEAN
 	$(MAKE) -C $(LIBFTDIR) clean
 	rm -f $(OBJS)
 
-fclean: clean
+fclean: clean echoFCLEAN
 	$(MAKE) -C $(LIBFTDIR) fclean
 	rm -f $(OBJS)
-	rm -f $(NAME) checker a.out
+	rm -f $(NAME) a.out
 
 re:			fclean all
 .PHONY:		all re clean fclean
-# .SILENT:
+.SILENT:
 
 
 ########################### COLORS

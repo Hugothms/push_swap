@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/04 11:49:24 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/08 16:55:05 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/08 16:45:40 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -149,13 +149,13 @@ OPTI = -Ofast #-O3
 
 all:		$(NAME)
 
-$(NAME):	${OBJS} $(HEADER)
+$(NAME):	echoCL ${OBJS} $(HEADER) echoOK echoCS echoAR
 	ar rc	$(NAME) ${OBJS}
 	ranlib	$(NAME)
 
 .c.o:
 	${CC} -c ${CFLAGS} -I. -o $@ $<
-	@# printf "$(GREEN)█"
+	printf "$(GREEN)█"
 
 clean:
 	rm -f $(OBJS)
@@ -164,8 +164,8 @@ fclean:		clean
 	rm -f $(NAME)
 
 re:			fclean all
-# .SILENT:
 
+.SILENT:
 ###########################COLOR
 #----------------reset----------------#
 NC = \033[0m

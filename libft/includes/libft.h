@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:02:45 by hthomas           #+#    #+#             */
-/*   Updated: 2020/10/08 12:27:58 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/08 16:24:17 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ typedef struct		s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_dlist
+{
+	void			*content;
+	struct s_dlist	*prev;
+	struct s_dlist	*next;
+}					t_dlist;
 
 /*
 ** io
@@ -58,6 +65,20 @@ void				ft_lstdelone(t_list *lst, void (*del)(void*));
 void				ft_lstclear(t_list **alst, void (*del)(void*));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
+					void (*del)(void *));
+
+/*
+** linked-list-doubly
+*/
+t_dlist				*ft_dlstnew(void *content);
+void				ft_dlstadd_front(t_dlist **adlst, t_dlist *new);
+int					ft_dlstsize(t_dlist *dlst);
+t_dlist				*ft_dlstlast(t_dlist *dlst);
+void				ft_dlstadd_back(t_dlist **adlst, t_dlist *new);
+void				ft_dlstdelone(t_dlist *dlst, void (*del)(void*));
+void				ft_dlstclear(t_dlist **adlst, void (*del)(void*));
+void				ft_dlstiter(t_dlist *dlst, void (*f)(void *));
+t_dlist				*ft_dlstmap(t_dlist *dlst, void *(*f)(void *),
 					void (*del)(void *));
 
 /*

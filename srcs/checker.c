@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/09 11:19:32 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/09 12:06:58 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,20 @@ void	swap(t_dlist **list)
 }
 
 /**
- * Take the ﬁrst element at the top of b and put it at the top of a 
+ * Take the ﬁrst element at the top of b and put it at the top of a
  * Do nothing if b is empty
  **/
 
 void	push(t_dlist **a, t_dlist **b)
 {
 	t_dlist	*tmp;
-	
+
 	if ((tmp = ft_dlstremove_one(*b)))
 		ft_dlstadd_front(a, tmp);
 }
 
 /**
- * Shift up all elements of stack a by 1 
+ * Shift up all elements of stack a by 1
  * The ﬁrst element becomes the last one
  **/
 
@@ -78,7 +78,7 @@ void	rotate(t_dlist **list)
 }
 
 /**
- * shift down all elements of stack a by 1
+ * Shift down all elements of stack a by 1
  * The last element becomes the ﬁrst one.
  **/
 

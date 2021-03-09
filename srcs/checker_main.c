@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/09 10:09:26 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/09 12:20:47 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_dlist_line(t_dlist *list)
 {
 	t_dlist	*tmp;
 	int		*num;
-	
+
 	tmp = list;
 	while (tmp && tmp->next != list)
 	{
@@ -44,7 +44,7 @@ void	print_clean_dlist(t_dlist *a, t_dlist *b)
 {
 	t_dlist	*tmp_a;
 	t_dlist	*tmp_b;
-	
+
 	tmp_a = a;
 	tmp_b = b;
 	print_first_item_dlist(a);
@@ -73,7 +73,7 @@ int		scan_args(int argc, char const *argv[], t_dlist **a)
 {
 	int		i;
 	int		*elt;
-	
+
 	i = 1;
 	while (i < argc)
 	{
@@ -106,8 +106,23 @@ int		main(int argc, char const *argv[])
 	ft_dlstadd_back(&b, ft_dlstnew(elt));
 
 	print_clean_dlist(a, b);
-	
-	printf("check a:%d\n", checker(a));
-	printf("check b:%d\n", checker(b));
+
+	char	*line;
+	while(get_next_line(&line ,1))
+	{
+		printf("---------\nExec %s:\n", line);
+		if (ft_strcmp(line, "sa"))
+			swap(&a);
+		else if (ft_strcmp(line, "sb"))
+			swap(&b);
+		else if (ft_strcmp(line, "ss"))
+		{
+			swap(&a);
+			swap(&b);
+		}
+		print_clean_dlist(a, b);
+	}
+	printf("check a: %s\n", (checker(a) ? "KO" : "OK"));
+	printf("check b: %s\n", (checker(b) ? "KO" : "OK"));
 	return (0);
 }

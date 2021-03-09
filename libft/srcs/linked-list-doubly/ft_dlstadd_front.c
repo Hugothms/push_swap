@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 16:34:27 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/08 16:34:28 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/09 06:12:18 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,8 @@ void	ft_dlstadd_front(t_dlist **adlst, t_dlist *new)
 
 	tmp = *adlst;
 	*adlst = new;
+	new->prev = NULL;
 	new->next = tmp;
+	if (new->next)
+		new->next->prev = ft_dlstlast(*adlst);
 }

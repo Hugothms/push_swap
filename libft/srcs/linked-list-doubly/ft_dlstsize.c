@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 16:33:33 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/08 16:33:36 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/09 06:14:37 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
 int	ft_dlstsize(t_dlist *dlst)
 {
 	int		cpt;
-	t_dlist	*pt;
+	t_dlist	*tmp;
 
 	if (!dlst)
 		return (0);
 	cpt = 1;
-	pt = dlst;
-	while ((pt = pt->next))
+	tmp = dlst;
+	while ((tmp = tmp->next) && tmp != dlst)
 		cpt++;
 	return (cpt);
 }

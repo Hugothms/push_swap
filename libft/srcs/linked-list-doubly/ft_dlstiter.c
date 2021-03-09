@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 16:33:57 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/08 16:33:59 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/09 06:06:02 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_dlstiter(t_dlist *dlst, void (*f)(void *))
 	if (!dlst)
 		return ;
 	tmp = dlst;
-	while (tmp->next)
+	while (tmp->next && tmp->next != dlst)
 	{
 		f(tmp->content);
 		tmp = tmp->next;

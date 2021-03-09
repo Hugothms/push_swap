@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 16:34:09 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/08 16:34:10 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/09 06:04:48 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_dlist	*ft_dlstmap(t_dlist *dlst, void *(*f)(void *), void (*del)(void *))
 	if (!(mapeddlst = ft_dlstnew(f(tmp->content))))
 		ft_dlstclear(&mapeddlst, del);
 	tmp = tmp->next;
-	while (tmp)
+	while (tmp && tmp->next != dlst)
 	{
 		if (!(new = ft_dlstnew(f(tmp->content))))
 			ft_dlstclear(&mapeddlst, del);

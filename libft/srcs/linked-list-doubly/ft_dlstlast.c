@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 16:34:03 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/08 16:34:05 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/09 06:05:54 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_dlist	*ft_dlstlast(t_dlist *dlst)
 	if (!dlst)
 		return (NULL);
 	tmp = dlst;
-	while (tmp->next)
+	while (tmp->next && tmp->next != dlst)
 		tmp = tmp->next;
 	return (tmp);
 }

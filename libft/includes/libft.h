@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:02:45 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/08 16:24:17 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/09 10:55:33 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void				ft_dlstclear(t_dlist **adlst, void (*del)(void*));
 void				ft_dlstiter(t_dlist *dlst, void (*f)(void *));
 t_dlist				*ft_dlstmap(t_dlist *dlst, void *(*f)(void *),
 					void (*del)(void *));
+t_dlist				*ft_dlstremove_one(t_dlist *dlst);
 
 /*
 ** memory

@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/04 11:49:24 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/08 16:55:05 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/09 10:19:31 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRCS		+=	srcs/linked-list-doubly/ft_dlstnew.c		\
 				srcs/linked-list-doubly/ft_dlstclear.c		\
 				srcs/linked-list-doubly/ft_dlstiter.c		\
 				srcs/linked-list-doubly/ft_dlstmap.c		\
+				srcs/linked-list-doubly/ft_dlstremove_one.c	\
 
 # memory
 SRCS		+=	srcs/memory/ft_swap.c						\

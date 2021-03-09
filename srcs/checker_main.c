@@ -6,13 +6,13 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/09 09:29:45 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/09 10:09:26 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
 
-void	print_dlist(t_dlist *list)
+void	print_dlist_line(t_dlist *list)
 {
 	t_dlist	*tmp;
 	int		*num;

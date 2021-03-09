@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/09 09:17:04 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/09 10:20:37 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 int		checker(t_dlist *list);
 void	swap(t_dlist **list);
-void	push(t_dlist **list);
+void	push(t_dlist **a, t_dlist **b);
 void	rotate(t_dlist **list);
 void	reverse(t_dlist **list);
 

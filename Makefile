@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/08 16:57:55 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/09 05:53:18 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			=	push_swap
 
 CC				=	gcc
 CFLAGS			=	-Wall -Werror -Wextra
-LDFLAGS			=	#-g3 -fsanitize=address
+LDFLAGS			=	-g3 -fsanitize=address
 
 SRCS_CHECKER	=	srcs/checker_main.c	\
 					srcs/checker.c

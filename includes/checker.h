@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/08 15:45:27 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/09 09:17:04 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 # include <signal.h>
 # include <stdio.h>
 
-int		checker(int *tab, int size);
+int		checker(t_dlist *list);
+void	swap(t_dlist **list);
+void	push(t_dlist **list);
+void	rotate(t_dlist **list);
+void	reverse(t_dlist **list);
 
 #endif

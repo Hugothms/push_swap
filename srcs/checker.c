@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/08 15:45:06 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/09 09:46:17 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,46 @@
  * if the given array is sorted return 0, else return 1
  **/
 
-int		checker(int *tab, int size)
+int		checker(t_dlist *list)
 {
-	int	i;
+	t_dlist	*tmp;
 
-	i = 0;
-	while (i < size - 1)
+	tmp = list;
+	if (*(int*)(list->content) > *(int*)(list->next->content))
+		return (1);
+	tmp = tmp->next;
+	while (tmp && tmp->next != list)
 	{
-		if (tab[i] > tab[i + 1])
+		if (*(int*)(tmp->content) > *(int*)(tmp->next->content))
 			return (1);
-		i++;
+		tmp = tmp->next;
 	}
 	return (0);
 }
+
+void	swap(t_dlist **list)
+{
+	int		*tmp;
+
+	if (*list && (*list)->next)
+	{
+		tmp = (*list)->content;
+		(*list)->content = (*list)->next->content;
+		(*list)->content = tmp;
+	}
+}
+
+// void	push(t_dlist **list)
+// {
+
+// }
+
+// void	rotate(t_dlist **list)
+// {
+
+// }
+
+// void	reverse(t_dlist **list)
+// {
+
+// }

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/09 07:29:59 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/09 09:29:45 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,18 +93,21 @@ int		main(int argc, char const *argv[])
 	t_dlist	*a;
 	t_dlist	*b;
 
-	a = NULL;
-	if(scan_args(argc, argv, &a))
+	if (scan_args(argc, argv, &a))
 		return (1);
+
 	if (!(elt = malloc(sizeof(int))))
 		return (1);
 	*elt = 8;
 	ft_dlstadd_back(&b, ft_dlstnew(elt));
 	if (!(elt = malloc(sizeof(int))))
 		return (1);
-	*elt = 4;
+	*elt = 9;
 	ft_dlstadd_back(&b, ft_dlstnew(elt));
 
 	print_clean_dlist(a, b);
+	
+	printf("check a:%d\n", checker(a));
+	printf("check b:%d\n", checker(b));
 	return (0);
 }

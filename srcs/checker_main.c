@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/09 07:23:06 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/09 07:29:59 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,33 @@ void	print_clean_dlist(t_dlist *a, t_dlist *b)
 	ft_printf("- -\na b\n");
 }
 
-int		main(int argc, char const *argv[])
+int		scan_args(int argc, char const *argv[], t_dlist **a)
 {
 	int		i;
 	int		*elt;
-	t_dlist	*a;
-	t_dlist	*b;
-
+	
 	i = 1;
 	while (i < argc)
 	{
 		if (!(elt = malloc(sizeof(int))))
 			return (1);
 		*elt = ft_atoi(argv[i]);
-		ft_dlstadd_back(&a, ft_dlstnew(elt));
+		ft_dlstadd_back(a, ft_dlstnew(elt));
 		// printf("%d\n", *elt);
 		i++;
 	}
+	return (0);
+}
+
+int		main(int argc, char const *argv[])
+{
+	int		*elt;
+	t_dlist	*a;
+	t_dlist	*b;
+
+	a = NULL;
+	if(scan_args(argc, argv, &a))
+		return (1);
 	if (!(elt = malloc(sizeof(int))))
 		return (1);
 	*elt = 8;
@@ -94,6 +104,7 @@ int		main(int argc, char const *argv[])
 		return (1);
 	*elt = 4;
 	ft_dlstadd_back(&b, ft_dlstnew(elt));
+
 	print_clean_dlist(a, b);
 	return (0);
 }

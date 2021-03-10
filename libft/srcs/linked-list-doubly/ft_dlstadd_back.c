@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 16:32:54 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/09 06:24:47 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/10 08:02:47 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	ft_dlstadd_back(t_dlist **adlst, t_dlist *new)
 	if (!*adlst)
 	{
 		*adlst = new;
+		(*adlst)->prev = *adlst;
+		(*adlst)->next = *adlst;
 		return ;
 	}
-	tmp = *adlst;
-	while (tmp->next && tmp->next != *adlst)
-		tmp = tmp->next; 
+	tmp = ft_dlstlast(*adlst);
 	tmp->next = new;
 	new->next = *adlst;
 	(*adlst)->prev = new;

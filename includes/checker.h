@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/10 17:08:28 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/10 17:09:45 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <stdio.h>
 
 /*
-** operations
+** operations_redir
 */
 void	swap_it(t_dlist **a, t_dlist **b, char *line, int *ret);
 void	push_it(t_dlist **a, t_dlist **b, char *line, int *ret);

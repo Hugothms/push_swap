@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/09 10:20:37 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/10 16:38:06 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,20 @@
 # include <signal.h>
 # include <stdio.h>
 
+/*
+** checker
+*/
 int		checker(t_dlist *list);
 void	swap(t_dlist **list);
 void	push(t_dlist **a, t_dlist **b);
 void	rotate(t_dlist **list);
 void	reverse(t_dlist **list);
+
+/*
+** print
+*/
+void	print_dlist_line(t_dlist *list);
+void	print_first_item_dlist(t_dlist *dlist);
+void	print_clean_dlist(t_dlist *a, t_dlist *b);
 
 #endif

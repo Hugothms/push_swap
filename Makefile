@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/09 05:53:18 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/10 16:39:36 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ CFLAGS			=	-Wall -Werror -Wextra
 LDFLAGS			=	-g3 -fsanitize=address
 
 SRCS_CHECKER	=	srcs/checker_main.c	\
-					srcs/checker.c
+					srcs/checker.c		\
+					srcs/print.c
 
 SRCS			=	srcs/main.c			\
 					srcs/checker.c

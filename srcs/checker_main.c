@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/10 16:21:10 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/10 16:33:31 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,8 @@ void	print_dlist_line(t_dlist *list)
 
 void	print_first_item_dlist(t_dlist *dlist)
 {
-	int		*num;
-
 	if (dlist)
-	{
-		num = dlist->content;
-		ft_printf("%d\t", *num);
-	}
+		ft_printf("%d ", *((int*)dlist->content));
 }
 
 void	print_clean_dlist(t_dlist *a, t_dlist *b)
@@ -68,7 +63,7 @@ void	print_clean_dlist(t_dlist *a, t_dlist *b)
 		}
 		ft_printf("\n");
 	}
-	ft_printf("-\t-\na\tb\n\n");
+	ft_printf("- -\na b\n\n");
 }
 
 int		scan_args(int argc, char const *argv[], t_dlist **a)

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/10 15:59:40 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/10 16:21:10 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	print_first_item_dlist(t_dlist *dlist)
 	if (dlist)
 	{
 		num = dlist->content;
-		ft_printf("%d ", *num);
+		ft_printf("%d\t", *num);
 	}
 }
 
@@ -68,7 +68,7 @@ void	print_clean_dlist(t_dlist *a, t_dlist *b)
 		}
 		ft_printf("\n");
 	}
-	ft_printf("- -\na b\n\n");
+	ft_printf("-\t-\na\tb\n\n");
 }
 
 int		scan_args(int argc, char const *argv[], t_dlist **a)
@@ -97,9 +97,19 @@ int		main(int argc, char const *argv[])
 	if (scan_args(argc, argv, &a))
 		return (1);
 
+	// t_dlist	*tmp1;
+	// t_dlist	*tmp;
+	// int		*num;
+	// if (!(num = malloc(sizeof(int))))
+	// 	exit(1);
+	// *num = 42;
+	// ft_dlstadd_front(&a, (tmp = ft_dlstnew(num)));
+	// ft_dlstadd_front(&b, (tmp1 = ft_dlstnew(num)));
+	// ft_dlstadd_front(&b, (tmp = ft_dlstnew(num)));
+	// ft_dlstremove_one(&b, tmp1);
+	// ft_dlstremove_one(&b, tmp);
 
 	print_clean_dlist(a, b);
-
 	char	*line;
 	while(get_next_line(&line ,0))
 	{
@@ -139,7 +149,6 @@ int		main(int argc, char const *argv[])
 			exit (1);
 		print_clean_dlist(a, b);
 	}
-	printf("check a: %s\n", (checker(a) ? "KO" : "OK"));
-	printf("check b: %s\n", (checker(b) ? "KO" : "OK"));
+	printf("%s\n", (checker(a) ? "KO" : "OK"));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/10 16:03:50 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/10 16:24:39 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	swap(t_dlist **list)
 	{
 		num = (*list)->content;
 		(*list)->content = (*list)->next->content;
-		(*list)->content = num;
+		(*list)->next->content = num;
 	}
 }
 

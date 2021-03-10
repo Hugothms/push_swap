@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/10 07:26:33 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/10 07:30:47 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,37 +111,39 @@ int		main(int argc, char const *argv[])
 	while(get_next_line(&line ,0))
 	{
 		printf("---------\nExec %s:\n", line);
-		if (ft_strcmp(line, "sa"))
+		if (!ft_strcmp(line, "sa"))
 			swap(&a);
-		else if (ft_strcmp(line, "sb"))
+		else if (!ft_strcmp(line, "sb"))
 			swap(&b);
-		else if (ft_strcmp(line, "ss"))
+		else if (!ft_strcmp(line, "ss"))
 		{
 			swap(&a);
 			swap(&b);
 		}
-		else if (ft_strcmp(line, "pa"))
+		else if (!ft_strcmp(line, "pa"))
 			push(&a, &b);
-		else if (ft_strcmp(line, "pb"))
+		else if (!ft_strcmp(line, "pb"))
 			push(&b, &a);
-		else if (ft_strcmp(line, "ra"))
+		else if (!ft_strcmp(line, "ra"))
 			rotate(&a);
-		else if (ft_strcmp(line, "rb"))
+		else if (!ft_strcmp(line, "rb"))
 			rotate(&b);
-		else if (ft_strcmp(line, "rr"))
+		else if (!ft_strcmp(line, "rr"))
 		{
 			rotate(&a);
 			rotate(&b);
 		}
-		else if (ft_strcmp(line, "rra"))
+		else if (!ft_strcmp(line, "rra"))
 			reverse(&a);
-		else if (ft_strcmp(line, "rrb"))
+		else if (!ft_strcmp(line, "rrb"))
 			reverse(&b);
-		else if (ft_strcmp(line, "rrr"))
+		else if (!ft_strcmp(line, "rrr"))
 		{
 			reverse(&a);
 			reverse(&b);
 		}
+		else
+			exit (1);
 		print_clean_dlist(a, b);
 	}
 	printf("check a: %s\n", (checker(a) ? "KO" : "OK"));

@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/04 11:49:24 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/09 10:19:31 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/10 16:00:23 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -142,6 +142,7 @@ SRCS 		+= 	srcs/ft_printf/ft_printf.c					\
 				srcs/ft_printf/ft_flags.c					\
 				srcs/ft_printf/ft_atoi_no_sign.c			\
 
+# get_next_line
 SRCS		+=	srcs/gnl/get_next_line.c
 
 ###########################

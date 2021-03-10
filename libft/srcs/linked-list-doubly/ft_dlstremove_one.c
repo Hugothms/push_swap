@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 09:56:00 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/10 11:25:57 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/10 15:42:27 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,17 @@
 
 t_dlist	*ft_dlstremove_one(t_dlist **adlst, t_dlist *dlst)
 {
-	if (!dlst)
+	if (!*adlst || !dlst)
 		return (NULL);
 	if (*adlst == dlst)
-		return (NULL);
+	{
+		if (*adlst == (*adlst)->next)
+		{
+			*adlst = NULL;
+			return (NULL);
+		}
+		*adlst = dlst->next;
+	}
 	if (dlst->prev)
 		dlst->prev->next = dlst->next;
 	if (dlst->next)

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/10 11:23:44 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/10 16:03:50 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int		checker(t_dlist *list)
 {
 	t_dlist	*tmp;
 
+	if (!list)
+		return (0);
 	tmp = list;
 	if (*(int*)(list->content) > *(int*)(list->next->content))
 		return (1);
@@ -65,10 +67,8 @@ void	push(t_dlist **a, t_dlist **b)
 		return ;
 	num = (*b)->content;
 	tmp = *b;
-	ft_printf("test:%p\n", tmp);
 	ft_dlstremove_one(b, *b);
 	free(*b);
-	ft_printf("tost:%p\n", tmp);
 	if (!(tmp = ft_dlstnew(num)))
 		return ;
 	ft_dlstadd_front(a, tmp);

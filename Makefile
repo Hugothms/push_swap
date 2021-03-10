@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/10 16:39:36 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/10 17:08:53 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,12 @@ CC				=	gcc
 CFLAGS			=	-Wall -Werror -Wextra
 LDFLAGS			=	-g3 -fsanitize=address
 
-SRCS_CHECKER	=	srcs/checker_main.c	\
-					srcs/checker.c		\
+SRCS_CHECKER	=	srcs/checker_main.c			\
+					srcs/operations.c			\
+					srcs/operations_redir.c		\
 					srcs/print.c
 
-SRCS			=	srcs/main.c			\
+SRCS			=	srcs/main.c					\
 					srcs/checker.c
 
 OBJS_CHECKER	=	$(SRCS_CHECKER:.c=.o)

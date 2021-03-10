@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/10 16:38:06 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/10 17:08:28 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,15 @@
 # include <stdio.h>
 
 /*
-** checker
+** operations
+*/
+void	swap_it(t_dlist **a, t_dlist **b, char *line, int *ret);
+void	push_it(t_dlist **a, t_dlist **b, char *line, int *ret);
+void	rotate_it(t_dlist **a, t_dlist **b, char *line, int *ret);
+void	reverse_it(t_dlist **a, t_dlist **b, char *line, int *ret);
+
+/*
+** operations
 */
 int		checker(t_dlist *list);
 void	swap(t_dlist **list);

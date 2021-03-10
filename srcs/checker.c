@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/09 12:06:58 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/10 11:23:44 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ int		checker(t_dlist *list)
 
 void	swap(t_dlist **list)
 {
-	int		*tmp;
+	int		*num;
 
 	if (*list && (*list)->next)
 	{
-		tmp = (*list)->content;
+		num = (*list)->content;
 		(*list)->content = (*list)->next->content;
-		(*list)->content = tmp;
+		(*list)->content = num;
 	}
 }
 
@@ -58,10 +58,20 @@ void	swap(t_dlist **list)
 
 void	push(t_dlist **a, t_dlist **b)
 {
+	int		*num;
 	t_dlist	*tmp;
 
-	if ((tmp = ft_dlstremove_one(*b)))
-		ft_dlstadd_front(a, tmp);
+	if (!*b)
+		return ;
+	num = (*b)->content;
+	tmp = *b;
+	ft_printf("test:%p\n", tmp);
+	ft_dlstremove_one(b, *b);
+	free(*b);
+	ft_printf("tost:%p\n", tmp);
+	if (!(tmp = ft_dlstnew(num)))
+		return ;
+	ft_dlstadd_front(a, tmp);
 }
 
 /**
@@ -73,7 +83,7 @@ void	rotate(t_dlist **list)
 {
 	t_dlist	*tmp;
 
-	if ((tmp = ft_dlstremove_one(*list)))
+	if ((tmp = ft_dlstremove_one(list, *list)))
 		ft_dlstadd_back(list, tmp);
 }
 
@@ -86,6 +96,6 @@ void	reverse(t_dlist **list)
 {
 	t_dlist	*tmp;
 
-	if ((tmp = ft_dlstremove_one(ft_dlstlast(*list))))
+	if ((tmp = ft_dlstremove_one(list, ft_dlstlast(*list))))
 		ft_dlstadd_front(list, tmp);
 }

@@ -6,26 +6,27 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:37:07 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/10 16:37:18 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/11 15:52:13 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
 
-void	print_dlist_line(t_dlist *list)
+void	print_dlist_line(char *name, t_dlist *list)
 {
 	t_dlist	*tmp;
 	int		*num;
 
 	tmp = list;
+	ft_printf("%s: ", name);
 	while (tmp && tmp->next != list)
 	{
 		num = tmp->content;
-		ft_printf("%d", *num);
+		ft_printf("%d ", *num);
 		tmp = tmp->next;
 	}
-	num = tmp->next->content;
-	ft_printf("\nnext:%d", *num);
+	num = tmp->content;
+	ft_printf("%d", *num);
 	ft_printf("\n");
 }
 

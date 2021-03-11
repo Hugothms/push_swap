@@ -6,11 +6,17 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/11 15:08:11 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/11 15:40:29 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
+
+void	error(void)
+{
+	printf("Error\n");
+	exit (1);
+}
 
 int		duplicates(t_dlist *a)
 {
@@ -30,12 +36,6 @@ int		duplicates(t_dlist *a)
 		tmp = tmp->next;
 	}
 	return (0);
-}
-
-void	error(void)
-{
-	printf("Error\n");
-	exit (1);
 }
 
 int		int_overflow(char const *str, int sign)
@@ -88,6 +88,7 @@ int		main(int argc, char const *argv[])
 		return (0);
 	if (scan_args(argc, argv, &a))
 		return (1);
+	print_dlist_line("a", a);
 	// print_clean_dlist(a, b);
 	while(get_next_line(&line ,0))
 	{

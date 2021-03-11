@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/11 15:01:04 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/11 15:08:11 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int		duplicates(t_dlist *a)
 	tmp = a;
 	while (tmp && tmp->next != a)
 	{
-		tmp2 = a;
-		while (tmp2 && tmp2->next != a)
+		tmp2 = tmp->next;
+		while (tmp2 && tmp2 != a)
 		{
-			if (tmp != tmp2 && *(int*)(tmp->content) == *(int*)(tmp2->content))
+			if (*(int*)(tmp->content) == *(int*)(tmp2->content))
 				return (1);
 			tmp2 = tmp2->next;
 		}

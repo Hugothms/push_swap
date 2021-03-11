@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/11 11:41:43 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/11 11:56:51 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int		main(int argc, char const *argv[])
 	while(get_next_line(&line ,0))
 	{
 		// printf("---------\nExec %s:\n", line);
+		ret = 1;
 		if (!ft_strncmp(line, "s", 1))
 			swap_it(&a, &b, line, &ret);
 		else if (!ft_strncmp(line, "p", 1))
@@ -62,10 +63,11 @@ int		main(int argc, char const *argv[])
 			reverse_it(&a, &b, line, &ret);
 		else if (!ft_strncmp(line, "r", 1))
 			rotate_it(&a, &b, line, &ret);
-		else
-			exit (1);
 		if (ret)
+		{
+			printf("Error\n");
 			exit (1);
+		}
 		// print_clean_dlist(a, b);
 	}
 	printf("%s\n", (checker(a) ? "KO" : "OK"));

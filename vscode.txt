@@ -1,3 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "macFrameworkPath": [
+                "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64",
+            "compilerPath": "/usr/bin/clang"
+        }
+    ],
+    "version": 4
+}
+
 [2021-03-10 17:23:10.625] [userDataSync] [info] Did reset the local sync state.
 [2021-03-10 17:23:28.506] [userDataSync] [info] Settings: Updated local settings
 [2021-03-10 17:23:28.513] [userDataSync] [info] Settings: Updated last synchronized settings

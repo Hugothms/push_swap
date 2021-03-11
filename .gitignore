@@ -55,3 +55,4 @@ dkms.conf
 checker
 push_swap
 .vscode/*
+.DS_Store

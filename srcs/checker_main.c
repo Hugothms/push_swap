@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/10 17:25:52 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/11 11:41:43 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int		scan_args(int argc, char const *argv[], t_dlist **a)
 		if (!(num = malloc(sizeof(int))))
 			return (1);
 		j = 0;
-		printf("%s\n", argv[i]);
 		while (argv[i][j])
 		{
 			if (!ft_isdigit(argv[i][j]))

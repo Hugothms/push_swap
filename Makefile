@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/10 17:13:25 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/11 14:14:05 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,7 @@ SRCS_CHECKER	=	srcs/checker_main.c			\
 					srcs/operations_redir.c		\
 					srcs/print.c
 
-SRCS			=	srcs/main.c					\
-					srcs/checker.c
+SRCS			=	srcs/main.c					
 
 OBJS_CHECKER	=	$(SRCS_CHECKER:.c=.o)
 OBJS			=	$(SRCS:.c=.o)

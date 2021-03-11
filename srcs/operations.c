@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/10 16:36:13 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/11 12:20:43 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
  * @return	0 if the list is sorted, otherwise return 1
  **/
 
-int		checker(t_dlist *list)
+int		checker(t_dlist *a, t_dlist *b)
 {
 	t_dlist	*tmp;
 
-	if (!list)
+	if (!a)
 		return (0);
-	tmp = list;
-	if (*(int*)(list->content) > *(int*)(list->next->content))
+	tmp = a;
+	if (*(int*)(a->content) > *(int*)(a->next->content) || b)
 		return (1);
 	tmp = tmp->next;
-	while (tmp && tmp->next != list)
+	while (tmp && tmp->next != a)
 	{
 		if (*(int*)(tmp->content) > *(int*)(tmp->next->content))
 			return (1);

@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/11 15:52:19 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/12 18:00:44 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include "../libft/includes/libft.h"
-# include <fcntl.h>
 # include <unistd.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <dirent.h>
-# include <time.h>
-# include <sys/wait.h>
 # include <stdlib.h>
-# include <math.h>
-# include <errno.h>
-# include <signal.h>
-# include <stdio.h>
 
 /*
 ** operations_redir
@@ -50,5 +40,13 @@ void	reverse(t_dlist **list);
 void	print_dlist_line(char *name, t_dlist *list);
 void	print_first_item_dlist(t_dlist *dlist);
 void	print_clean_dlist(t_dlist *a, t_dlist *b);
+
+/*
+** scan_input
+*/
+void	error(void);
+int		duplicates(t_dlist *a);
+int		int_overflow(char const *str, int sign);
+int		scan_input(int argc, char const *argv[], t_dlist **a);
 
 #endif

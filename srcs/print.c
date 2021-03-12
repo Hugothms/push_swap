@@ -6,11 +6,11 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:37:07 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/11 15:52:13 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/12 18:00:53 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../includes/push_swap.h"
 
 void	print_dlist_line(char *name, t_dlist *list)
 {
@@ -45,7 +45,7 @@ void	print_clean_dlist(t_dlist *a, t_dlist *b)
 	tmp_b = b;
 	print_first_item_dlist(a);
 	print_first_item_dlist(b);
-	printf("\n");
+	ft_printf("\n");
 	if (tmp_a)
 	tmp_a = tmp_a->next;
 	if (tmp_b)

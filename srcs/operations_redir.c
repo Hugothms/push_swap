@@ -6,11 +6,11 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:06:58 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/10 17:07:09 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/12 13:15:21 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../includes/push_swap.h"
 
 void	swap_it(t_dlist **a, t_dlist **b, char *line, int *ret)
 {

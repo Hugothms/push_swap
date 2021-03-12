@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 16:32:54 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/12 19:42:19 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/12 21:53:57 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 ** Adds the element ’new’ at the end of the list
-** @param adlst	The address of a pointer to the first link of a list.
+** @param adlst	The address of a pointer to the first node of a list.
 ** @param new	The address of a pointer to the element to be added to the list.
 */
 
@@ -22,7 +22,7 @@ void	ft_dlstadd_back(t_dlist **adlst, t_dlist *new)
 {
 	t_dlist	*tmp;
 
-	if(!adlst)
+	if (!adlst)
 		return ;
 	if (!*adlst)
 	{

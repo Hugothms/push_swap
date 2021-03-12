@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/12 21:21:24 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/12 21:53:13 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ t_dlist	*find_smaller(t_dlist *list)
 int		main(int argc, char const *argv[])
 {
 	t_dlist	*a;
-	// t_dlist	*b;
 	
 	if (argc == 1)
 		return (0);
@@ -130,10 +129,12 @@ int		main(int argc, char const *argv[])
 	int		*num;
 	t_dlist	*tmp;
 	num = malloc(sizeof(int));
-	*num = 42;
+	*num = 4;
 	ft_dlstadd_back(&b, (tmp = ft_dlstnew(num)));
-	// print_dlist_line("b", b);
-	// ft_printf("%d\n", first_half(b, tmp));
+	print_dlist_line("b", b);
+	ft_printf("%d\n", first_half(b, tmp));
+	
+	
 	// sort(&a);
 	return (0);
 }

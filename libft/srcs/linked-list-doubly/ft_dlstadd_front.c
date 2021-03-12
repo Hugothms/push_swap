@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 16:34:27 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/12 19:53:54 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/12 21:36:49 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 ** Adds the element ’new’ at the beginning of the list
-** @param adlst	The address of a pointer to the first link of a list
+** @param adlst	The address of a pointer to the first node of a list
 ** @param new	The address of a pointer to the element to be added to the list
 */
 

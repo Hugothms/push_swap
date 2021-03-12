@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/12 21:18:11 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/12 21:52:55 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			=	push_swap
 
 CC				=	gcc
 CFLAGS			=	-Wall -Werror -Wextra
-LDFLAGS			=	-g3 -fsanitize=address
+LDFLAGS			=	#-g3 -fsanitize=address
 
 SRCS_COMMON		=	srcs/operations.c			\
 					srcs/operations_redir.c		\
@@ -60,11 +60,11 @@ complib:
 ########################### CLEAN
 clean:
 	$(MAKE) -C $(LIBFTDIR) clean
-	rm -f $(OBJS)
+	rm -f $(OBJS_PUSH_SWAP) $(OBJS_CHECKER)
 
 fclean: clean
 	$(MAKE) -C $(LIBFTDIR) fclean
-	rm -f $(OBJS)
+	rm -f $(OBJS_PUSH_SWAP) $(OBJS_CHECKER)
 	rm -f $(NAME) checker a.out
 
 re:			fclean all

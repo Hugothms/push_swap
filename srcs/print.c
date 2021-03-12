@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:37:07 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/12 18:00:53 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/12 21:21:55 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	print_dlist_line(char *name, t_dlist *list)
 		tmp = tmp->next;
 	}
 	num = tmp->content;
-	ft_printf("%d", *num);
-	ft_printf("\n");
+	ft_printf("%d\n", *num);
 }
 
 void	print_first_item_dlist(t_dlist *dlist)

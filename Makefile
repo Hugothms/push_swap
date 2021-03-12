@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/12 18:14:43 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/12 21:18:11 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,20 +16,21 @@ CC				=	gcc
 CFLAGS			=	-Wall -Werror -Wextra
 LDFLAGS			=	-g3 -fsanitize=address
 
-SRCS_CHECKER	=	srcs/main_checker.c			\
-					srcs/operations.c			\
+SRCS_COMMON		=	srcs/operations.c			\
 					srcs/operations_redir.c		\
+					srcs/utils.c				\
 					srcs/print.c				\
-					srcs/scan_input.c		
+					srcs/scan_input.c
 
-SRCS			=	srcs/main_push_swap.c		\
-					srcs/operations.c			\
-					srcs/operations_redir.c		\
-					srcs/print.c				\
-					srcs/scan_input.c						
+SRCS_CHECKER	=	srcs/main_checker.c			\
+					$(SRCS_COMMON)
+						
+
+SRCS_PUSH_SWAP	=	srcs/main_push_swap.c		\
+					$(SRCS_COMMON)
 
 OBJS_CHECKER	=	$(SRCS_CHECKER:.c=.o)
-OBJS			=	$(SRCS:.c=.o)
+OBJS_PUSH_SWAP	=	$(SRCS_PUSH_SWAP:.c=.o)
 INCL			=	includes/
 HEADER			=	$(INCL)$(NAME).h
 
@@ -41,8 +42,8 @@ LIBFTLINK		=	-L $(LIBFTDIR) -lft
 ########################### PROGRAM
 all:		checker $(NAME)
 
-$(NAME):	complib $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS) $(LIBFTLINK)
+$(NAME):	complib $(OBJS_PUSH_SWAP)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS_PUSH_SWAP) $(LIBFTLINK)
 
 checker:	complib $(OBJS_CHECKER)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS_CHECKER) $(LIBFTLINK)
@@ -101,6 +102,9 @@ echoFCLEAN :
 ########################### TEST
 test:		$(NAME)
 	ARG="4 67 3 87 23"; ./$< $(ARG); ./$< $(ARG) | wc -l; ./$< $(ARG) | ./checker $(ARG)
+
+test_push_swap:	$(NAME)
+	./$< 3 2 1 0 -1
 	
 test_checker:	checker
-	./$< 3 2 1 0
+	./$< 3 2 1 0 -1

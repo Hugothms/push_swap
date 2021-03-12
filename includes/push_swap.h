@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/12 18:00:44 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/12 20:02:04 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,10 @@ void	error(void);
 int		duplicates(t_dlist *a);
 int		int_overflow(char const *str, int sign);
 int		scan_input(int argc, char const *argv[], t_dlist **a);
+
+/*
+** utils
+*/
+int		get_value(t_dlist *list);
 
 #endif

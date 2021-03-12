@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:13:23 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/12 19:28:58 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/12 21:20:53 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		duplicates(t_dlist *a)
 		tmp2 = tmp->next;
 		while (tmp2 && tmp2 != a)
 		{
-			if (*(int*)(tmp->content) == *(int*)(tmp2->content))
+			if (get_value(tmp) == get_value(tmp2))
 				return (1);
 			tmp2 = tmp2->next;
 		}
@@ -59,8 +59,6 @@ int		scan_input(int argc, char const *argv[], t_dlist **a)
 	i = 1;
 	while (i < argc)
 	{
-		if (!(num = malloc(sizeof(int))))
-			return (1);
 		j = 0;
 		if (argv[i][j] == '-' && argv[i][j])
 			j++;
@@ -72,6 +70,8 @@ int		scan_input(int argc, char const *argv[], t_dlist **a)
 				error();
 			j++;
 		}
+		if (!(num = malloc(sizeof(int))))
+			error();
 		*num = ft_atol(argv[i++]);
 		ft_dlstadd_back(a, ft_dlstnew(num));
 	}

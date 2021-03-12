@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:13:23 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/12 18:01:00 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/12 19:28:58 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ void	error(void)
 	exit (1);
 }
 
+/**
+ * check if there are duplicates in the list
+ * @return	0 if no duplicates where found, 1 otherwise
+ **/
 int		duplicates(t_dlist *a)
 {
 	t_dlist	*tmp;

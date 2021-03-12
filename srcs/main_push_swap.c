@@ -6,17 +6,30 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/12 18:44:43 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/12 19:13:58 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/** tant que size list > 3
- * trouver le plus petit element
- * le mettre en haut de a
- * pb
+/** ALGO
+ * tant que size list > 3
+ * 		trouver le plus petit element
+ * 		le mettre en haut de a
+ * 		le push sur b (pb)
+ * ensuite trier les 3 elem restants
+ * remettre tout sur a (pa)
+ * DONE
  **/
+
+/**
+ * Sort a stack of 3 element with the smallest number of instructions possible
+ * @param list	stack of size 3 to sort
+ **/
+void	sort_3(t_dlist *list)
+{
+
+}
 
 /**
  * Put an element at the top of the stack without changing the order of 
@@ -34,9 +47,17 @@ void	put_at_top(t_dlist *list, t_dlist *elem)
  * @param list	stack where to find the smallest element
  * @return		the smalest element found in the stack
  **/
-t_dlist	*find_smaller(t_dlist *list)
+t_dlist	*find_smaller(t_dlist const *list)
 {
+	t_dlist *tmp;
+	int		num;
 
+	tmp = list;
+	while (tmp->next != list)
+	{
+		
+		tmp = tmp->next;
+	}
 }
 
 /**
@@ -51,9 +72,15 @@ void	sort(t_dlist **list)
 	while (ft_dlstsize(*list) > 3)
 	{
 		put_at_top(*list, find_smaller(*list));
+		ft_printf("pb\n");
 		push(&b, list);
 	}
 	sort_3(*list);
+	while(ft_dlstsize(b))
+	{
+		ft_printf("pa\n");
+		push(list, &b);
+	}
 }
 
 int		main(int argc, char const *argv[])
@@ -65,6 +92,6 @@ int		main(int argc, char const *argv[])
 		return (0);
 	if (scan_input(argc, argv, &a))
 		error();
-	sort(a);
+	sort(&a);
 	return (0);
 }

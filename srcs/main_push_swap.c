@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/12 21:53:13 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/12 22:07:35 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
  * Check if the given element is in the first half of the stack
  * @param list	the stack containing elem
  * @param elem	element to check the position
- * @return		1 if elem is in the first half, 0 otherwie
+ * @return		1 if elem is in the first half, 0 otherwise
  **/
 int		first_half(t_dlist *list, t_dlist *elem)
 {
@@ -43,10 +43,11 @@ int		first_half(t_dlist *list, t_dlist *elem)
 	int		half;
 	int		pos;
 	
-	half = ft_dlstsize(list) / 2 + 1;
+	half = (ft_dlstsize(list) + 1) / 2;
 	pos = 0;
 	tmp = list;
 	if (tmp == elem)
+		return (1);
 	while (pos < half)
 	{
 		if (tmp == elem)
@@ -125,14 +126,27 @@ int		main(int argc, char const *argv[])
 		error();
 	print_dlist_line("a", a);
 
-	t_dlist	*b;
-	int		*num;
-	t_dlist	*tmp;
-	num = malloc(sizeof(int));
-	*num = 4;
-	ft_dlstadd_back(&b, (tmp = ft_dlstnew(num)));
-	print_dlist_line("b", b);
-	ft_printf("%d\n", first_half(b, tmp));
+	// t_dlist	*b;
+	// int		*num;
+	// t_dlist	*tmp;
+	// num = malloc(sizeof(int));
+	// *num = -1;
+	// ft_dlstadd_back(&b, (ft_dlstnew(num)));
+
+	// num = malloc(sizeof(int));
+	// *num = 4;
+	// ft_dlstadd_back(&b, (tmp = ft_dlstnew(num)));
+
+	// num = malloc(sizeof(int));
+	// *num = 4;
+	// ft_dlstadd_back(&b, (ft_dlstnew(num)));
+
+	// num = malloc(sizeof(int));
+	// *num = 45;
+	// ft_dlstadd_back(&b, (ft_dlstnew(num)));
+
+	// print_dlist_line("b", b);
+	// printf("elem:%d is in fisrt half ?%d\n", get_value(tmp), first_half(b, tmp));
 	
 	
 	// sort(&a);

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 09:57:29 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 11:19:47 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ void	reverse_it(t_dlist **a, t_dlist **b, char *line, int *ret);
 ** operations
 */
 int		checker(t_dlist *a, t_dlist *b);
-void	swap(t_dlist **list);
+void	swap(t_dlist **stack);
 void	push(t_dlist **a, t_dlist **b);
-void	rotate(t_dlist **list);
-void	reverse(t_dlist **list);
+void	rotate(t_dlist **stack);
+void	reverse(t_dlist **stack);
 
 /*
 ** print
 */
-void	print_dlist_line(char *name, t_dlist *list);
+void	print_dlist_line(char *name, t_dlist *stack);
 void	print_first_item_dlist(t_dlist *dlist);
 void	print_clean_dlist(t_dlist *a, t_dlist *b);
 
@@ -53,6 +53,6 @@ t_dlist *scan_input(int argc, char const *argv[]);
 /*
 ** utils
 */
-int		get_value(t_dlist *list);
+int		get_value(t_dlist *stack);
 
 #endif

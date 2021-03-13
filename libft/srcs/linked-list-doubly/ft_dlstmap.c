@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 16:34:09 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/09 06:04:48 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 11:16:02 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 /*
 ** Iterates the list ’dlst’ and applies the function ’f’ to the content of each
-**  element. Creates a newlist resulting of the successive applications of the
+**  node. Creates a newlist resulting of the successive applications of the
 **  function ’f’. The ’del’ function is used to delete the content of an
-**  element if needed.
-** @param dlst	The adress of a pointer to an element.
+**  node if needed.
+** @param dlst	The adress of a pointer to an node.
 ** @param f		The adress of the function used to iterate on the list.
 ** @param del	The adress of the function used to delete the content of an
-**				 element if needed.
+**				 node if needed.
 ** @return		The new list. NULL if the allocation fails.
 */
 

@@ -6,19 +6,19 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 16:33:49 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/08 16:33:51 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 11:16:02 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
 /*
-** Takes as a parameter an element and frees the memory of
-**  the element’s content using the function ’del’ given as a parameter
-**  and free the element. The memory of ’next’ must not be freed
-** @param dlst	The adress of a pointer to an element.
+** Takes as a parameter an node and frees the memory of
+**  the node’s content using the function ’del’ given as a parameter
+**  and free the node. The memory of ’next’ must not be freed
+** @param dlst	The adress of a pointer to an node.
 ** @param del	The adress of the function used to delete the content of the
-**				 element.
+**				 node.
 */
 
 void	ft_dlstdelone(t_dlist *dlst, void (*del)(void*))

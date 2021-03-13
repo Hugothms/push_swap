@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/12 13:15:21 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 11:20:31 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,24 @@ int		checker(t_dlist *a, t_dlist *b)
 }
 
 /**
- * Swap the ﬁrst 2 elements at the top of stack
- * Do nothing if there is only one or no elements)
+ * Swap the ﬁrst 2 nodes at the top of stack
+ * Do nothing if there is only one or no nodes)
  **/
 
-void	swap(t_dlist **list)
+void	swap(t_dlist **stack)
 {
 	int		*num;
 
-	if (*list && (*list)->next)
+	if (*stack && (*stack)->next)
 	{
-		num = (*list)->content;
-		(*list)->content = (*list)->next->content;
-		(*list)->next->content = num;
+		num = (*stack)->content;
+		(*stack)->content = (*stack)->next->content;
+		(*stack)->next->content = num;
 	}
 }
 
 /**
- * Take the ﬁrst element at the top of b and put it at the top of a
+ * Take the ﬁrst node at the top of b and put it at the top of a
  * Do nothing if b is empty
  **/
 
@@ -74,27 +74,27 @@ void	push(t_dlist **a, t_dlist **b)
 }
 
 /**
- * Shift up all elements of stack a by 1
- * The ﬁrst element becomes the last one
+ * Shift up all nodes of stack a by 1
+ * The ﬁrst node becomes the last one
  **/
 
-void	rotate(t_dlist **list)
+void	rotate(t_dlist **stack)
 {
 	t_dlist	*tmp;
 
-	if ((tmp = ft_dlstremove_one(list, *list)))
-		ft_dlstadd_back(list, tmp);
+	if ((tmp = ft_dlstremove_one(stack, *stack)))
+		ft_dlstadd_back(stack, tmp);
 }
 
 /**
- * Shift down all elements of stack a by 1
- * The last element becomes the ﬁrst one.
+ * Shift down all nodes of stack a by 1
+ * The last node becomes the ﬁrst one.
  **/
 
-void	reverse(t_dlist **list)
+void	reverse(t_dlist **stack)
 {
 	t_dlist	*tmp;
 
-	if ((tmp = ft_dlstremove_one(list, ft_dlstlast(*list))))
-		ft_dlstadd_front(list, tmp);
+	if ((tmp = ft_dlstremove_one(stack, ft_dlstlast(*stack))))
+		ft_dlstadd_front(stack, tmp);
 }

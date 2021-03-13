@@ -6,14 +6,14 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 16:33:33 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/09 06:14:37 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 11:16:02 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
 /*
-** Counts the number of elements in a list
+** Counts the number of nodes in a list
 ** @param dlst	The beginning of the list
 ** @return		Length of the list
 */

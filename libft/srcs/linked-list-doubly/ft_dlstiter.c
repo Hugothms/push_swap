@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 16:33:57 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/09 06:06:02 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 11:16:02 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /*
 ** Iterates the list ’dlst’ and applies the function ’f’ to the content of each
-**  element.
-** @param dlst	The adress of a pointer to an element.
+**  node.
+** @param dlst	The adress of a pointer to an node.
 ** @param f		The adress of the function used to iterate on the list.
 */
 

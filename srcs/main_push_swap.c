@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 10:01:33 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 11:21:57 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,43 @@
 
 /** ALGO
  * tant que size list > 3
- * 		trouver le plus petit element
+ * 		trouver le plus petit node
  * 		le mettre en haut de a
  * 		le push sur b (pb)
- * ensuite trier les 3 elem restants
+ * ensuite trier les 3 node restants
  * remettre tout sur a (pa)
  * DONE
  **/
 
 /**
- * Sort a stack of 3 element with the smallest number of instructions possible
- * @param list	stack of size 3 to sort
+ * Sort a stack of 3 node with the smallest number of instructions possible
+ * @param stack	stack of size 3 to sort
  **/
-// void	sort_3(t_dlist *list)
+// void	sort_3(t_dlist *stack)
 // {
 
 // }
 
 /**
- * Check if the given element is in the first half of the stack
- * @param list	the stack containing elem
- * @param elem	element to check the position
- * @return		1 if elem is in the first half, 0 otherwise
+ * Check if the given node is in the first half of the stack
+ * @param stack	the stack containing node
+ * @param node	node to check the position
+ * @return		1 if node is in the first half, 0 otherwise
  **/
-int		first_half(t_dlist *list, t_dlist *elem)
+int		first_half(t_dlist *stack, t_dlist *node)
 {
 	t_dlist	*tmp;
 	int		half;
 	int		pos;
 	
-	half = (ft_dlstsize(list) + 1) / 2;
+	half = (ft_dlstsize(stack) + 1) / 2;
 	pos = 0;
-	tmp = list;
-	if (tmp == elem)
+	tmp = stack;
+	if (tmp == node)
 		return (1);
 	while (pos < half)
 	{
-		if (tmp == elem)
+		if (tmp == node)
 			return (1);
 		tmp = tmp->next;
 		pos++;
@@ -59,32 +59,32 @@ int		first_half(t_dlist *list, t_dlist *elem)
 }
 
 /**
- * Put an element at the top of the stack without changing the order of 
- * the other elements
- * @param list	stack to modify
- * @param elem	element to put at the top
+ * Put an node at the top of the stack without changing the order of 
+ * the other nodes
+ * @param stack	stack to modify
+ * @param node	node to put at the top
  **/
-// void	put_at_top(t_dlist *list, t_dlist *elem)
+// void	put_at_top(t_dlist *stack, t_dlist *node)
 // {
 	
 	
 // }
 
 /**
- * Find and return the smallest element of the stack 
- * @param list	stack where to find the smallest element
- * @return		the smalest element found in the stack
+ * Find and return the smallest node of the stack 
+ * @param stack	stack where to find the smallest node
+ * @return		the smalest node found in the stack
  **/
-t_dlist	*find_smaller(t_dlist *list)
+t_dlist	*find_smaller(t_dlist *stack)
 {
 	t_dlist	*tmp;
 	t_dlist	*smaller;
 
-	smaller = list;
-	tmp = list->next;
+	smaller = stack;
+	tmp = stack->next;
 	if (get_value(tmp) < get_value(smaller))
 			smaller = tmp;
-	while (tmp != list)
+	while (tmp != stack)
 	{
 		if (get_value(tmp) < get_value(smaller))
 			smaller = tmp;
@@ -96,9 +96,9 @@ t_dlist	*find_smaller(t_dlist *list)
 /**
  * Sort a stack with the help of a second stack using only the 
  * autorized operations and print them
- * @param list	pointer on the first elem of the stack to sort
+ * @param stack	pointer on the first node of the stack to sort
  **/
-// void	sort(t_dlist **list)
+// void	sort(t_dlist **stack)
 // {
 // 	t_dlist	*b;
 
@@ -149,7 +149,7 @@ int		main(int argc, char const *argv[])
 	// ft_dlstadd_back(&b, (ft_dlstnew(num)));
 
 	// print_dlist_line("b", b);
-	// printf("elem:%d is in fisrt half ?%d\n", get_value(tmp), first_half(b, tmp));
+	// printf("node:%d is in fisrt half ?%d\n", get_value(tmp), first_half(b, tmp));
 	
 	
 	// sort(&a);

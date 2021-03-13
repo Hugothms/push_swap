@@ -6,16 +6,16 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 16:32:54 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/12 21:53:57 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 11:16:02 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
 /*
-** Adds the element ’new’ at the end of the list
+** Adds the node ’new’ at the end of the list
 ** @param adlst	The address of a pointer to the first node of a list.
-** @param new	The address of a pointer to the element to be added to the list.
+** @param new	The address of a pointer to the node to be added to the list.
 */
 
 void	ft_dlstadd_back(t_dlist **adlst, t_dlist *new)

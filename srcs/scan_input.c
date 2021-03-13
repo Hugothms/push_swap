@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:13:23 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/12 21:20:53 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 09:56:45 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,15 @@ int		int_overflow(char const *str, int sign)
 		return (ft_strlen(str) == 10 && (ft_strcmp(str, "2147483647")) > 0);
 }
 
-int		scan_input(int argc, char const *argv[], t_dlist **a)
+t_dlist	*scan_input(int argc, char const *argv[])
 {
 	int		i;
 	int		j;
 	int		*num;
+	t_dlist	*a;
 
 	i = 1;
+	a = NULL;
 	while (i < argc)
 	{
 		j = 0;
@@ -73,9 +75,9 @@ int		scan_input(int argc, char const *argv[], t_dlist **a)
 		if (!(num = malloc(sizeof(int))))
 			error();
 		*num = ft_atol(argv[i++]);
-		ft_dlstadd_back(a, ft_dlstnew(num));
+		ft_dlstadd_back(&a, ft_dlstnew(num));
 	}
-	if (duplicates(*a))
+	if (duplicates(a))
 		error();
-	return (0);
+	return (a);
 }

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/12 22:04:53 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 09:57:29 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	print_clean_dlist(t_dlist *a, t_dlist *b);
 void	error(void);
 int		duplicates(t_dlist *a);
 int		int_overflow(char const *str, int sign);
-int		scan_input(int argc, char const *argv[], t_dlist **a);
+t_dlist *scan_input(int argc, char const *argv[]);
 
 /*
 ** utils

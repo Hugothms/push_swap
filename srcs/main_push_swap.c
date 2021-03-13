@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/12 22:07:35 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 10:01:33 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,15 +118,18 @@ t_dlist	*find_smaller(t_dlist *list)
 
 int		main(int argc, char const *argv[])
 {
+	// (void)argc;
+	// (void)argv;
+	
 	t_dlist	*a;
 	
 	if (argc == 1)
 		return (0);
-	if (scan_input(argc, argv, &a))
+	if (!(a = scan_input(argc, argv)))
 		error();
 	print_dlist_line("a", a);
 
-	// t_dlist	*b;
+	// t_dlist	*b=NULL;
 	// int		*num;
 	// t_dlist	*tmp;
 	// num = malloc(sizeof(int));

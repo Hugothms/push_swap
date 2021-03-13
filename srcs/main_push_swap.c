@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 13:54:05 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 14:47:49 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@
  **/
 void	sort_stack_size_3(t_dlist *stack, char name)
 {
-	if (ft_dlstsize(stack) != 3 || checker(stack))
+	if (ft_dlstsize(stack) != 3 || !checker(stack))
 		return ;
-	else if (get_value(stack)				> get_value(stack->next) &&
+	ft_printf("%d,%d,%d\n", get_value(stack), get_value(stack->next), get_value(stack->next->next));
+	if (get_value(stack)				> get_value(stack->next) &&
 			get_value(stack->next)			< get_value(stack->next->next) &&
 			get_value(stack->next->next)	> get_value(stack))
 		sort1(stack, name);
@@ -112,7 +113,7 @@ void	put_at_top(t_dlist *stack, t_dlist *node, char name)
 	}
 	else
 	{
-		while (pos--)
+		while (pos++ % ft_dlstsize(stack))
 		{
 			ft_printf("rr%c\n", name);
 			reverse(&stack);

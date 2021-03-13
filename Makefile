@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/13 12:11:34 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/13 13:50:51 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,11 +101,14 @@ echoFCLEAN :
 	echo "$(PURPLE)Cleanning Exec & Lib$(NC)\n"
 
 ########################### TEST
+
+ARG=1 3 2
+
 test:		$(NAME)
-	ARG="4 67 3 87 23"; ./$< $(ARG); ./$< $(ARG) | wc -l; ./$< $(ARG) | ./checker $(ARG)
+	./$< $(ARG); ./$< $(ARG) | wc -l; ./$< $(ARG) | ./checker $(ARG)
 
 test_push_swap:	$(NAME)
-	./$< 3 2 1 0 -1
+	./$< $(ARG)
 	
 test_checker:	checker
-	./$< 3 2 1 0 -1
+	./$< $(ARG)

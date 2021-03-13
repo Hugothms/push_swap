@@ -6,27 +6,31 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:37:07 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 11:21:26 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 13:07:14 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	print_dlist_line(char *name, t_dlist *stack)
+void	print_dlist_line(t_dlist *stack, char name)
 {
 	t_dlist	*tmp;
 	int		*num;
 
 	tmp = stack;
-	ft_printf("%s: ", name);
+	ft_printf("%c: ", name);
 	while (tmp && tmp->next != stack)
 	{
 		num = tmp->content;
 		ft_printf("%d ", *num);
 		tmp = tmp->next;
 	}
-	num = tmp->content;
-	ft_printf("%d\n", *num);
+	if (tmp)
+	{
+		num = tmp->content;
+		ft_printf("%d", *num);
+	}
+	ft_printf("\n");
 }
 
 void	print_first_item_dlist(t_dlist *dlist)

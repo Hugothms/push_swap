@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 13:47:34 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 15:02:11 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,13 @@ int		main(int argc, char const *argv[])
 	while(get_next_line(&line ,0))
 	{
 		ft_printf("---------\nExec %s:\n", line);
-		ret = 1;
 		if (!ft_strncmp(line, "s", 1))
 			swap_it(&a, &b, line, &ret);
 		else if (!ft_strncmp(line, "p", 1))
 			push_it(&a, &b, line, &ret);
 		else if (!ft_strncmp(line, "rr", 2))
 			reverse_it(&a, &b, line, &ret);
-		else if (!ft_strncmp(line, "r", 1))
+		else
 			rotate_it(&a, &b, line, &ret);
 		if (ret)
 			error();

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 14:47:49 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 15:41:00 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,30 @@
  * Sort a stack of 3 node with the smallest number of instructions possible
  * @param stack	stack of size 3 to sort
  **/
-void	sort_stack_size_3(t_dlist *stack, char name)
+void	sort_stack_size_3(t_dlist **st, char name)
 {
-	if (ft_dlstsize(stack) != 3 || !checker(stack))
+	if (ft_dlstsize((*st)) != 3 || !checker((*st)))
 		return ;
-	ft_printf("%d,%d,%d\n", get_value(stack), get_value(stack->next), get_value(stack->next->next));
-	if (get_value(stack)				> get_value(stack->next) &&
-			get_value(stack->next)			< get_value(stack->next->next) &&
-			get_value(stack->next->next)	> get_value(stack))
-		sort1(stack, name);
-	else if (get_value(stack)				> get_value(stack->next) &&
-			get_value(stack->next)			> get_value(stack->next->next) &&
-			get_value(stack->next->next)	< get_value(stack))
-		sort2(stack, name);
-	else if (get_value(stack)				> get_value(stack->next) &&
-			get_value(stack->next)			< get_value(stack->next->next) &&
-			get_value(stack->next->next)	< get_value(stack))
-		sort3(stack, name);
-	else if (get_value(stack)				< get_value(stack->next) &&
-			get_value(stack->next)			> get_value(stack->next->next) &&
-			get_value(stack->next->next)	> get_value(stack))
-		sort4(stack, name);
-	else if (get_value(stack)				< get_value(stack->next) &&
-			get_value(stack->next)			> get_value(stack->next->next) &&
-			get_value(stack->next->next)	< get_value(stack))
-		sort5(stack, name);
+	if (get_value((*st))					> get_value((*st)->next) &&
+			get_value((*st)->next)		< get_value((*st)->next->next) &&
+			get_value((*st)->next->next)	> get_value((*st)))
+		sort1(st, name);
+	else if (get_value((*st))			> get_value((*st)->next) &&
+			get_value((*st)->next)		> get_value((*st)->next->next) &&
+			get_value((*st)->next->next)	< get_value((*st)))
+		sort2(st, name);
+	else if (get_value((*st))			> get_value((*st)->next) &&
+			get_value((*st)->next)		< get_value((*st)->next->next) &&
+			get_value((*st)->next->next)	< get_value((*st)))
+		sort3(st, name);
+	else if (get_value((*st))			< get_value((*st)->next) &&
+			get_value((*st)->next)		> get_value((*st)->next->next) &&
+			get_value((*st)->next->next)	> get_value((*st)))
+		sort4(st, name);
+	else if (get_value((*st))			< get_value((*st)->next) &&
+			get_value((*st)->next)		> get_value((*st)->next->next) &&
+			get_value((*st)->next->next)	< get_value((*st)))
+		sort5(st, name);
 }
 
 /**
@@ -93,30 +92,30 @@ int		first_half(t_dlist *stack, int pos)
  * @param stack	stack to modify
  * @param node	node to put at the top
  **/
-void	put_at_top(t_dlist *stack, t_dlist *node, char name)
+void	put_at_top(t_dlist **stack, t_dlist *node, char name)
 {
 	int	pos;
 	int	top;
 	
-	pos = pos_node(stack, node);
-	// if (pos >= ft_dlstsize(stack))
+	pos = pos_node(*stack, node);
+	// if (pos >= ft_dlstsize(*stack))
 	// 	ft_printf("Ca va paxs chef\n");
 	// ft_printf("node:%d is at pos:%d\n", get_value(node), pos);
-	top = first_half(stack, pos);
+	top = first_half(*stack, pos);
 	if (top)
 	{
 		while (pos--)
 		{
 			ft_printf("r%c\n", name);
-			rotate(&stack);
+			rotate(stack);
 		}
 	}
 	else
 	{
-		while (pos++ % ft_dlstsize(stack))
+		while (pos++ % ft_dlstsize(*stack))
 		{
 			ft_printf("rr%c\n", name);
-			reverse(&stack);
+			reverse(stack);
 		}
 	}		
 }
@@ -158,16 +157,16 @@ void	sort(t_dlist **stack, char name)
 	{		
 		t_dlist *smaller = find_smaller(*stack);
 		// print_dlist_line(*stack, 'a');
-		// ft_printf("stack[%d]", pos_node(*stack, smaller));
+		// ft_printf("Smaller Node:\nstack[%d]", pos_node(*stack, smaller));
 		// ft_printf("=%d\n", get_value(smaller));
 		// ft_printf("size:%d ", ft_dlstsize(*stack));
 		// ft_printf("%s\n", first_half(*stack, pos_node(*stack, smaller)) ? "top" : "bottom");
 	
-		put_at_top(*stack, smaller, name);
+		put_at_top(stack, smaller, name);
 		ft_printf("pb\n");
 		push(&b, stack);
 	}
-	sort_stack_size_3(*stack, name);
+	sort_stack_size_3(stack, name);
 	while(ft_dlstsize(b))
 	{
 		ft_printf("pa\n");

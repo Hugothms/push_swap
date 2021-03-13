@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 13:05:29 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 15:37:22 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ t_dlist *scan_input(int argc, char const *argv[]);
 /*
 ** sort_utils
 */
-void	sort1(t_dlist *stack, char name);
-void	sort2(t_dlist *stack, char name);
-void	sort3(t_dlist *stack, char name);
-void	sort4(t_dlist *stack, char name);
-void	sort5(t_dlist *stack, char name);
+void	sort1(t_dlist **stack, char name);
+void	sort2(t_dlist **stack, char name);
+void	sort3(t_dlist **stack, char name);
+void	sort4(t_dlist **stack, char name);
+void	sort5(t_dlist **stack, char name);
 
 /*
 ** utils

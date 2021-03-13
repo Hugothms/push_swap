@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 11:21:57 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 11:33:18 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,32 @@
  * @param node	node to check the position
  * @return		1 if node is in the first half, 0 otherwise
  **/
-int		first_half(t_dlist *stack, t_dlist *node)
+int		pos_node(t_dlist *stack, t_dlist *node)
 {
 	t_dlist	*tmp;
-	int		half;
 	int		pos;
 	
-	half = (ft_dlstsize(stack) + 1) / 2;
-	pos = 0;
-	tmp = stack;
-	if (tmp == node)
-		return (1);
-	while (pos < half)
+	if (stack == node)
+		return (0);
+	pos = 1;
+	tmp = stack->next;
+	while (tmp != stack && tmp != node)
 	{
-		if (tmp == node)
-			return (1);
-		tmp = tmp->next;
 		pos++;
+		tmp = tmp->next;
 	}
-	return (0);
+	return (pos);
+}
+
+/**
+ * Check if the given node is in the first half of the stack
+ * @param stack	the stack containing node
+ * @param node	node to check the position
+ * @return		1 if node is in the first half, 0 otherwise
+ **/
+int		first_half(t_dlist *stack, int pos)
+{
+	return (pos < (ft_dlstsize(stack) + 1) / 2);
 }
 
 /**
@@ -129,29 +136,24 @@ int		main(int argc, char const *argv[])
 		error();
 	print_dlist_line("a", a);
 
-	// t_dlist	*b=NULL;
-	// int		*num;
-	// t_dlist	*tmp;
-	// num = malloc(sizeof(int));
-	// *num = -1;
-	// ft_dlstadd_back(&b, (ft_dlstnew(num)));
+	t_dlist	*b=NULL;
+	int		*num;
+	t_dlist	*tmp;
+	num = malloc(sizeof(int));
+	*num = -1;
+	ft_dlstadd_back(&b, (tmp = ft_dlstnew(num)));
 
-	// num = malloc(sizeof(int));
-	// *num = 4;
-	// ft_dlstadd_back(&b, (tmp = ft_dlstnew(num)));
+	num = malloc(sizeof(int));
+	*num = 4;
+	ft_dlstadd_back(&b, (ft_dlstnew(num)));
 
-	// num = malloc(sizeof(int));
-	// *num = 4;
-	// ft_dlstadd_back(&b, (ft_dlstnew(num)));
+	num = malloc(sizeof(int));
+	*num = 2;
+	ft_dlstadd_back(&b, (ft_dlstnew(num)));
 
-	// num = malloc(sizeof(int));
-	// *num = 45;
-	// ft_dlstadd_back(&b, (ft_dlstnew(num)));
+	print_dlist_line("b", b);
+	printf("node:%d is in fisrt half ?%d\n", get_value(tmp), first_half(b,pos_node(b, tmp)));
 
-	// print_dlist_line("b", b);
-	// printf("node:%d is in fisrt half ?%d\n", get_value(tmp), first_half(b, tmp));
-	
-	
 	// sort(&a);
 	return (0);
 }

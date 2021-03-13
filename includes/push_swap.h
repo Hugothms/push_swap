@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 11:19:47 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 12:11:01 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	reverse_it(t_dlist **a, t_dlist **b, char *line, int *ret);
 /*
 ** operations
 */
-int		checker(t_dlist *a, t_dlist *b);
+int		checker(t_dlist *stack);
 void	swap(t_dlist **stack);
 void	push(t_dlist **a, t_dlist **b);
 void	rotate(t_dlist **stack);
@@ -49,6 +49,15 @@ void	error(void);
 int		duplicates(t_dlist *a);
 int		int_overflow(char const *str, int sign);
 t_dlist *scan_input(int argc, char const *argv[]);
+
+/*
+** sort_utils
+*/
+void	sort1(t_dlist *stack);
+void	sort2(t_dlist *stack);
+void	sort3(t_dlist *stack);
+void	sort4(t_dlist *stack);
+void	sort5(t_dlist *stack);
 
 /*
 ** utils

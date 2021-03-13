@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/12 21:52:55 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/13 12:11:34 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS_CHECKER	=	srcs/main_checker.c			\
 						
 
 SRCS_PUSH_SWAP	=	srcs/main_push_swap.c		\
+					srcs/sort_utils.c			\
 					$(SRCS_COMMON)
 
 OBJS_CHECKER	=	$(SRCS_CHECKER:.c=.o)

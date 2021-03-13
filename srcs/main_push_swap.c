@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 11:33:18 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 12:10:14 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,37 @@
  * Sort a stack of 3 node with the smallest number of instructions possible
  * @param stack	stack of size 3 to sort
  **/
-// void	sort_3(t_dlist *stack)
-// {
-
-// }
+void	sort_stack_size_3(t_dlist *stack)
+{
+	if (ft_dlstsize(stack) != 3 || checker(stack))
+		return ;
+	else if (get_value(stack)				> get_value(stack->next) &&
+			get_value(stack->next)			< get_value(stack->next->next) &&
+			get_value(stack->next->next)	> get_value(stack))
+		sort1(stack);
+	else if (get_value(stack)				> get_value(stack->next) &&
+			get_value(stack->next)			> get_value(stack->next->next) &&
+			get_value(stack->next->next)	< get_value(stack))
+		sort2(stack);
+	else if (get_value(stack)				> get_value(stack->next) &&
+			get_value(stack->next)			< get_value(stack->next->next) &&
+			get_value(stack->next->next)	< get_value(stack))
+		sort3(stack);
+	else if (get_value(stack)				< get_value(stack->next) &&
+			get_value(stack->next)			> get_value(stack->next->next) &&
+			get_value(stack->next->next)	> get_value(stack))
+		sort4(stack);
+	else if (get_value(stack)				< get_value(stack->next) &&
+			get_value(stack->next)			> get_value(stack->next->next) &&
+			get_value(stack->next->next)	< get_value(stack))
+		sort5(stack);
+}
 
 /**
- * Check if the given node is in the first half of the stack
+ * Find the position of the node in the stack
  * @param stack	the stack containing node
  * @param node	node to check the position
- * @return		1 if node is in the first half, 0 otherwise
+ * @return		position of the given node
  **/
 int		pos_node(t_dlist *stack, t_dlist *node)
 {
@@ -115,7 +136,7 @@ t_dlist	*find_smaller(t_dlist *stack)
 // 		ft_printf("pb\n");
 // 		push(&b, list);
 // 	}
-// 	sort_3(*list);
+// 	sort_stack_size_3(*list);
 // 	while(ft_dlstsize(b))
 // 	{
 // 		ft_printf("pa\n");
@@ -152,7 +173,7 @@ int		main(int argc, char const *argv[])
 	ft_dlstadd_back(&b, (ft_dlstnew(num)));
 
 	print_dlist_line("b", b);
-	printf("node:%d is in fisrt half ?%d\n", get_value(tmp), first_half(b,pos_node(b, tmp)));
+	printf("node:%d is in fisrt half ?%d\n", get_value(tmp), first_half(b, pos_node(b, tmp)));
 
 	// sort(&a);
 	return (0);

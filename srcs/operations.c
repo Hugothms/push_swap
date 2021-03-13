@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 11:20:31 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 11:47:45 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,17 @@
  * Check if the given list is sorted
  * @return	0 if the list is sorted, otherwise return 1
  **/
-
-int		checker(t_dlist *a, t_dlist *b)
+int		checker(t_dlist *stack)
 {
 	t_dlist	*tmp;
 
-	if (!a)
+	if (!stack)
 		return (0);
-	tmp = a;
-	if (*(int*)(a->content) > *(int*)(a->next->content) || b)
+	tmp = stack;
+	if (*(int*)(stack->content) > *(int*)(stack->next->content))
 		return (1);
 	tmp = tmp->next;
-	while (tmp && tmp->next != a)
+	while (tmp && tmp->next != stack)
 	{
 		if (*(int*)(tmp->content) > *(int*)(tmp->next->content))
 			return (1);
@@ -40,7 +39,6 @@ int		checker(t_dlist *a, t_dlist *b)
  * Swap the ﬁrst 2 nodes at the top of stack
  * Do nothing if there is only one or no nodes)
  **/
-
 void	swap(t_dlist **stack)
 {
 	int		*num;
@@ -57,7 +55,6 @@ void	swap(t_dlist **stack)
  * Take the ﬁrst node at the top of b and put it at the top of a
  * Do nothing if b is empty
  **/
-
 void	push(t_dlist **a, t_dlist **b)
 {
 	int		*num;
@@ -77,7 +74,6 @@ void	push(t_dlist **a, t_dlist **b)
  * Shift up all nodes of stack a by 1
  * The ﬁrst node becomes the last one
  **/
-
 void	rotate(t_dlist **stack)
 {
 	t_dlist	*tmp;
@@ -90,7 +86,6 @@ void	rotate(t_dlist **stack)
  * Shift down all nodes of stack a by 1
  * The last node becomes the ﬁrst one.
  **/
-
 void	reverse(t_dlist **stack)
 {
 	t_dlist	*tmp;

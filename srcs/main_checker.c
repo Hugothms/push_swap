@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 10:01:01 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/13 11:49:00 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ int		main(int argc, char const *argv[])
 			error();
 		print_clean_dlist(a, b);
 	}
-	ft_printf("%s\n", (checker(a, b) ? "KO" : "OK"));
+	ft_printf("%s\n", (b || (checker(a)) ? "KO" : "OK"));
 	return (0);
 }

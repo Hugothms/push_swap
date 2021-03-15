@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_naif.c                                        :+:      :+:    :+:   */
+/*   sort_naif.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:37:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/15 09:38:58 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/15 09:50:21 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void	sort_naif(t_dlist **stack, char name)
 {
 	t_dlist	*b;
 	b = NULL;
-	// int cpt = 0;
+
 	while (ft_dlstsize(*stack) > 3)
 	{		
 		t_dlist *smallest = find_smallest(*stack);

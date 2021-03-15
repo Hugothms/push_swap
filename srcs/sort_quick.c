@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/15 09:40:20 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/15 09:51:39 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,24 @@ t_dlist	*find_smaller_than(t_dlist *stack, int value)
 		start = start->prev;
 	}
 	return (NULL);
+}
+
+/**
+ * Sort a stack with the help of a second stack using only the 
+ * autorized operations and print them
+ * @param stack	pointer on the first node of the stack to sort
+ **/
+void	sort_quick(t_dlist **stack, char name)
+{
+	t_dlist	*b;
+	t_dlist	*tmp;
+
+	b = NULL;
+	(void)name;
+	tmp = (*stack)->next;
+	while (tmp != *stack)
+	{
+		push(&b, stack);
+	}
+	
 }

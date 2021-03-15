@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/15 09:38:36 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/15 09:43:18 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,14 @@
 # include <stdio.h>
 
 /*
-** operations_redir
+** sort_naif
 */
 void	sort_naif(t_dlist **stack, char name);
+
+/*
+** sort_quick
+*/
+void	sort_quick(t_dlist **stack, char name);
 
 /*
 ** operations_redir

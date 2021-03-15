@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/15 10:38:38 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/15 10:41:26 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		*ft_dlst_to_tab(t_dlist *dlst)
  * @param value	value of the node we are looking for
  * @return		node with the corresponding value
  **/
-t_dlist	*c(t_dlist *stack, int value)
+t_dlist	*find_node(t_dlist *stack, int value)
 {
 	t_dlist	*tmp;
 	
@@ -83,12 +83,12 @@ t_dlist	*find_median(t_dlist *stack)
 	int		*tab;
 	int		size;
 	int		median_value;
-	t_dlist	*median;
 	
 	size = ft_dlstsize(stack);
 	tab = ft_dlst_to_tab(stack);
 	sort_int(tab, size);
 	median_value = tab[size / 2];
+	return (find_node(stack, median_value));
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/15 09:51:39 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/15 10:24:39 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,49 @@
  * recursion sur (stack depuis median)
  * DONE
  **/
+
+
+
+
+
+
+
+
+
+int		*ft_dlst_to_tab(t_dlist *dlst)
+{
+	t_dlist	*tmp;
+	int		*tab;
+	int		i;
+
+	if (!dlst)
+		return (NULL);
+	if (!(tab = malloc(sizeof(int) * ft_dlstsize(dlst))))
+		return (NULL);
+	i = 0;
+	tab[i] = get_value(dlst);
+	tmp = dlst->next;
+	while (tmp != dlst)
+	{		
+		tab[i] = get_value(tmp);
+		tmp = tmp->next;
+	}
+	return (tab);
+}
+
+/**
+ * Find and return median node (relative to the value) in the given stack
+ * @param stack	stack where to find the node
+ * @return		the median node
+ **/
+t_dlist	*find_median(t_dlist *stack)
+{
+	int	*tab;
+	
+	tab = ft_dlst_to_tab(stack);
+	sort_int(tab, ft_dlstsize(stack));
+	return (NULL);
+}
 
 /**
  * Find and return the first found node smaller (or equal) than a given number

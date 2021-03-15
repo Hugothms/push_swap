@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/04 11:49:24 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/10 16:00:23 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/15 10:27:29 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,6 +126,9 @@ SRCS		+=	srcs/string/ft_in_charset.c					\
 				srcs/string/ft_tolower.c					\
 				srcs/string/ft_split.c						\
 
+# tabs
+SRCS		+=	srcs/tabs/sort_int.c						\
+				srcs/tabs/sort_str.c						\
 
 # ft_printf
 SRCS 		+= 	srcs/ft_printf/ft_printf.c					\

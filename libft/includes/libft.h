@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:02:45 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/10 11:24:18 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/15 10:26:54 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,5 +164,11 @@ int					ft_toupper(int c);
 int					ft_tolower(int c);
 int					ft_in_charset(char c, char const *charset);
 char				**ft_split(char const *s, char c1);
+
+/*
+** tabs
+*/
+void				sort_int(int *tab, int size);
+void				sort_str(char *tabstr[], int size);
 
 #endif

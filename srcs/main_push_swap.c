@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/15 07:48:16 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/15 08:58:58 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,50 +121,56 @@ void	put_at_top(t_dlist **stack, t_dlist *node, char name)
 }
 
 /**
- * Find and return the smallest node of the stack 
- * @param stack	stack where to find the smallest node
- * @return		the smalest node found in the stack
+ * Find and return the first found node smaller (or equal) than a given number
+ * @param stack	stack where to find the node
+ * @param value	value max to accept a node
+ * @return		the closest node (from the top or the bottom of stack)
+ * 				smaller (or equal) than value
  **/
-t_dlist	*find_smaller_than(t_dlist *stack, int nb)
+t_dlist	*find_smaller_than(t_dlist *stack, int value)
 {
-	// todo
-	t_dlist	*tmp;
-	t_dlist	*smaller;
+	t_dlist	*start;
+	t_dlist	*end;
 
-	smaller = stack;
-	tmp = stack->next;
-	if (get_value(tmp) < get_value(smaller))
-			smaller = tmp;
-	while (tmp != stack)
+	start = stack->next;
+	end = stack->prev;
+	if (get_value(start) <= value)
+			return (start);
+	if (get_value(end) <= value)
+			return (end);
+	while (start != stack)
 	{
-		if (get_value(tmp) < get_value(smaller))
-			smaller = tmp;
-		tmp = tmp->next;
+		if (get_value(start) <= value)
+			return (start);
+		if (get_value(end) <= value)
+			return (end);
+		start = start->next;
+		start = start->prev;
 	}
-	return (smaller);
+	return (NULL);
 }
 
 /**
  * Find and return the smallest node of the stack 
  * @param stack	stack where to find the smallest node
- * @return		the smalest node found in the stack
+ * @return		the smallest node found in the stack
  **/
-t_dlist	*find_smaller(t_dlist *stack)
+t_dlist	*find_smallest(t_dlist *stack)
 {
 	t_dlist	*tmp;
-	t_dlist	*smaller;
+	t_dlist	*smallest;
 
-	smaller = stack;
+	smallest = stack;
 	tmp = stack->next;
-	if (get_value(tmp) < get_value(smaller))
-			smaller = tmp;
+	if (get_value(tmp) < get_value(smallest))
+			smallest = tmp;
 	while (tmp != stack)
 	{
-		if (get_value(tmp) < get_value(smaller))
-			smaller = tmp;
+		if (get_value(tmp) < get_value(smallest))
+			smallest = tmp;
 		tmp = tmp->next;
 	}
-	return (smaller);
+	return (smallest);
 }
 
 /**
@@ -179,14 +185,14 @@ void	sort(t_dlist **stack, char name)
 	// int cpt = 0;
 	while (ft_dlstsize(*stack) > 3)
 	{		
-		t_dlist *smaller = find_smaller(*stack);
+		t_dlist *smallest = find_smallest(*stack);
 		// print_dlist_line(*stack, 'a');
-		// ft_printf("Smaller Node:\nstack[%d]", pos_node(*stack, smaller));
-		// ft_printf("=%d\n", get_value(smaller));
+		// ft_printf("smallest Node:\nstack[%d]", pos_node(*stack, smallest));
+		// ft_printf("=%d\n", get_value(smallest));
 		// ft_printf("size:%d ", ft_dlstsize(*stack));
-		// ft_printf("%s\n", first_half(*stack, pos_node(*stack, smaller)) ? "top" : "bottom");
+		// ft_printf("%s\n", first_half(*stack, pos_node(*stack, smallest)) ? "top" : "bottom");
 	
-		put_at_top(stack, smaller, name);
+		put_at_top(stack, smallest, name);
 		ft_printf("pb\n");
 		push(&b, stack);
 	}

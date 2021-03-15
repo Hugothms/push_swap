@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/15 10:24:39 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/15 10:38:38 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,43 @@ int		*ft_dlst_to_tab(t_dlist *dlst)
 }
 
 /**
+ * Find the node with the corresponding value in the stack
+ * @param stack	the stack containing node
+ * @param value	value of the node we are looking for
+ * @return		node with the corresponding value
+ **/
+t_dlist	*c(t_dlist *stack, int value)
+{
+	t_dlist	*tmp;
+	
+	if (get_value(stack) == value)
+		return (stack);
+	tmp = stack->next;
+	while (tmp != stack)
+	{
+		if (get_value(tmp) == value)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
+/**
  * Find and return median node (relative to the value) in the given stack
  * @param stack	stack where to find the node
  * @return		the median node
  **/
 t_dlist	*find_median(t_dlist *stack)
 {
-	int	*tab;
+	int		*tab;
+	int		size;
+	int		median_value;
+	t_dlist	*median;
 	
+	size = ft_dlstsize(stack);
 	tab = ft_dlst_to_tab(stack);
-	sort_int(tab, ft_dlstsize(stack));
+	sort_int(tab, size);
+	median_value = tab[size / 2];
 	return (NULL);
 }
 

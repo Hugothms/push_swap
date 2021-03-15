@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 15:41:00 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/15 07:48:16 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,30 @@ void	put_at_top(t_dlist **stack, t_dlist *node, char name)
 			reverse(stack);
 		}
 	}		
+}
+
+/**
+ * Find and return the smallest node of the stack 
+ * @param stack	stack where to find the smallest node
+ * @return		the smalest node found in the stack
+ **/
+t_dlist	*find_smaller_than(t_dlist *stack, int nb)
+{
+	// todo
+	t_dlist	*tmp;
+	t_dlist	*smaller;
+
+	smaller = stack;
+	tmp = stack->next;
+	if (get_value(tmp) < get_value(smaller))
+			smaller = tmp;
+	while (tmp != stack)
+	{
+		if (get_value(tmp) < get_value(smaller))
+			smaller = tmp;
+		tmp = tmp->next;
+	}
+	return (smaller);
 }
 
 /**

@@ -6,29 +6,11 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/15 10:41:26 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/15 10:51:18 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-/** ALGO QUICK SORT
- * tant que le dernier node n'est pas atteint
- * 		trouver le node median
- * 		mettre les 50% plus petits noeuds sur l'autre stack (il reste les 50% plus grands sur la stack actuelle)
- * 		mettre le mediant au milieu (quelle stack ?)
- * recursion sur (stack jusqu'a median)
- * recursion sur (stack depuis median)
- * DONE
- **/
-
-
-
-
-
-
-
-
 
 int		*ft_dlst_to_tab(t_dlist *dlst)
 {
@@ -131,13 +113,31 @@ void	sort_quick(t_dlist **stack, char name)
 {
 	t_dlist	*b;
 	t_dlist	*tmp;
+	t_dlist	*median;
+	t_dlist	*smaller;
 
 	b = NULL;
 	(void)name;
 	tmp = (*stack)->next;
+	median = find_median(*stack);
 	while (tmp != *stack)
 	{
-		push(&b, stack);
+		if ((smaller = find_smaller_than(*stack, get_value(median))))
+		{
+			put_at_top(stack, smaller, 'a');
+			push(&b, stack);
+		}
+		
 	}
 	
 }
+
+/** ALGO QUICK SORT
+ * tant que le dernier node n'est pas atteint
+ * 		trouver le node median
+ * 		mettre les 50% plus petits noeuds sur l'autre stack (il reste les 50% plus grands sur la stack actuelle)
+ * 		mettre le mediant au milieu (quelle stack ?)
+ * recursion sur (stack jusqu'a median)
+ * recursion sur (stack depuis median)
+ * DONE
+ **/

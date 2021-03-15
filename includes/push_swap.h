@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/15 09:43:18 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/15 10:50:23 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 /*
 ** sort_naif
 */
+int		pos_node(t_dlist *stack, t_dlist *node);
+int		first_half(t_dlist *stack, int pos);
+void	put_at_top(t_dlist **stack, t_dlist *node, char name);
+t_dlist	*find_smallest(t_dlist *stack);
 void	sort_naif(t_dlist **stack, char name);
 
 /*
@@ -31,10 +35,10 @@ void	sort_quick(t_dlist **stack, char name);
 /*
 ** operations_redir
 */
-void	swap_it(t_dlist **a, t_dlist **b, char *line, int *ret);
-void	push_it(t_dlist **a, t_dlist **b, char *line, int *ret);
-void	rotate_it(t_dlist **a, t_dlist **b, char *line, int *ret);
-void	reverse_it(t_dlist **a, t_dlist **b, char *line, int *ret);
+void	swap_help(t_dlist **a, t_dlist **b, char *line, int *ret);
+void	push_help(t_dlist **a, t_dlist **b, char *line, int *ret);
+void	rotate_help(t_dlist **a, t_dlist **b, char *line, int *ret);
+void	reverse_help(t_dlist **a, t_dlist **b, char *line, int *ret);
 
 /*
 ** operations

@@ -6,13 +6,13 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:06:58 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/12 13:15:21 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/15 10:45:18 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	swap_it(t_dlist **a, t_dlist **b, char *line, int *ret)
+void	swap_help(t_dlist **a, t_dlist **b, char *line, int *ret)
 {
 	*ret = 0;
 	if (!ft_strcmp(line, "sa"))
@@ -28,7 +28,7 @@ void	swap_it(t_dlist **a, t_dlist **b, char *line, int *ret)
 		*ret = 1;
 }
 
-void	push_it(t_dlist **a, t_dlist **b, char *line, int *ret)
+void	push_help(t_dlist **a, t_dlist **b, char *line, int *ret)
 {
 	*ret = 0;
 	if (!ft_strcmp(line, "pa"))
@@ -39,7 +39,7 @@ void	push_it(t_dlist **a, t_dlist **b, char *line, int *ret)
 		*ret = 1;
 }
 
-void	rotate_it(t_dlist **a, t_dlist **b, char *line, int *ret)
+void	rotate_help(t_dlist **a, t_dlist **b, char *line, int *ret)
 {
 	*ret = 0;
 	if (!ft_strcmp(line, "ra"))
@@ -55,7 +55,7 @@ void	rotate_it(t_dlist **a, t_dlist **b, char *line, int *ret)
 		*ret = 1;
 }
 
-void	reverse_it(t_dlist **a, t_dlist **b, char *line, int *ret)
+void	reverse_help(t_dlist **a, t_dlist **b, char *line, int *ret)
 {
 	*ret = 0;
 	if (!ft_strcmp(line, "rra"))

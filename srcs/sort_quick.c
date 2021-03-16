@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 11:04:07 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 11:06:55 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,15 +135,19 @@ t_dlist	*sort_quick(t_dlist **stack, char name)
 		ft_putnbr(get_value(tmp));
 		if (get_value(tmp) > get_value(median))
 		{
+			tmp = tmp->next;
 			rotate(stack);
 			ft_putstr("ra\n");
 		}
 		else
 		{
+			tmp = tmp->next;
 			push(&b, stack);
 			ft_putstr("pb\n");
 		}
-		tmp = tmp->next;
+		// ft_putnbr(get_value(tmp));
+		// ft_putstr("\n");
+		// tmp = tmp->next;
 		// print(*stack, b);
 	}
 	// put_at_top(stack, median, 'a');

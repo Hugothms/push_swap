@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 13:17:41 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 13:39:33 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,15 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+
+typedef struct	s_stacks
+{
+	t_dlist		*stack_a;
+	t_dlist		*stack_b;
+	char		name_a;
+	char		name_b;
+}				t_stacks;
+
 
 /*
 ** sort_naif
@@ -30,7 +39,7 @@ void	sort_naif(t_dlist **stack, char name);
 /*
 ** sort_quick
 */
-t_dlist	*sort_quick(t_dlist **stack, t_dlist **other, char stack_n, char other_n);
+t_dlist	*sort_quick(t_stacks *ab);
 
 /*
 ** operations_redir

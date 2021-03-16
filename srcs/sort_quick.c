@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 13:18:53 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 13:40:29 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,54 +109,58 @@ t_dlist	*find_smaller_than(t_dlist *stack, int value)
 	}
 	return (NULL);
 }
+void put_in_place(t_stacks *ab, t_dlist **tmp, int median_value)
+{
+	ft_putnbr(get_value(*tmp));
+	if (get_value(*tmp) > median_value)
+	{
+		*tmp = (*tmp)->next;
+		rotate(&ab->stack_a);
+		ft_printf("r%c\n", ab->name_a);
+	}
+	else
+	{
+		*tmp = (*tmp)->next;
+		push(&ab->stack_b, &ab->stack_a);
+		ft_printf("p%c\n", ab->name_b);
+	}
+}
 
 /**
  * Sort a stack with the help of a second stack using only the 
  * autorized operations and print them
  * @param stack	pointer on the first node of the stack to sort
  **/
-t_dlist	*sort_quick(t_dlist **stack, t_dlist **other, char stack_n, char other_n)
+t_dlist	*sort_quick(t_stacks *ab)
 {
 	t_dlist	*median;
 	t_dlist	*tmp;
 	t_dlist	*last;
 
-	if (!*stack)
+	if (!ab->stack_a)
 		return (NULL);
-	if (!(median = find_median(*stack)))
+	if (!(median = find_median(ab->stack_a)))
 		return (NULL);
-	last = (*stack)->prev;
-	tmp = *stack;
+	last = ab->stack_a->prev;
+	tmp = ab->stack_a;
 	while (tmp != last)
 	{
-		ft_putnbr(get_value(tmp));
-		if (get_value(tmp) > get_value(median))
-		{
-			tmp = tmp->next;
-			rotate(stack);
-			ft_printf("r%c\n", stack_n);
-		}
-		else
-		{
-			tmp = tmp->next;
-			push(other, stack);
-			ft_printf("p%c\n", other_n);
-		}
+		put_in_place(ab, &tmp, get_value(median));
 		// ft_putnbr(get_value(tmp));
 		// ft_putstr("\n");
 		// tmp = tmp->next;
-		// print(*stack, other);
+		// print(ab->stack_a, other);
 	}
-	print_dlist_line(*stack, 'a');
-	print_dlist_line(*other, 'b');
-	// put_at_top(stack, median, 'a');
-	// push(other, stack);
+	print_dlist_line(ab->stack_a, ab->name_a);
+	print_dlist_line(ab->stack_b, ab->name_b);
+	// put_at_top(ab->stack_a, median, ab->name_a);
+	// push(other, ab->stack_a);
 	// ft_putstr("pb\n");
 	// ft_putstr("SUB-a\n");
-	// sort_quick(stack, stack_n);
+	// sort_quick(ab->stack_a, ab->stack_a);
 	// ft_putstr("SUB-other\n");
 	// sort_quick(other, 'other');
-	return (*stack);
+	return (ab->stack_a);
 }
 
 /** ALGO QUICK SORT

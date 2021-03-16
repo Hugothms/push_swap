@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 13:18:22 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 13:39:47 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 int		main(int argc, char const *argv[])
 {
-	// (void)argc;
-	// (void)argv;
-	
-	t_dlist	*a;
-	t_dlist	*b;
+	t_stacks *ab;
 	
 	if (argc == 1)
 		return (0);
-	if (!(a = scan_input(argc, argv)))
+	if (!(ab = malloc(sizeof(*ab))))
 		error();
-	b = NULL;
+	if (!(ab->stack_a = scan_input(argc, argv)))
+		error();
+	ab->stack_b = NULL;
+	ab->name_a = 'a';
+	ab->name_b = 'b';
+	
 	// print_dlist_line(a, 'a');
 
 	// t_dlist	*b=NULL;
@@ -52,7 +53,7 @@ int		main(int argc, char const *argv[])
 	// ft_printf("size:%d ", ft_dlstsize(b));
 	// ft_printf("%s\n", first_half(b, pos_node(b, tmp)) ? "top" : "bottom");
 
-	a = sort_quick(&a, &b, 'a', 'b');
-	ft_dlstclear(&a, a, &free);
+	sort_quick(ab);
+	ft_dlstclear(&ab->stack_a, ab->stack_a, &free);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 10:53:32 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 11:02:42 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,25 +119,30 @@ t_dlist	*sort_quick(t_dlist **stack, char name)
 {
 	t_dlist	*b;
 	t_dlist	*median;
-	t_dlist	*smaller;
-	int		swap;
+	t_dlist	*tmp;
+	t_dlist	*last;
 
+	(void) name;
 	if (!*stack)
 		return (NULL);
 	b = NULL;
 	if (!(median = find_median(*stack)))
 		return (NULL);
-	swap = 1;
-	while (swap)
+	last = (*stack)->prev;
+	tmp = *stack;
+	while (tmp != last)
 	{
-		swap = 0;
-		if ((smaller = find_smaller_than(*stack, get_value(median))))
+		if (get_value(tmp) > get_value(median))
 		{
-			put_at_top(stack, smaller, name);
+			rotate(stack);
+			ft_putstr("ra\n");
+		}
+		else
+		{
 			push(&b, stack);
 			ft_putstr("pb\n");
-			swap = 1;
 		}
+		tmp = tmp->next;
 		// print(*stack, b);
 	}
 	// put_at_top(stack, median, 'a');

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 14:47:55 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 16:42:24 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,8 +189,17 @@ t_dlist	*sort_quick(t_stacks *ab, int size, int parity)
 		ft_putnbr(get_value(tmp));
 		put_in_place(ab, &tmp, get_value(median), - parity);
 		
+		
 		// print(ab->stack_a, other);
 	}
+	put_at_top(&ab->stack_a , median, ab->name_a);
+	while (ab->stack_b)
+		{
+			push(&ab->stack_a, &ab->stack_b);
+			ab->size_a++;
+			ab->size_b--;
+			ft_printf("p%c\n", ab->name_a);
+		}
 	// ft_putnbr(get_value(tmp));
 	// put_in_place(ab, &tmp, get_value(median), - parity);
 	
@@ -201,8 +210,8 @@ t_dlist	*sort_quick(t_stacks *ab, int size, int parity)
 	swap_stacks(ab);
 	sort_quick(ab, ab->size_a, - parity);
 
-	swap_stacks(ab);
-	sort_quick(ab, ab->size_a, parity);
+	// swap_stacks(ab);
+	// sort_quick(ab, ab->size_a, parity);
 
 	// put_at_top(ab->stack_a, median, ab->name_a);
 	// push(other, ab->stack_a);

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 13:40:29 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 13:59:39 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,17 @@ t_dlist	*find_smaller_than(t_dlist *stack, int value)
 	}
 	return (NULL);
 }
-void put_in_place(t_stacks *ab, t_dlist **tmp, int median_value)
+
+/**
+ * If the number is biger then value, puts it at 
+ * the end of the current stack, otherwise push it on the other stack
+ * @param ab	pointer on the struct tu coco
+ * @param tmp	current node on which the loop iterates
+ * @param value	pivot value (median)
+ **/
+void put_in_place(t_stacks *ab, t_dlist **tmp, int value)
 {
-	ft_putnbr(get_value(*tmp));
-	if (get_value(*tmp) > median_value)
+	if (get_value(*tmp) > value)
 	{
 		*tmp = (*tmp)->next;
 		rotate(&ab->stack_a);
@@ -129,7 +136,8 @@ void put_in_place(t_stacks *ab, t_dlist **tmp, int median_value)
 /**
  * Sort a stack with the help of a second stack using only the 
  * autorized operations and print them
- * @param stack	pointer on the first node of the stack to sort
+ * The algo used is a kind of quick sort modified to work with 2 stacks
+ * @param ab	pointer on the struct tu coco
  **/
 t_dlist	*sort_quick(t_stacks *ab)
 {
@@ -141,14 +149,14 @@ t_dlist	*sort_quick(t_stacks *ab)
 		return (NULL);
 	if (!(median = find_median(ab->stack_a)))
 		return (NULL);
-	last = ab->stack_a->prev;
 	tmp = ab->stack_a;
+	put_in_place(ab, &tmp, get_value(median));
+	last = ab->stack_a->prev;
 	while (tmp != last)
 	{
+		ft_putnbr(get_value(tmp));
 		put_in_place(ab, &tmp, get_value(median));
-		// ft_putnbr(get_value(tmp));
-		// ft_putstr("\n");
-		// tmp = tmp->next;
+		
 		// print(ab->stack_a, other);
 	}
 	print_dlist_line(ab->stack_a, ab->name_a);

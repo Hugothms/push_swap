@@ -6,11 +6,34 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 16:42:24 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 17:25:07 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int		*ft_dlst_to_tabn(t_dlist *dlst, int max)
+{
+	t_dlist	*tmp;
+	int		*tab;
+	int		i;
+
+	if (!dlst)
+		return (NULL);
+	if (!(tab = malloc(sizeof(int) * max)))
+		return (NULL);
+	tab[0] = get_value(dlst);
+	tmp = dlst->next;
+	max--;
+	i = 1;
+	while (tmp != dlst && max--)
+	{		
+		tab[i] = get_value(tmp);
+		tmp = tmp->next;
+		i++;
+	}
+	return (tab);
+}
 
 int		*ft_dlst_to_tab(t_dlist *dlst)
 {
@@ -61,18 +84,17 @@ t_dlist	*find_node(t_dlist *stack, int value)
  * @param stack	stack where to find the node
  * @return		the median node
  **/
-t_dlist	*find_median(t_dlist *stack)
+t_dlist	*find_median(t_dlist *stack, int max)
 {
 	int		*tab;
-	int		size;
 	int		median_value;
 	
+	printf("text%d,%d\n", get_value(stack), max);
 	if (!stack)
 		return (NULL);
-	size = ft_dlstsize(stack);
-	tab = ft_dlst_to_tab(stack);
-	sort_int(tab, size);
-	median_value = tab[(size - 1) / 2];
+	tab = ft_dlst_to_tabn(stack, max);
+	sort_int(tab, max);
+	median_value = tab[(max - 1) / 2];
 	free(tab);
 	ft_printf("median_value:%d\n", median_value);
 	return (find_node(stack, median_value));
@@ -121,7 +143,7 @@ void put_in_place(t_stacks *ab, t_dlist **tmp, int value, int parity)
 {
 	if (parity == 1)
 	{
-		if (get_value(*tmp) > value)
+		if (get_value(*tmp) - value > 0)
 		{
 			*tmp = (*tmp)->next;
 			rotate(&ab->stack_a);
@@ -138,7 +160,7 @@ void put_in_place(t_stacks *ab, t_dlist **tmp, int value, int parity)
 	}
 	else
 	{
-		if (get_value(*tmp) > value)
+		if (get_value(*tmp) + value <= 0)
 		{
 			*tmp = (*tmp)->next;
 			rotate(&ab->stack_a);
@@ -179,27 +201,31 @@ t_dlist	*sort_quick(t_stacks *ab, int size, int parity)
 	t_dlist	*median;
 	t_dlist	*tmp;
 
+	printf("____________________________________\n");
 	if (!ab->stack_a)
 		return (NULL);
-	if (!(median = find_median(ab->stack_a)))
+	if (!(median = find_median(ab->stack_a, size)))
 		return (NULL);
 	tmp = ab->stack_a;
 	while (size--)
 	{
 		ft_putnbr(get_value(tmp));
-		put_in_place(ab, &tmp, get_value(median), - parity);
-		
-		
-		// print(ab->stack_a, other);
+		put_in_place(ab, &tmp, get_value(median), parity);
 	}
+	
+	print_dlist_line(ab->stack_a, ab->name_a);
+	print_dlist_line(ab->stack_b, ab->name_b);
+
 	put_at_top(&ab->stack_a , median, ab->name_a);
 	while (ab->stack_b)
-		{
-			push(&ab->stack_a, &ab->stack_b);
-			ab->size_a++;
-			ab->size_b--;
-			ft_printf("p%c\n", ab->name_a);
-		}
+	{
+		ft_putnbr(get_value(ab->stack_b));
+		push(&ab->stack_a, &ab->stack_b);
+		ab->size_a++;
+		ab->size_b--;
+		size++;
+		ft_printf("p%c\n", ab->name_a);
+	}
 	// ft_putnbr(get_value(tmp));
 	// put_in_place(ab, &tmp, get_value(median), - parity);
 	
@@ -207,8 +233,8 @@ t_dlist	*sort_quick(t_stacks *ab, int size, int parity)
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
 
-	swap_stacks(ab);
-	sort_quick(ab, ab->size_a, - parity);
+	// swap_stacks(ab);
+	sort_quick(ab, size, parity);
 
 	// swap_stacks(ab);
 	// sort_quick(ab, ab->size_a, parity);
@@ -226,8 +252,11 @@ t_dlist	*sort_quick(t_stacks *ab, int size, int parity)
 /** ALGO QUICK SORT
  * tant que swap
  * 		trouver le node median
- * 		mettre les 50% plus petits noeuds sur l'autre stack (il reste les 50% plus grands sur la stack actuelle)
- * 		mettre le mediant au milieu (quelle stack ?)
+ * 		mettre les 50% plus petits noeuds sur l'autre stack (il reste les 50% 
+ * 		plus grands sur la stack actuelle)
+ * 		faire remonter le median
+ * 		push sur la stack courrante tous les nodes de l'autre (les plus petits)
+ * 		(le median se retrouve donc bien place et separe 2 parties)
  * recursion sur (stack jusqu'a median)
  * recursion sur (stack depuis median)
  * DONE

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/15 10:51:18 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 09:43:59 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ int		*ft_dlst_to_tab(t_dlist *dlst)
 		return (NULL);
 	if (!(tab = malloc(sizeof(int) * ft_dlstsize(dlst))))
 		return (NULL);
-	i = 0;
-	tab[i] = get_value(dlst);
+	tab[0] = get_value(dlst);
 	tmp = dlst->next;
+	i = 1;
 	while (tmp != dlst)
 	{		
 		tab[i] = get_value(tmp);
 		tmp = tmp->next;
+		i++;
 	}
 	return (tab);
 }
@@ -66,40 +67,45 @@ t_dlist	*find_median(t_dlist *stack)
 	int		size;
 	int		median_value;
 	
+	if (!stack)
+		return (NULL);
 	size = ft_dlstsize(stack);
 	tab = ft_dlst_to_tab(stack);
 	sort_int(tab, size);
-	median_value = tab[size / 2];
+	median_value = tab[(size - 1) / 2];
+	free(tab);
+	ft_printf("median_value:%d\n", median_value);
 	return (find_node(stack, median_value));
-	return (NULL);
 }
 
 /**
- * Find and return the first found node smaller (or equal) than a given number
+ * Find and return the first found node smaller than a given number
  * @param stack	stack where to find the node
  * @param value	value max to accept a node
  * @return		the closest node (from the top or the bottom of stack)
- * 				smaller (or equal) than value
+ * 				smaller than value
  **/
 t_dlist	*find_smaller_than(t_dlist *stack, int value)
 {
 	t_dlist	*start;
 	t_dlist	*end;
 
-	start = stack->next;
+	if (!stack)
+		return (NULL);
+	start = stack;
 	end = stack->prev;
-	if (get_value(start) <= value)
+	if (get_value(start) < value)
 			return (start);
-	if (get_value(end) <= value)
+	if (get_value(end) < value)
 			return (end);
 	while (start != stack)
 	{
-		if (get_value(start) <= value)
+		if (get_value(start) < value)
 			return (start);
-		if (get_value(end) <= value)
+		if (get_value(end) < value)
 			return (end);
 		start = start->next;
-		start = start->prev;
+		end = end->prev;
 	}
 	return (NULL);
 }
@@ -109,27 +115,32 @@ t_dlist	*find_smaller_than(t_dlist *stack, int value)
  * autorized operations and print them
  * @param stack	pointer on the first node of the stack to sort
  **/
-void	sort_quick(t_dlist **stack, char name)
+t_dlist	*sort_quick(t_dlist **stack, char name)
 {
 	t_dlist	*b;
-	t_dlist	*tmp;
 	t_dlist	*median;
 	t_dlist	*smaller;
+	int		swap;
 
 	b = NULL;
-	(void)name;
-	tmp = (*stack)->next;
-	median = find_median(*stack);
-	while (tmp != *stack)
+	if (!(median = find_median(*stack)))
+		return (NULL);
+	swap = 1;
+	while (swap)
 	{
-		if ((smaller = find_smaller_than(*stack, get_value(median))))
+		swap = 0;
+		if ((smaller = find_smaller_than(*stack, get_value(median) + 1)))
 		{
-			put_at_top(stack, smaller, 'a');
+			put_at_top(stack, smaller, name);
 			push(&b, stack);
+			ft_putstr("pb\n");
+			swap = 1;
 		}
-		
 	}
-	
+	put_at_top(stack, median, 'a');
+	sort_quick(stack, name);
+	sort_quick(&b, 'b');
+	return (*stack);
 }
 
 /** ALGO QUICK SORT

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:37:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/15 09:50:21 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 09:48:35 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		pos_node(t_dlist *stack, t_dlist *node)
 {
 	t_dlist	*tmp;
 	int		pos;
-	
+
 	if (stack == node)
 		return (0);
 	pos = 1;

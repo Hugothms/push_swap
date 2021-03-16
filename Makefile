@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/15 09:42:11 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/16 08:06:03 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			=	push_swap
 
 CC				=	gcc
 CFLAGS			=	-Wall -Werror -Wextra
-LDFLAGS			=	#-g3 -fsanitize=address
+LDFLAGS			=	-g3 -fsanitize=address
 
 SRCS_COMMON		=	srcs/operations.c			\
 					srcs/operations_redir.c		\

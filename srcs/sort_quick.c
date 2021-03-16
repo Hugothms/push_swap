@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 09:43:59 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 10:53:32 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ t_dlist	*sort_quick(t_dlist **stack, char name)
 	t_dlist	*smaller;
 	int		swap;
 
+	if (!*stack)
+		return (NULL);
 	b = NULL;
 	if (!(median = find_median(*stack)))
 		return (NULL);
@@ -129,22 +131,27 @@ t_dlist	*sort_quick(t_dlist **stack, char name)
 	while (swap)
 	{
 		swap = 0;
-		if ((smaller = find_smaller_than(*stack, get_value(median) + 1)))
+		if ((smaller = find_smaller_than(*stack, get_value(median))))
 		{
 			put_at_top(stack, smaller, name);
 			push(&b, stack);
 			ft_putstr("pb\n");
 			swap = 1;
 		}
+		// print(*stack, b);
 	}
-	put_at_top(stack, median, 'a');
-	sort_quick(stack, name);
-	sort_quick(&b, 'b');
+	// put_at_top(stack, median, 'a');
+	// push(&b, stack);
+	// ft_putstr("pb\n");
+	// ft_putstr("SUB-a\n");
+	// sort_quick(stack, name);
+	// ft_putstr("SUB-b\n");
+	// sort_quick(&b, 'b');
 	return (*stack);
 }
 
 /** ALGO QUICK SORT
- * tant que le dernier node n'est pas atteint
+ * tant que swap
  * 		trouver le node median
  * 		mettre les 50% plus petits noeuds sur l'autre stack (il reste les 50% plus grands sur la stack actuelle)
  * 		mettre le mediant au milieu (quelle stack ?)

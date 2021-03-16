@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/16 13:07:01 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/16 14:23:44 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,7 @@ echoFCLEAN :
 
 ########################### TEST
 
-ARG=9 1 3 2 8 5 0 4 6 7
+ARG=5 9 1 3 2 8 7 0 4 6
 
 test:			checker $(NAME)
 	./$(NAME) $(ARG); ./$(NAME) $(ARG) | wc -l; ./$(NAME) $(ARG) | ./checker $(ARG)

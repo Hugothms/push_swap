@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 14:14:39 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 14:47:55 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,8 @@ void put_in_place(t_stacks *ab, t_dlist **tmp, int value, int parity)
 		{
 			*tmp = (*tmp)->next;
 			push(&ab->stack_b, &ab->stack_a);
+			ab->size_b++;
+			ab->size_a--;
 			ft_printf("p%c\n", ab->name_b);
 		}
 	}
@@ -146,9 +148,24 @@ void put_in_place(t_stacks *ab, t_dlist **tmp, int value, int parity)
 		{
 			*tmp = (*tmp)->next;
 			push(&ab->stack_b, &ab->stack_a);
+			ab->size_a++;
+			ab->size_b--;
 			ft_printf("p%c\n", ab->name_b);
 		}
 	}
+}
+
+void	swap_stacks(t_stacks *ab)
+{
+	t_dlist *swap = ab->stack_a;
+	ab->stack_a = ab->stack_b;
+	ab->stack_b = swap;
+	char c = ab->name_a;
+	ab->name_a = ab->name_b;
+	ab->name_b = c;
+	int s = ab->size_a;
+	ab->size_a = ab->size_b;
+	ab->size_b = s;
 }
 
 /**
@@ -157,35 +174,35 @@ void put_in_place(t_stacks *ab, t_dlist **tmp, int value, int parity)
  * The algo used is a kind of quick sort modified to work with 2 stacks
  * @param ab	pointer on the struct tu coco
  **/
-t_dlist	*sort_quick(t_stacks *ab, int parity)
+t_dlist	*sort_quick(t_stacks *ab, int size, int parity)
 {
 	t_dlist	*median;
 	t_dlist	*tmp;
-	t_dlist	*last;
 
 	if (!ab->stack_a)
 		return (NULL);
 	if (!(median = find_median(ab->stack_a)))
 		return (NULL);
-	last = ab->stack_a->prev;
 	tmp = ab->stack_a;
-	ft_putnbr(get_value(tmp));
-	put_in_place(ab, &tmp, get_value(median), - parity);
-	while (tmp != last)
+	while (size--)
 	{
 		ft_putnbr(get_value(tmp));
 		put_in_place(ab, &tmp, get_value(median), - parity);
 		
 		// print(ab->stack_a, other);
 	}
+	// ft_putnbr(get_value(tmp));
+	// put_in_place(ab, &tmp, get_value(median), - parity);
+	
+	
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
 
-	ft_swap(ab->stack_a, ab->stack_b);
-	char c = ab->name_a;
-	ab->name_a = ab->name_b;
-	ab->name_a = c;
-	sort_quick(ab, - parity);
+	swap_stacks(ab);
+	sort_quick(ab, ab->size_a, - parity);
+
+	swap_stacks(ab);
+	sort_quick(ab, ab->size_a, parity);
 
 	// put_at_top(ab->stack_a, median, ab->name_a);
 	// push(other, ab->stack_a);

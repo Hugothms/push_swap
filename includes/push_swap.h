@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 14:14:44 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 14:38:25 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef struct	s_stacks
 {
 	t_dlist		*stack_a;
 	t_dlist		*stack_b;
+	int			size_a;
+	int			size_b;
 	char		name_a;
 	char		name_b;
 }				t_stacks;
@@ -39,7 +41,7 @@ void	sort_naif(t_dlist **stack, char name);
 /*
 ** sort_quick
 */
-t_dlist	*sort_quick(t_stacks *ab, int parity);
+t_dlist	*sort_quick(t_stacks *ab, int size, int parity);
 
 /*
 ** operations_redir

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 14:12:43 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 14:38:45 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		main(int argc, char const *argv[])
 	// ft_printf("size:%d ", ft_dlstsize(b));
 	// ft_printf("%s\n", first_half(b, pos_node(b, tmp)) ? "top" : "bottom");
 
-	sort_quick(ab, 1);
+	sort_quick(ab, ft_dlstsize(ab->stack_a), 1);
 	ft_dlstclear(&ab->stack_a, ab->stack_a, &free);
 	return (0);
 }

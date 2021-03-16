@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 11:06:55 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 13:18:53 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,17 +115,14 @@ t_dlist	*find_smaller_than(t_dlist *stack, int value)
  * autorized operations and print them
  * @param stack	pointer on the first node of the stack to sort
  **/
-t_dlist	*sort_quick(t_dlist **stack, char name)
+t_dlist	*sort_quick(t_dlist **stack, t_dlist **other, char stack_n, char other_n)
 {
-	t_dlist	*b;
 	t_dlist	*median;
 	t_dlist	*tmp;
 	t_dlist	*last;
 
-	(void) name;
 	if (!*stack)
 		return (NULL);
-	b = NULL;
 	if (!(median = find_median(*stack)))
 		return (NULL);
 	last = (*stack)->prev;
@@ -137,26 +134,28 @@ t_dlist	*sort_quick(t_dlist **stack, char name)
 		{
 			tmp = tmp->next;
 			rotate(stack);
-			ft_putstr("ra\n");
+			ft_printf("r%c\n", stack_n);
 		}
 		else
 		{
 			tmp = tmp->next;
-			push(&b, stack);
-			ft_putstr("pb\n");
+			push(other, stack);
+			ft_printf("p%c\n", other_n);
 		}
 		// ft_putnbr(get_value(tmp));
 		// ft_putstr("\n");
 		// tmp = tmp->next;
-		// print(*stack, b);
+		// print(*stack, other);
 	}
+	print_dlist_line(*stack, 'a');
+	print_dlist_line(*other, 'b');
 	// put_at_top(stack, median, 'a');
-	// push(&b, stack);
+	// push(other, stack);
 	// ft_putstr("pb\n");
 	// ft_putstr("SUB-a\n");
-	// sort_quick(stack, name);
-	// ft_putstr("SUB-b\n");
-	// sort_quick(&b, 'b');
+	// sort_quick(stack, stack_n);
+	// ft_putstr("SUB-other\n");
+	// sort_quick(other, 'other');
 	return (*stack);
 }
 

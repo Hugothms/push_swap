@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 11:02:42 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 11:04:07 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ t_dlist	*sort_quick(t_dlist **stack, char name)
 	tmp = *stack;
 	while (tmp != last)
 	{
+		ft_putnbr(get_value(tmp));
 		if (get_value(tmp) > get_value(median))
 		{
 			rotate(stack);

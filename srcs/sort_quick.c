@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 13:59:39 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 14:14:39 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,19 +117,37 @@ t_dlist	*find_smaller_than(t_dlist *stack, int value)
  * @param tmp	current node on which the loop iterates
  * @param value	pivot value (median)
  **/
-void put_in_place(t_stacks *ab, t_dlist **tmp, int value)
+void put_in_place(t_stacks *ab, t_dlist **tmp, int value, int parity)
 {
-	if (get_value(*tmp) > value)
+	if (parity == 1)
 	{
-		*tmp = (*tmp)->next;
-		rotate(&ab->stack_a);
-		ft_printf("r%c\n", ab->name_a);
+		if (get_value(*tmp) > value)
+		{
+			*tmp = (*tmp)->next;
+			rotate(&ab->stack_a);
+			ft_printf("r%c\n", ab->name_a);
+		}
+		else
+		{
+			*tmp = (*tmp)->next;
+			push(&ab->stack_b, &ab->stack_a);
+			ft_printf("p%c\n", ab->name_b);
+		}
 	}
 	else
 	{
-		*tmp = (*tmp)->next;
-		push(&ab->stack_b, &ab->stack_a);
-		ft_printf("p%c\n", ab->name_b);
+		if (get_value(*tmp) > value)
+		{
+			*tmp = (*tmp)->next;
+			rotate(&ab->stack_a);
+			ft_printf("r%c\n", ab->name_a);
+		}
+		else
+		{
+			*tmp = (*tmp)->next;
+			push(&ab->stack_b, &ab->stack_a);
+			ft_printf("p%c\n", ab->name_b);
+		}
 	}
 }
 
@@ -139,7 +157,7 @@ void put_in_place(t_stacks *ab, t_dlist **tmp, int value)
  * The algo used is a kind of quick sort modified to work with 2 stacks
  * @param ab	pointer on the struct tu coco
  **/
-t_dlist	*sort_quick(t_stacks *ab)
+t_dlist	*sort_quick(t_stacks *ab, int parity)
 {
 	t_dlist	*median;
 	t_dlist	*tmp;
@@ -149,18 +167,26 @@ t_dlist	*sort_quick(t_stacks *ab)
 		return (NULL);
 	if (!(median = find_median(ab->stack_a)))
 		return (NULL);
-	tmp = ab->stack_a;
-	put_in_place(ab, &tmp, get_value(median));
 	last = ab->stack_a->prev;
+	tmp = ab->stack_a;
+	ft_putnbr(get_value(tmp));
+	put_in_place(ab, &tmp, get_value(median), - parity);
 	while (tmp != last)
 	{
 		ft_putnbr(get_value(tmp));
-		put_in_place(ab, &tmp, get_value(median));
+		put_in_place(ab, &tmp, get_value(median), - parity);
 		
 		// print(ab->stack_a, other);
 	}
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
+
+	ft_swap(ab->stack_a, ab->stack_b);
+	char c = ab->name_a;
+	ab->name_a = ab->name_b;
+	ab->name_a = c;
+	sort_quick(ab, - parity);
+
 	// put_at_top(ab->stack_a, median, ab->name_a);
 	// push(other, ab->stack_a);
 	// ft_putstr("pb\n");

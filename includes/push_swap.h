@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 13:39:33 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/16 14:14:44 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	sort_naif(t_dlist **stack, char name);
 /*
 ** sort_quick
 */
-t_dlist	*sort_quick(t_stacks *ab);
+t_dlist	*sort_quick(t_stacks *ab, int parity);
 
 /*
 ** operations_redir

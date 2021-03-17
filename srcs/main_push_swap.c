@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 14:38:45 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/17 09:37:42 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int		main(int argc, char const *argv[])
 	ab->stack_b = NULL;
 	ab->name_a = 'a';
 	ab->name_b = 'b';
-	
+	ab->size_a = ft_dlstsize(ab->stack_a);
+	ab->size_b = 0;	
 	// print_dlist_line(a, 'a');
 
 	// t_dlist	*b=NULL;

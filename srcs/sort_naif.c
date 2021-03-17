@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:37:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 09:48:35 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/17 10:52:41 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 /**
  * Sort a stack of 3 node with the smallest number of instructions possible
  * @param stack	stack of size 3 to sort
+ * @param name	name of the stack we are working on
  **/
 void	sort_stack_size_3(t_dlist **st, char name)
 {
@@ -81,7 +82,7 @@ int		pos_node(t_dlist *stack, t_dlist *node)
  * @param node	node to check the position
  * @return		1 if node is in the first half, 0 otherwise
  **/
-int		first_half(t_dlist *stack, int pos)
+int		is_in_first_half(t_dlist *stack, int pos)
 {
 	return (pos < (ft_dlstsize(stack) + 1) / 2);
 }
@@ -91,17 +92,18 @@ int		first_half(t_dlist *stack, int pos)
  * the other nodes
  * @param stack	stack to modify
  * @param node	node to put at the top
+ * @param name	name of the stack we are working on
  **/
 void	put_at_top(t_dlist **stack, t_dlist *node, char name)
 {
 	int	pos;
 	int	top;
-	
+
 	pos = pos_node(*stack, node);
-	// if (pos >= ft_dlstsize(*stack))
-	// 	ft_printf("Ca va paxs chef\n");
-	// ft_printf("node:%d is at pos:%d\n", get_value(node), pos);
-	top = first_half(*stack, pos);
+	if (pos >= ft_dlstsize(*stack))
+		ft_printf("Ca va pas chef\n");
+	ft_printf("node:%d is at pos:%d\n", get_value(node), pos);
+	top = is_in_first_half(*stack, pos);
 	if (top)
 	{
 		while (pos--)
@@ -117,7 +119,7 @@ void	put_at_top(t_dlist **stack, t_dlist *node, char name)
 			ft_printf("rr%c\n", name);
 			reverse(stack);
 		}
-	}		
+	}
 }
 
 /**
@@ -147,6 +149,7 @@ t_dlist	*find_smallest(t_dlist *stack)
  * Sort a stack with the help of a second stack using only the 
  * autorized operations and print them
  * @param stack	pointer on the first node of the stack to sort
+ * @param name	name of the stack we are working on
  **/
 void	sort_naif(t_dlist **stack, char name)
 {
@@ -160,7 +163,7 @@ void	sort_naif(t_dlist **stack, char name)
 		// ft_printf("smallest Node:\nstack[%d]", pos_node(*stack, smallest));
 		// ft_printf("=%d\n", get_value(smallest));
 		// ft_printf("size:%d ", ft_dlstsize(*stack));
-		// ft_printf("%s\n", first_half(*stack, pos_node(*stack, smallest)) ? "top" : "bottom");
+		// ft_printf("%s\n", is_in_first_half(*stack, pos_node(*stack, smallest)) ? "top" : "bottom");
 	
 		put_at_top(stack, smallest, name);
 		ft_printf("pb\n");

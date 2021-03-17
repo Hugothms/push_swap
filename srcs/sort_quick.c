@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/17 11:08:01 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/17 11:13:30 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_dlist	*find_median(t_dlist *stack, int max)
 	int		*tab;
 	int		median_value;
 	
-	printf("start:%d\tsize:%d\n", get_value(stack), max);
+	printf("start:%d\nsize:%d\n", get_value(stack), max);
 	if (!stack || max < 0)
 		return (NULL);
 	tab = ft_dlst_to_tabn(stack, max);

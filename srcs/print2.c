@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 10:52:47 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/16 10:53:18 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/17 12:16:14 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,6 @@ void	print_norm(t_dlist *s)
 		tmp = tmp->next;
 	}
 }
-
-# define CYN "\x1B[36m"
-# define RED   "\x1B[31m"
-# define GRN   "\x1B[32m"
-# define YEL   "\x1B[33m"
-# define BLU   "\x1B[34m"
-# define MAG   "\x1B[35m"
-# define WHT   "\x1B[37m"
-# define RESET "\x1B[0m"
-# define CLR "\e[1;1H\e[?25l"
 
 void	print_vis(t_dlist *a, t_dlist *b)
 {

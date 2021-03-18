@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/18 09:47:39 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/18 11:57:35 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,23 @@ t_dlist	*find_median(t_dlist *stack, int max)
 	return (find_node(stack, median_value));
 }
 
+int size_stack(t_dlist *begin, t_dlist *end)
+{
+	int		cpt;
+	t_dlist	*tmp;
+
+	cpt = 0;
+	tmp = begin;
+	if (!find_node(begin, get_value(end)))
+		return (0);
+	while (tmp != end)
+	{
+		cpt++;
+		tmp = tmp->next;
+	}
+	return (cpt + 1);
+}
+
 /**
  * Find and return median node (relative to the value) in the given stack
  * @param stack	stack where to find the node
@@ -110,14 +127,17 @@ t_dlist	*find_median_maintenance(t_dlist *stack, t_dlist *end)
 {
 	int		*tab;
 	int		median_value;
+	int		size;
 	
+	size = size_stack(stack, end);
 	ft_printf("start:%d\n", get_value(stack));
-	ft_printf("size: %d\n", max);
-	if (!stack || max < 0)
+	ft_printf("end: %d\n", get_value(end));
+	ft_printf("size: %d\n", size);
+	if (!stack || size < 0)
 		return (NULL);
-	tab = ft_dlst_to_tabn(stack, max);
-	sort_int(tab, max);
-	median_value = tab[(max - 1) / 2];
+	tab = ft_dlst_to_tabn(stack, size);
+	sort_int(tab, size);
+	median_value = tab[(size - 1) / 2];
 	free(tab);
 	ft_printf("median_value:%d\n", median_value);
 	return (find_node(stack, median_value));
@@ -160,56 +180,64 @@ t_dlist	*find_smaller_than(t_dlist *stack, int value)
  * the end of the current stack, otherwise push it on the other stack
  * @param ab	pointer on the struct tu coco
  * @param stack	current node (on which the loop iterates)
- * @param value	pivot value (median)
+ * @param value	median pivot value
  **/
-void divide_stack(t_stacks *ab, t_dlist **stack, int value, int parity)
+void divide_stack(t_stacks *ab, t_dlist **stack, int value, int work_on_a)
 {
-	// if (stack in ab->stack_a)
-	// parity = ab->size_b;
-
-	if (parity == 1)
+	if (find_node(ab->stack_a, get_value(*stack)))
 	{
-		if (get_value(*stack) == value)
+		if (!work_on_a)
 		{
-			*stack = (*stack)->next;
-			push(&ab->stack_b, &ab->stack_a);
-			ab->size_b++;
-			ab->size_a--;
-			ft_printf("p%c\n", ab->name_b);
-			// *stack = (*stack)->next;
-			rotate(&ab->stack_b);
-			ft_printf("r%c\n", ab->name_b);
-		}
-		else if (get_value(*stack) > value)
-		{
-			*stack = (*stack)->next;
-			rotate(&ab->stack_a);
-			ft_printf("r%c\n", ab->name_a);
+			if (get_value(*stack) == value)
+			{
+				pb(ab, stack);
+				rb(ab);
+			}
+			else if (get_value(*stack) > value)
+			{
+				ra(ab);
+				*stack = (*stack)->next;
+			}
+			else
+				pb(ab, stack);
 		}
 		else
 		{
-			*stack = (*stack)->next;
-			push(&ab->stack_b, &ab->stack_a);
-			ab->size_b++;
-			ab->size_a--;
-			ft_printf("p%c\n", ab->name_b);
+			if (get_value(*stack) < value)
+			{
+				ra(ab);
+				*stack = (*stack)->next;
+			}
+			else
+				pb(ab, stack);
 		}
 	}
 	else
 	{
-		if (get_value(*stack) < value)
+		if (!work_on_a)
 		{
-			*stack = (*stack)->next;
-			rotate(&ab->stack_a);
-			ft_printf("r%c\n", ab->name_a);
+			if (get_value(*stack) > value)
+			{
+				rb(ab);
+				*stack = (*stack)->next;
+			}
+			else
+				pa(ab, stack);
 		}
 		else
 		{
-			*stack = (*stack)->next;
-			push(&ab->stack_b, &ab->stack_a);
-			ab->size_b++;
-			ab->size_a--;
-			ft_printf("p%c\n", ab->name_b);
+			if (get_value(*stack) == value)
+			{
+				pa(ab, stack);
+				ra(ab);
+			}
+			if (get_value(*stack) < value)
+			{
+				rb(ab);
+				*stack = (*stack)->next;
+			}
+			else
+				pa(ab, stack);
 		}
 	}
 }
@@ -232,43 +260,53 @@ void	swap_stacks(t_stacks *ab)
  * autorized operations and print them
  * The algo used is a kind of quick sort modified to work with 2 stacks
  * @param ab		pointer on the struct tu coco
- * @param size		max number of nodes to iterate on the stack a
- * @param size_b	change the comparaison in divide_stack
+ * @param begin		start of the stack to sort
+ * @param end		end of the stack to sort
+ * @param work_on_a	change the comparaison in divide_stack
  **/
-t_dlist	*sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int parity)
+t_dlist	*sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int work_on_a)
 {
 	t_dlist	*median;
 	t_dlist	*tmp;
 	int		i;
 
-	ft_printf("____________________________________\n");
+	ft_printf("---------------------------------------\n");
 	if (!ab->stack_a || begin == end)
 		return (NULL);
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
-	if (!(median = find_median(ab->stack_a, end)))
+	if (!(median = find_median_maintenance(begin, end)))
 		return (NULL);
-	tmp = ab->stack_a;
-	i = size;
+	// work_on_a = ab->size_b;
+	ft_printf("work_on_a:%d\n", work_on_a);
+	tmp = begin;
+	i = size_stack(begin, end);
 	while (i--)
 	{
 		ft_printf("%d", get_value(tmp));
-		divide_stack(ab, &tmp, get_value(median), parity);
+		divide_stack(ab, &tmp, get_value(median), work_on_a);
 	}
+	print_dlist_line(ab->stack_a, ab->name_a);
+	print_dlist_line(ab->stack_b, ab->name_b);
+	if (work_on_a)
+		rra(ab);
+	else
+		rrb(ab);
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
 
 	
+	// swap_stacks(ab);
+	work_on_a = ab->size_b;
 	ft_printf("SUB-b\n");
-	swap_stacks(ab);
-	sort_quick(ab, ab->size_a, - parity);
+	sort_quick_maintenance(ab, ab->stack_b, ab->stack_b->prev, work_on_a);
 	// ft_printf("SUB-b\n");
-	// sort_quick(ab, ab->size_a, parity);
-
+	// sort_quick(ab, ab->size_a, work_on_a);
+	ft_printf("END FIRST PART\n");
 	put_at_top(&ab->stack_b, find_node(ab->stack_b, get_value(median)), ab->name_b);
 
-	i = size / 2;
-	size = ab->size_b;
+	i = size_stack(begin, end) / 2;
+	// size = ab->size_b;
 	while (i--)
 	{
 		ft_printf("%d", get_value(ab->stack_b));

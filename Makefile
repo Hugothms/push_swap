@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/16 14:23:44 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/18 11:08:02 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS_CHECKER	=	srcs/main_checker.c			\
 						
 
 SRCS_PUSH_SWAP	=	srcs/main_push_swap.c		\
+					srcs/operations_precise.c	\
 					srcs/sort_naif_utils.c		\
 					srcs/sort_naif.c			\
 					srcs/sort_quick.c			\

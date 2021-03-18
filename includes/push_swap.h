@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/17 15:48:34 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/18 11:25:33 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	sort_naif(t_dlist **stack, char name);
 /*
 ** sort_quick
 */
-t_dlist	*sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end);
+t_dlist	*sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int parity);
 t_dlist	*sort_quick(t_stacks *ab, int size, int parity);
 
 /*
@@ -60,6 +60,16 @@ void	swap(t_dlist **stack);
 void	push(t_dlist **a, t_dlist **b);
 void	rotate(t_dlist **stack);
 void	reverse(t_dlist **stack);
+
+/*
+** operations_precise
+*/
+void	pb(t_stacks *ab, t_dlist **stack);
+void	pa(t_stacks *ab, t_dlist **stack);
+void	ra(t_stacks *ab);
+void	rb(t_stacks *ab);
+void	rra(t_stacks *ab);
+void	rrb(t_stacks *ab);
 
 /*
 ** print

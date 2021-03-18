@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/18 16:00:31 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/18 19:52:25 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,12 +267,12 @@ int sort_stack_under_3(t_stacks *ab, t_dlist *begin, t_dlist *end, int work_on_a
 			pa(ab, &begin);
 			pa(ab, &begin);
 		}
-		else
-		{
-			pb(ab, &begin);
-			pb(ab, &begin);
-			pb(ab, &begin);
-		}
+		// else
+		// {
+		// 	pb(ab, &begin);
+		// 	pb(ab, &begin);
+		// 	pb(ab, &begin);
+		// }
 		return (3);
 	}
 	else if (size_stack(begin, end) == 2)
@@ -309,14 +309,14 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int work
 	t_dlist	*tmp;
 	int		i;
 	int static deep = 0;
-	deep++;
 	ft_printf("---------------------------------------\n");
 	if (!ab || begin == end)
 		return (0);
-	if (size_stack(begin, end) <= 3)
-		return (sort_stack_under_3(ab, begin, end, work_on_a));
+	ft_printf("deep = %d\n", deep);
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
+	if (size_stack(begin, end) <= 3)
+		return (sort_stack_under_3(ab, begin, end, work_on_a));
 	if (!(median = find_median_maintenance(begin, end)))
 		return (0);
 	// work_on_a = ab->size_b;
@@ -341,34 +341,44 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int work
 	// INFERIEURS
 	work_on_a = ab->size_b;
 	ft_printf("1deep= %d\n", deep);
-	ft_printf("1tmp = %d\n", get_value(tmp));
-	ft_printf("1prev= %d\n", get_value(tmp->prev));
 	ft_printf("1SUB-b\n");
+	deep++;
 	if (ab->stack_b)
 		cpt = sort_quick_maintenance(ab, ab->stack_b, ab->stack_b->prev, work_on_a);
 	else
 		ft_printf("done-b\n");
+	int moved = cpt;
 	while (cpt--)
 		ra(ab);
+	deep--;
+	ft_printf("&&&&&&&&&&&&&&&&&&&&&&&&&&\n");
+	ft_printf("END 1SUB-a\n");
+
+
+	tmp = ab->stack_a;
+	while (moved--)
+		tmp = tmp->next;
+	
 
 	// SUPERIEURS	
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
-	ft_printf("2median = %d\n", get_value(median));
-	ft_printf("2tmp = %d\n", get_value(tmp));
-	ft_printf("2prev= %d\n", get_value(tmp->prev));
+	ft_printf("2deep= %d\n", deep);
 	ft_printf("2SUB-a\n");
+	deep++;
 	if (ab->stack_a)
-		cpt = sort_quick_maintenance(ab, tmp, tmp->prev, work_on_a);
+		cpt = sort_quick_maintenance(ab, ab->stack_a, tmp, ab->size_b);
 	else
 		ft_printf("done-a\n");
 	while (cpt--)
 		ra(ab);
+	deep--;
+	ft_printf("&&&&&&&&&&&&&&&&&&&&&&&&&&\n");
+	ft_printf("END 2SUB-a\n");
 
 
 	// ft_printf("SUB-b\n");
 	// sort_quick(ab, ab->size_a, work_on_a);
-	ft_printf("END FIRST PART\n");
 	// put_at_top(&ab->stack_b, find_node(ab->stack_b, get_value(median)), ab->name_b);
 
 	i = size_stack(begin, end) / 2;

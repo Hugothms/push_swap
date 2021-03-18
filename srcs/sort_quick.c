@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/18 11:57:35 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/18 12:08:22 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,7 +271,7 @@ t_dlist	*sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int 
 	int		i;
 
 	ft_printf("---------------------------------------\n");
-	if (!ab->stack_a || begin == end)
+	if (!ab || begin == end)
 		return (NULL);
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
@@ -298,8 +298,19 @@ t_dlist	*sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int 
 	
 	// swap_stacks(ab);
 	work_on_a = ab->size_b;
+	ft_printf("tmp = %d\n", get_value(tmp));
+	ft_printf("prev= %d\n", get_value(tmp->prev));
 	ft_printf("SUB-b\n");
-	sort_quick_maintenance(ab, ab->stack_b, ab->stack_b->prev, work_on_a);
+	if (ab->stack_b)
+		sort_quick_maintenance(ab, ab->stack_b, ab->stack_b->prev, work_on_a);
+	else
+		ft_printf("done-b\n");
+	
+	ft_printf("SUB-a\n");
+	if (tmp)
+		sort_quick_maintenance(ab, tmp, tmp->prev, work_on_a);
+	else
+		ft_printf("done-a\n");
 	// ft_printf("SUB-b\n");
 	// sort_quick(ab, ab->size_a, work_on_a);
 	ft_printf("END FIRST PART\n");

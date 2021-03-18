@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/18 09:44:44 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/18 09:47:39 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,28 @@ t_dlist	*find_node(t_dlist *stack, int value)
  * @return		the median node
  **/
 t_dlist	*find_median(t_dlist *stack, int max)
+{
+	int		*tab;
+	int		median_value;
+	
+	ft_printf("start:%d\n", get_value(stack));
+	ft_printf("size: %d\n", max);
+	if (!stack || max < 0)
+		return (NULL);
+	tab = ft_dlst_to_tabn(stack, max);
+	sort_int(tab, max);
+	median_value = tab[(max - 1) / 2];
+	free(tab);
+	ft_printf("median_value:%d\n", median_value);
+	return (find_node(stack, median_value));
+}
+
+/**
+ * Find and return median node (relative to the value) in the given stack
+ * @param stack	stack where to find the node
+ * @return		the median node
+ **/
+t_dlist	*find_median_maintenance(t_dlist *stack, t_dlist *end)
 {
 	int		*tab;
 	int		median_value;
@@ -220,11 +242,11 @@ t_dlist	*sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int 
 	int		i;
 
 	ft_printf("____________________________________\n");
-	if (!ab->stack_a || size < 1)
+	if (!ab->stack_a || begin == end)
 		return (NULL);
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
-	if (!(median = find_median(ab->stack_a, size)))
+	if (!(median = find_median(ab->stack_a, end)))
 		return (NULL);
 	tmp = ab->stack_a;
 	i = size;

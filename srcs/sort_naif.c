@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:37:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/17 15:15:51 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/18 14:37:17 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,41 @@
  * @param stack	stack of size 3 to sort
  * @param name	name of the stack we are working on
  **/
+void	sort_stack_size_2(t_dlist **st, char name)
+{
+	if (ft_dlstsize((*st)) != 2 || checker((*st)))
+		return ;
+	swap(st);
+	ft_printf("s%d\n", name);
+}
+
+/**
+ * Sort a stack of 3 node with the smallest number of instructions possible
+ * @param stack	stack of size 3 to sort
+ * @param name	name of the stack we are working on
+ **/
 void	sort_stack_size_3(t_dlist **st, char name)
 {
 	if (ft_dlstsize((*st)) != 3 || !checker((*st)))
 		return ;
 	if (get_value((*st))					> get_value((*st)->next) &&
-			get_value((*st)->next)		< get_value((*st)->next->next) &&
+			get_value((*st)->next)			< get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	> get_value((*st)))
 		sort1(st, name);
-	else if (get_value((*st))			> get_value((*st)->next) &&
-			get_value((*st)->next)		> get_value((*st)->next->next) &&
+	else if (get_value((*st))				> get_value((*st)->next) &&
+			get_value((*st)->next)			> get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	< get_value((*st)))
 		sort2(st, name);
-	else if (get_value((*st))			> get_value((*st)->next) &&
-			get_value((*st)->next)		< get_value((*st)->next->next) &&
+	else if (get_value((*st))				> get_value((*st)->next) &&
+			get_value((*st)->next)			< get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	< get_value((*st)))
 		sort3(st, name);
-	else if (get_value((*st))			< get_value((*st)->next) &&
-			get_value((*st)->next)		> get_value((*st)->next->next) &&
+	else if (get_value((*st))				< get_value((*st)->next) &&
+			get_value((*st)->next)			> get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	> get_value((*st)))
 		sort4(st, name);
-	else if (get_value((*st))			< get_value((*st)->next) &&
-			get_value((*st)->next)		> get_value((*st)->next->next) &&
+	else if (get_value((*st))				< get_value((*st)->next) &&
+			get_value((*st)->next)			> get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	< get_value((*st)))
 		sort5(st, name);
 }

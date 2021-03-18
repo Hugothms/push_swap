@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/18 11:25:33 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/18 14:33:52 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct	s_stacks
 /*
 ** sort_naif
 */
+void	sort_stack_size_2(t_dlist **st, char name);
+void	sort_stack_size_3(t_dlist **st, char name);
 int		pos_node(t_dlist *stack, t_dlist *node);
 int		first_half(t_dlist *stack, int pos);
 void	put_at_top(t_dlist **stack, t_dlist *node, char name);

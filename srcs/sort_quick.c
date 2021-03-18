@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/18 12:57:42 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/18 14:31:19 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,46 +255,43 @@ void	swap_stacks(t_stacks *ab)
 	ab->size_b = s;
 }
 
-void under_3(t_stacks *ab, t_dlist *begin, t_dlist *end, int work_on_a)
+int sort_stack_under_3(t_stacks *ab, t_dlist *begin, t_dlist *end, int work_on_a)
 {
 	if (size_stack(begin, end) == 3)
 	{
 		ft_printf("SIZE = 3 CA DEGAGE\n");
-		sort3(&begin, work_on_a ? 'a': 'b');
+		sort_stack_size_3(&begin, work_on_a ? 'a': 'b');
 		if (work_on_a)
 		{
 			pa(ab, &begin);
 			pa(ab, &begin);
 			pa(ab, &begin);
-			return ;
 		}
 		else
 		{
 			pb(ab, &begin);
 			pb(ab, &begin);
 			pb(ab, &begin);
-			return ;
 		}
+		return (1);
 	}
 	else if (size_stack(begin, end) == 2)
 	{
 		ft_printf("SIZE = 2 CA DEGAGE\n");
+		sort_stack_size_2(&begin, work_on_a ? 'a': 'b');
 		if (work_on_a)
 		{
-			rb(ab);
 			pa(ab, &begin);
 			pa(ab, &begin);
-			return ;
 		}
 		else
 		{
-			ra(ab);
 			pb(ab, &begin);
 			pb(ab, &begin);
-			return ;
 		}
-		return ;
+		return (1);
 	}
+	return (0);
 }
 
 /**
@@ -315,7 +312,8 @@ t_dlist	*sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int 
 	ft_printf("---------------------------------------\n");
 	if (!ab || begin == end)
 		return (NULL);
-	under_3(ab, begin, end, work_on_a);	
+	if (sort_stack_under_3(ab, begin, end, work_on_a))
+		return (NULL);	
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
 	if (!(median = find_median_maintenance(begin, end)))
@@ -349,6 +347,10 @@ t_dlist	*sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int 
 	else
 		ft_printf("done-b\n");
 	
+	print_dlist_line(ab->stack_a, ab->name_a);
+	print_dlist_line(ab->stack_b, ab->name_b);
+	ft_printf("tmp = %d\n", get_value(tmp));
+	ft_printf("prev= %d\n", get_value(tmp->prev));
 	ft_printf("SUB-a\n");
 	if (tmp)
 		sort_quick_maintenance(ab, tmp, tmp->prev, work_on_a);

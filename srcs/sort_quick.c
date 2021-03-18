@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/18 14:31:19 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/18 16:00:31 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,12 +273,12 @@ int sort_stack_under_3(t_stacks *ab, t_dlist *begin, t_dlist *end, int work_on_a
 			pb(ab, &begin);
 			pb(ab, &begin);
 		}
-		return (1);
+		return (3);
 	}
 	else if (size_stack(begin, end) == 2)
 	{
 		ft_printf("SIZE = 2 CA DEGAGE\n");
-		sort_stack_size_2(&begin, work_on_a ? 'a': 'b');
+		sort_stack_size_2(&begin, work_on_a ? 'b' : 'a');
 		if (work_on_a)
 		{
 			pa(ab, &begin);
@@ -289,7 +289,7 @@ int sort_stack_under_3(t_stacks *ab, t_dlist *begin, t_dlist *end, int work_on_a
 			pb(ab, &begin);
 			pb(ab, &begin);
 		}
-		return (1);
+		return (2);
 	}
 	return (0);
 }
@@ -303,21 +303,22 @@ int sort_stack_under_3(t_stacks *ab, t_dlist *begin, t_dlist *end, int work_on_a
  * @param end		end of the stack to sort
  * @param work_on_a	change the comparaison in divide_stack
  **/
-t_dlist	*sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int work_on_a)
+int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int work_on_a)
 {
 	t_dlist	*median;
 	t_dlist	*tmp;
 	int		i;
-
+	int static deep = 0;
+	deep++;
 	ft_printf("---------------------------------------\n");
 	if (!ab || begin == end)
-		return (NULL);
-	if (sort_stack_under_3(ab, begin, end, work_on_a))
-		return (NULL);	
+		return (0);
+	if (size_stack(begin, end) <= 3)
+		return (sort_stack_under_3(ab, begin, end, work_on_a));
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
 	if (!(median = find_median_maintenance(begin, end)))
-		return (NULL);
+		return (0);
 	// work_on_a = ab->size_b;
 	ft_printf("work_on_a:%d\n", work_on_a);
 	tmp = begin;
@@ -336,30 +337,39 @@ t_dlist	*sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int 
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
 
-	
-	// swap_stacks(ab);
+	int cpt = 0;	
+	// INFERIEURS
 	work_on_a = ab->size_b;
-	ft_printf("tmp = %d\n", get_value(tmp));
-	ft_printf("prev= %d\n", get_value(tmp->prev));
-	ft_printf("SUB-b\n");
+	ft_printf("1deep= %d\n", deep);
+	ft_printf("1tmp = %d\n", get_value(tmp));
+	ft_printf("1prev= %d\n", get_value(tmp->prev));
+	ft_printf("1SUB-b\n");
 	if (ab->stack_b)
-		sort_quick_maintenance(ab, ab->stack_b, ab->stack_b->prev, work_on_a);
+		cpt = sort_quick_maintenance(ab, ab->stack_b, ab->stack_b->prev, work_on_a);
 	else
 		ft_printf("done-b\n");
-	
+	while (cpt--)
+		ra(ab);
+
+	// SUPERIEURS	
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
-	ft_printf("tmp = %d\n", get_value(tmp));
-	ft_printf("prev= %d\n", get_value(tmp->prev));
-	ft_printf("SUB-a\n");
-	if (tmp)
-		sort_quick_maintenance(ab, tmp, tmp->prev, work_on_a);
+	ft_printf("2median = %d\n", get_value(median));
+	ft_printf("2tmp = %d\n", get_value(tmp));
+	ft_printf("2prev= %d\n", get_value(tmp->prev));
+	ft_printf("2SUB-a\n");
+	if (ab->stack_a)
+		cpt = sort_quick_maintenance(ab, tmp, tmp->prev, work_on_a);
 	else
 		ft_printf("done-a\n");
+	while (cpt--)
+		ra(ab);
+
+
 	// ft_printf("SUB-b\n");
 	// sort_quick(ab, ab->size_a, work_on_a);
 	ft_printf("END FIRST PART\n");
-	put_at_top(&ab->stack_b, find_node(ab->stack_b, get_value(median)), ab->name_b);
+	// put_at_top(&ab->stack_b, find_node(ab->stack_b, get_value(median)), ab->name_b);
 
 	i = size_stack(begin, end) / 2;
 	// size = ab->size_b;
@@ -379,7 +389,7 @@ t_dlist	*sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int 
 	}
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
-	return (ab->stack_a);
+	return (1);
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:37:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/17 10:52:41 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/17 15:15:51 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ void	put_at_top(t_dlist **stack, t_dlist *node, char name)
 	int	top;
 
 	pos = pos_node(*stack, node);
-	if (pos >= ft_dlstsize(*stack))
-		ft_printf("Ca va pas chef\n");
-	ft_printf("node:%d is at pos:%d\n", get_value(node), pos);
+	// if (pos >= ft_dlstsize(*stack))
+	// 	ft_printf("Ca va pas chef\n");
+	// ft_printf("node:%d is at pos:%d\n", get_value(node), pos);
 	top = is_in_first_half(*stack, pos);
 	if (top)
 	{

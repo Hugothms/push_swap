@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/17 12:37:50 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/18 09:44:44 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ t_dlist	*find_median(t_dlist *stack, int max)
 	int		*tab;
 	int		median_value;
 	
-	ft_printf("start:%d\nsize: %d\n", get_value(stack), max);
+	ft_printf("start:%d\n", get_value(stack));
+	ft_printf("size: %d\n", max);
 	if (!stack || max < 0)
 		return (NULL);
 	tab = ft_dlst_to_tabn(stack, max);
@@ -139,15 +140,29 @@ t_dlist	*find_smaller_than(t_dlist *stack, int value)
  * @param stack	current node (on which the loop iterates)
  * @param value	pivot value (median)
  **/
-void put_in_place(t_stacks *ab, t_dlist **stack, int value, int parity)
+void divide_stack(t_stacks *ab, t_dlist **stack, int value, int parity)
 {
+	// if (stack in ab->stack_a)
+	// parity = ab->size_b;
+
 	if (parity == 1)
 	{
-		if (get_value(*stack) > value)
+		if (get_value(*stack) == value)
+		{
+			*stack = (*stack)->next;
+			push(&ab->stack_b, &ab->stack_a);
+			ab->size_b++;
+			ab->size_a--;
+			ft_printf("p%c\n", ab->name_b);
+			// *stack = (*stack)->next;
+			rotate(&ab->stack_b);
+			ft_printf("r%c\n", ab->name_b);
+		}
+		else if (get_value(*stack) > value)
 		{
 			*stack = (*stack)->next;
 			rotate(&ab->stack_a);
-			ft_printf("%sr%c%s\n", BLU, ab->name_a, RESET);
+			ft_printf("r%c\n", ab->name_a);
 		}
 		else
 		{
@@ -155,7 +170,7 @@ void put_in_place(t_stacks *ab, t_dlist **stack, int value, int parity)
 			push(&ab->stack_b, &ab->stack_a);
 			ab->size_b++;
 			ab->size_a--;
-			ft_printf("%sp%c%s\n", BLU, ab->name_b, RESET);
+			ft_printf("p%c\n", ab->name_b);
 		}
 	}
 	else
@@ -164,15 +179,15 @@ void put_in_place(t_stacks *ab, t_dlist **stack, int value, int parity)
 		{
 			*stack = (*stack)->next;
 			rotate(&ab->stack_a);
-			ft_printf("%sr%c%s\n", BLU, ab->name_a, RESET);
+			ft_printf("r%c\n", ab->name_a);
 		}
 		else
 		{
 			*stack = (*stack)->next;
 			push(&ab->stack_b, &ab->stack_a);
-			ab->size_a++;
-			ab->size_b--;
-			ft_printf("%sp%c%s\n", BLU, ab->name_b, RESET);
+			ab->size_b++;
+			ab->size_a--;
+			ft_printf("p%c\n", ab->name_b);
 		}
 	}
 }
@@ -196,9 +211,9 @@ void	swap_stacks(t_stacks *ab)
  * The algo used is a kind of quick sort modified to work with 2 stacks
  * @param ab		pointer on the struct tu coco
  * @param size		max number of nodes to iterate on the stack a
- * @param size_b	change the comparaison in put_in_place
+ * @param size_b	change the comparaison in divide_stack
  **/
-t_dlist	*sort_quick_maintenance(t_stacks *ab, int size, int size_b)
+t_dlist	*sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int parity)
 {
 	t_dlist	*median;
 	t_dlist	*tmp;
@@ -211,25 +226,22 @@ t_dlist	*sort_quick_maintenance(t_stacks *ab, int size, int size_b)
 	print_dlist_line(ab->stack_b, ab->name_b);
 	if (!(median = find_median(ab->stack_a, size)))
 		return (NULL);
-	if (size_b)
-		tmp = ab->stack_b;
-	else
-		tmp = ab->stack_a;
+	tmp = ab->stack_a;
 	i = size;
 	while (i--)
 	{
 		ft_printf("%d", get_value(tmp));
-		put_in_place(ab, &tmp, get_value(median), ft_dlstsize(ab->stack_b));
+		divide_stack(ab, &tmp, get_value(median), parity);
 	}
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
 
 	
-	ft_putstr("SUB-a\n");
-	sort_quick(ab, ab->size_a, ft_dlstsize(ab->stack_b));
-	// swap_stacks(ab);
-	// ft_putstr("SUB-b\n");
-	// sort_quick(ab, ab->size_a, size_b);
+	ft_printf("SUB-b\n");
+	swap_stacks(ab);
+	sort_quick(ab, ab->size_a, - parity);
+	// ft_printf("SUB-b\n");
+	// sort_quick(ab, ab->size_a, parity);
 
 	put_at_top(&ab->stack_b, find_node(ab->stack_b, get_value(median)), ab->name_b);
 
@@ -239,7 +251,7 @@ t_dlist	*sort_quick_maintenance(t_stacks *ab, int size, int size_b)
 	{
 		ft_printf("%d", get_value(ab->stack_b));
 		reverse(&ab->stack_a);
-		ft_printf("%srr%c%s\n", MAG, ab->name_a, RESET);
+		ft_printf("rr%c\n", ab->name_a);
 	}
 	while (ab->stack_b)
 	{
@@ -247,7 +259,7 @@ t_dlist	*sort_quick_maintenance(t_stacks *ab, int size, int size_b)
 		push(&ab->stack_a, &ab->stack_b);
 		ab->size_a++;
 		ab->size_b--;
-		ft_printf("%sp%c%s\n", MAG, ab->name_a, RESET);
+		ft_printf("p%c\n", ab->name_a);
 	}
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
@@ -260,7 +272,7 @@ t_dlist	*sort_quick_maintenance(t_stacks *ab, int size, int size_b)
  * The algo used is a kind of quick sort modified to work with 2 stacks
  * @param ab		pointer on the struct tu coco
  * @param size		max number of nodes to iterate on the stack a
- * @param parity	change the comparaison in put_in_place
+ * @param parity	change the comparaison in divide_stack
  **/
 t_dlist	*sort_quick(t_stacks *ab, int size, int parity)
 {
@@ -280,17 +292,17 @@ t_dlist	*sort_quick(t_stacks *ab, int size, int parity)
 	while (i--)
 	{
 		ft_printf("%d", get_value(tmp));
-		put_in_place(ab, &tmp, get_value(median), parity);
+		divide_stack(ab, &tmp, get_value(median), parity);
 	}
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
 
 	put_at_top(&ab->stack_b, find_node(ab->stack_b, get_value(median)), ab->name_b);
 	
-	ft_putstr("SUB-a\n");
+	ft_printf("SUB-a\n");
 	sort_quick(ab, ab->size_a, parity);
 	// swap_stacks(ab);
-	// ft_putstr("SUB-b\n");
+	// ft_printf("SUB-b\n");
 	// sort_quick(ab, ab->size_a, parity);
 
 	i = size / 2;
@@ -299,7 +311,7 @@ t_dlist	*sort_quick(t_stacks *ab, int size, int parity)
 	{
 		ft_printf("%d", get_value(ab->stack_b));
 		reverse(&ab->stack_a);
-		ft_printf("%srr%c%s\n", MAG, ab->name_a, RESET);
+		ft_printf("rr%c\n", ab->name_a);
 	}
 	while (ab->stack_b)
 	{
@@ -307,7 +319,7 @@ t_dlist	*sort_quick(t_stacks *ab, int size, int parity)
 		push(&ab->stack_a, &ab->stack_b);
 		ab->size_a++;
 		ab->size_b--;
-		ft_printf("%sp%c%s\n", MAG, ab->name_a, RESET);
+		ft_printf("p%c\n", ab->name_a);
 	}
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
@@ -316,11 +328,23 @@ t_dlist	*sort_quick(t_stacks *ab, int size, int parity)
 
 /** ALGO QUICK SORT
  * tant que swap
+ * 		si size == 2 ou 3
+ * 			tri + push sur lautre
+ * 			return
  * 		trouver le node median
- * 		mettre les 50% plus petits noeuds sur l'autre stack (il reste les 50% 
- * 		plus grands sur la stack actuelle)
- * 		recursion sur (stack jusqu'a median)
- * 		recursion sur (stack depuis median)
+ * 
+ * 		si (sur stack a):
+ * 			mettre les inferieurs au median sur la stack b en mettant
+ * 			le median au fond de la stack (rb)
+ * 			puis rrb
+ * 		sinon:
+ * 			mettre les superieurs au median sur la stack a en mettant
+ * 			le median au fond de la stack (ra)
+ * 			puis rra
+ * 
+ * 		recursion sur inf (stack jusqu'a median)
+ * 		recursion sur sup (stack depuis median)
+ 
  * 		faire remonter le median
  * 		push sur la stack courrante tous les nodes de l'autre (les plus petits)
  * 		(le median se retrouve donc bien place et separe 2 parties)

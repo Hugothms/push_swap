@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/19 14:30:48 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/19 16:07:59 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@
  **/
 void	sort_stack_size_2_reverse(t_dlist **st, char name)
 {
-	if (ft_dlstsize((*st)) != 2 || checker((*st)))
+	if (ft_dlstsize((*st)) != 2)
 		return ;
-	swap(st);
-	ft_printf("s%c\n", name);
+	if (!checker(*st))
+	{
+		swap(st);
+		ft_printf("s%c\n", name);
+	}
 }
 
 /**
@@ -32,28 +35,28 @@ void	sort_stack_size_2_reverse(t_dlist **st, char name)
  **/
 void	sort_stack_size_3_reverse(t_dlist **st, char name)
 {
-	if (ft_dlstsize((*st)) != 3 || checker((*st)))
+	if (ft_dlstsize((*st)) != 3)
 		return ;
-	if (get_value((*st))					< get_value((*st)->next) &&
+	if (get_value((*st))					> get_value((*st)->next) &&
+			get_value((*st)->next)			< get_value((*st)->next->next) &&
+			get_value((*st)->next->next)	> get_value((*st)))
+		sort5(st, name);//!
+	else if (get_value((*st))				< get_value((*st)->next) &&
+			get_value((*st)->next)			< get_value((*st)->next->next) &&
+			get_value((*st)->next->next)	> get_value((*st)))
+		sort2(st, name);//!
+	else if (get_value((*st))				> get_value((*st)->next) &&
+			get_value((*st)->next)			< get_value((*st)->next->next) &&
+			get_value((*st)->next->next)	< get_value((*st)))
+		sort4(st, name);//!
+	else if (get_value((*st))				< get_value((*st)->next) &&
+			get_value((*st)->next)			> get_value((*st)->next->next) &&
+			get_value((*st)->next->next)	> get_value((*st)))
+		sort3(st, name);//!
+	else if (get_value((*st))				< get_value((*st)->next) &&
 			get_value((*st)->next)			> get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	< get_value((*st)))
 		sort1(st, name);
-	else if (get_value((*st))				< get_value((*st)->next) &&
-			get_value((*st)->next)			< get_value((*st)->next->next) &&
-			get_value((*st)->next->next)	> get_value((*st)))
-		sort2(st, name);
-	else if (get_value((*st))				< get_value((*st)->next) &&
-			get_value((*st)->next)			> get_value((*st)->next->next) &&
-			get_value((*st)->next->next)	> get_value((*st)))
-		sort3(st, name);
-	else if (get_value((*st))				> get_value((*st)->next) &&
-			get_value((*st)->next)			< get_value((*st)->next->next) &&
-			get_value((*st)->next->next)	< get_value((*st)))
-		sort4(st, name);
-	else if (get_value((*st))				> get_value((*st)->next) &&
-			get_value((*st)->next)			< get_value((*st)->next->next) &&
-			get_value((*st)->next->next)	> get_value((*st)))
-		sort5(st, name);
 }
 
 int		*ft_dlst_to_tabn(t_dlist *dlst, int max)
@@ -79,27 +82,27 @@ int		*ft_dlst_to_tabn(t_dlist *dlst, int max)
 	return (tab);
 }
 
-int		*ft_dlst_to_tab(t_dlist *dlst)
-{
-	t_dlist	*tmp;
-	int		*tab;
-	int		i;
+// int		*ft_dlst_to_tab(t_dlist *dlst)
+// {
+// 	t_dlist	*tmp;
+// 	int		*tab;
+// 	int		i;
 
-	if (!dlst)
-		return (NULL);
-	if (!(tab = malloc(sizeof(int) * ft_dlstsize(dlst))))
-		return (NULL);
-	tab[0] = get_value(dlst);
-	tmp = dlst->next;
-	i = 1;
-	while (tmp != dlst)
-	{		
-		tab[i] = get_value(tmp);
-		tmp = tmp->next;
-		i++;
-	}
-	return (tab);
-}
+// 	if (!dlst)
+// 		return (NULL);
+// 	if (!(tab = malloc(sizeof(int) * ft_dlstsize(dlst))))
+// 		return (NULL);
+// 	tab[0] = get_value(dlst);
+// 	tmp = dlst->next;
+// 	i = 1;
+// 	while (tmp != dlst)
+// 	{		
+// 		tab[i] = get_value(tmp);
+// 		tmp = tmp->next;
+// 		i++;
+// 	}
+// 	return (tab);
+// }
 
 /**
  * Find the node with the corresponding value in the stack
@@ -187,37 +190,37 @@ t_dlist	*find_median_maintenance(t_dlist *stack, t_dlist *end)
 	return (find_node(stack, median_value));
 }
 
-/**
- * Find and return the first found node smaller than a given number
- * @param stack	stack where to find the node
- * @param value	value max to accept a node
- * @return		the closest node (from the top or the bottom of stack)
- * 				smaller than value
- **/
-t_dlist	*find_smaller_than(t_dlist *stack, int value)
-{
-	t_dlist	*start;
-	t_dlist	*end;
+// /**
+//  * Find and return the first found node smaller than a given number
+//  * @param stack	stack where to find the node
+//  * @param value	value max to accept a node
+//  * @return		the closest node (from the top or the bottom of stack)
+//  * 				smaller than value
+//  **/
+// t_dlist	*find_smaller_than(t_dlist *stack, int value)
+// {
+// 	t_dlist	*start;
+// 	t_dlist	*end;
 
-	if (!stack)
-		return (NULL);
-	start = stack;
-	end = stack->prev;
-	if (get_value(start) < value)
-			return (start);
-	if (get_value(end) < value)
-			return (end);
-	while (start != stack)
-	{
-		if (get_value(start) < value)
-			return (start);
-		if (get_value(end) < value)
-			return (end);
-		start = start->next;
-		end = end->prev;
-	}
-	return (NULL);
-}
+// 	if (!stack)
+// 		return (NULL);
+// 	start = stack;
+// 	end = stack->prev;
+// 	if (get_value(start) < value)
+// 			return (start);
+// 	if (get_value(end) < value)
+// 			return (end);
+// 	while (start != stack)
+// 	{
+// 		if (get_value(start) < value)
+// 			return (start);
+// 		if (get_value(end) < value)
+// 			return (end);
+// 		start = start->next;
+// 		end = end->prev;
+// 	}
+// 	return (NULL);
+// }
 
 /**
  * If the number is biger then value, puts it at 
@@ -318,67 +321,67 @@ int	divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dlis
 	}
 }
 
-void	swap_stacks(t_stacks *ab)
-{
-	t_dlist *swap = ab->stack_a;
-	ab->stack_a = ab->stack_b;
-	ab->stack_b = swap;
-	char c = ab->name_a;
-	ab->name_a = ab->name_b;
-	ab->name_b = c;
-	int s = ab->size_a;
-	ab->size_a = ab->size_b;
-	ab->size_b = s;
-}
+// void	swap_stacks(t_stacks *ab)
+// {
+// 	t_dlist *swap = ab->stack_a;
+// 	ab->stack_a = ab->stack_b;
+// 	ab->stack_b = swap;
+// 	char c = ab->name_a;
+// 	ab->name_a = ab->name_b;
+// 	ab->name_b = c;
+// 	int s = ab->size_a;
+// 	ab->size_a = ab->size_b;
+// 	ab->size_b = s;
+// }
 
-int sort_stack_under_3(t_stacks *ab, t_dlist *begin, t_dlist *end, int push_on_a)
+int sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int push_on_a)
 {
 	ft_printf("push_on_a:%d\n", push_on_a);
-	if (size_stack(begin, end) == 3)
+	if (size_stack(*begin, end) == 3)
 	{
 		ft_printf("SIZE = 3 CA DEGAGE\n");
-		sort_stack_size_3_reverse(&begin, push_on_a ? 'b': 'a');
-		if (find_node(ab->stack_a, get_value(begin)))
+		sort_stack_size_3_reverse(begin, push_on_a ? 'b': 'a');
+		if (find_node(ab->stack_a, get_value(*begin)))
 		{
 			if (push_on_a)
 			{
-				pa(ab, &begin);
-				pa(ab, &begin);
-				pa(ab, &begin);
+				pa(ab, begin);
+				pa(ab, begin);
+				pa(ab, begin);
 			}
 			// else
 			// {
-			// 	pb(ab, &begin);
-			// 	pb(ab, &begin);
-			// 	pb(ab, &begin);
+			// 	pb(ab, begin);
+			// 	pb(ab, begin);
+			// 	pb(ab, begin);
 			// }
 		}
 		else 
 		{
 			if (push_on_a)
 			{
-				pa(ab, &begin);
-				pa(ab, &begin);
-				pa(ab, &begin);
+				pa(ab, begin);
+				pa(ab, begin);
+				pa(ab, begin);
 			}
 		}
 		return (3);
 	}
-	else if (size_stack(begin, end) == 2)
+	else if (size_stack(*begin, end) == 2)
 	{
 		ft_printf("SIZE = 2 CA DEGAGE\n");
-		sort_stack_size_2_reverse(&begin, push_on_a ? 'a' : 'b');
-		if (!find_node(ab->stack_a, get_value(begin)))
+		sort_stack_size_2_reverse(begin, push_on_a ? 'a' : 'b');
+		if (!find_node(ab->stack_a, get_value(*begin)))
 		{
 			if (push_on_a)
 			{
-				pa(ab, &begin);
-				pa(ab, &begin);
+				pa(ab, begin);
+				pa(ab, begin);
 			}
 			else
 			{
-				pb(ab, &begin);
-				pb(ab, &begin);
+				pb(ab, begin);
+				pb(ab, begin);
 			}
 		}
 		else 
@@ -387,19 +390,19 @@ int sort_stack_under_3(t_stacks *ab, t_dlist *begin, t_dlist *end, int push_on_a
 		}
 		return (2);
 	}
-	else if (size_stack(begin, end) == 1)
+	else if (size_stack(*begin, end) == 1)
 	{
 		ft_printf("SIZE = 1 CA DEGAGE*****************************************\n");
-		sort_stack_size_2_reverse(&begin, push_on_a ? 'a' : 'b');
+		sort_stack_size_2_reverse(begin, push_on_a ? 'a' : 'b');
 		if (push_on_a)
 		{
-			pa(ab, &begin);
-			pa(ab, &begin);
+			pa(ab, begin);
+			pa(ab, begin);
 		}
 		else
 		{
-			pb(ab, &begin);
-			pb(ab, &begin);
+			pb(ab, begin);
+			pb(ab, begin);
 		}
 		return (1);
 	}
@@ -440,15 +443,15 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push
 	ft_printf("end  = %d\n", get_value(end));
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
+	ft_printf("push_on_a:%d\n", push_on_a);
 	begin = find_node(push_on_a ? ab->stack_b : ab->stack_a, get_value(begin));
 	end = find_node(push_on_a ? ab->stack_b : ab->stack_a, get_value(end));
 	int size = size_stack(begin, end);
 	if (size_stack(begin, end) <= 3)
-		return (sort_stack_under_3(ab, begin, end, push_on_a));
+		return (sort_stack_under_3(ab, &begin, end, push_on_a));
 	if (!(median = find_median_maintenance(begin, end)))
 		return (0);
 	// push_on_a = ab->size_b;
-	ft_printf("push_on_a:%d\n", push_on_a);
 	tmp = begin;
 	i = size_stack(begin, end);
 	begin = NULL;

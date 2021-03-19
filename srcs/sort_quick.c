@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/19 11:58:36 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/19 12:35:07 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ t_dlist	*find_smaller_than(t_dlist *stack, int value)
  * @param stack	current node (on which the loop iterates)
  * @param value	median pivot value
  **/
-void divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dlist **begin, t_dlist **end)
+int	divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dlist **begin, t_dlist **end)
 {
 	if (find_node(ab->stack_a, get_value(*stack)))
 	{
@@ -239,10 +239,12 @@ void divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dli
 				*end = *stack;
 				ra(ab);
 				*stack = (*stack)->next;
+				return (1);
 			}
 			else
 			{
 				pb(ab, stack);
+				return (0);
 			}
 		}
 		else
@@ -251,6 +253,7 @@ void divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dli
 			{
 				pb(ab, stack);
 				rb(ab);
+				return (0);
 			}
 			else if (get_value(*stack) > value)
 			{
@@ -259,10 +262,12 @@ void divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dli
 				*end = *stack;
 				ra(ab);
 				*stack = (*stack)->next;
+				return (1);
 			}
 			else
 			{
 				pb(ab, stack);
+				return (0);
 			}
 		}
 	}
@@ -274,11 +279,13 @@ void divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dli
 			{
 				pa(ab, stack);
 				ra(ab);
+				return (0);
 			}
 			else if (get_value(*stack) < value)
 			{
 				rb(ab);
 				*stack = (*stack)->next;
+				return (0);
 			}
 			else
 			{
@@ -286,6 +293,7 @@ void divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dli
 					*end = *stack;
 				*begin = *stack;
 				pa(ab, stack);
+				return (0);
 			}
 		}
 		else
@@ -294,6 +302,7 @@ void divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dli
 			{
 				rb(ab);
 				*stack = (*stack)->next;
+				return (0);
 			}
 			else
 			{
@@ -301,6 +310,7 @@ void divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dli
 					*end = *stack;
 				*begin = *stack;
 				pa(ab, stack);
+				return (0);
 			}
 		}
 	}
@@ -461,10 +471,11 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push
 	i = size_stack(begin, end);
 	begin = NULL;
 	end = NULL;
+	int later = 0;
 	while (i--)
 	{
 		ft_printf("%d", get_value(tmp));
-		divide_stack(ab, &tmp, get_value(median), push_on_a, &begin, &end);
+		later += divide_stack(ab, &tmp, get_value(median), push_on_a, &begin, &end);
 	}
 	if (push_on_a)
 		rra(ab);
@@ -473,6 +484,13 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
 
+	while (later--)
+	{
+		ft_printf("%d", get_value(ab->stack_a->prev));
+		reverse(&ab->stack_a);
+		ft_printf("rr%c\n", ab->name_a);
+	}
+	
 	int cpt = 0;	
 	// INFERIEURS
 	push_on_a = ab->size_b;
@@ -521,14 +539,8 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push
 	// sort_quick(ab, ab->size_a, push_on_a);
 	// put_at_top(&ab->stack_b, find_node(ab->stack_b, get_value(median)), ab->name_b);
 
-	// i = size_stack(begin, end) / 2;
 	// // size = ab->size_b;
-	// while (i--)
-	// {
-	// 	ft_printf("%d", get_value(ab->stack_b));
-	// 	reverse(&ab->stack_a);
-	// 	ft_printf("rr%c\n", ab->name_a);
-	// }
+	// i = size_stack(begin, end) / 2;
 	// while (ab->stack_b)
 	// {
 	// 	ft_printf("%d", get_value(ab->stack_b));

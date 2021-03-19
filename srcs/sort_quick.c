@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/19 12:35:07 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/19 14:30:48 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,8 @@ int	divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dlis
 			{
 				if (!*begin)
 					*begin = *stack;
-				*end = *stack;
+				if (get_value(*stack) != value)
+					*end = *stack;
 				ra(ab);
 				*stack = (*stack)->next;
 				return (1);
@@ -259,7 +260,8 @@ int	divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dlis
 			{
 				if (!*begin)
 					*begin = *stack;
-				*end = *stack;
+				if (get_value(*stack) != value)
+					*end = *stack;
 				ra(ab);
 				*stack = (*stack)->next;
 				return (1);
@@ -329,55 +331,6 @@ void	swap_stacks(t_stacks *ab)
 	ab->size_b = s;
 }
 
-
-
-int sort_stack_under_31(t_stacks *ab, t_dlist *begin, t_dlist *end, int push_on_a)
-{
-	ft_printf("push_on_a:%d\n", push_on_a);
-	if (!find_node(ab->stack_a, get_value(begin)))
-	{
-		if (size_stack(begin, end) == 3)
-		{
-			ft_printf("SIZE = 3 CA DEGAGE\n");
-			sort_stack_size_3_reverse(&begin, push_on_a ? 'a': 'b');
-			if (push_on_a)
-			{
-				pa(ab, &begin);
-				pa(ab, &begin);
-				pa(ab, &begin);
-			}
-			// else
-			// {
-			// 	pb(ab, &begin);
-			// 	pb(ab, &begin);
-			// 	pb(ab, &begin);
-			// }
-			return (3);
-		}
-		else if (size_stack(begin, end) == 2)
-		{
-			ft_printf("SIZE = 2 CA DEGAGE\n");
-			sort_stack_size_2_reverse(&begin, push_on_a ? 'a' : 'b');
-			if (push_on_a)
-			{
-				pa(ab, &begin);
-				pa(ab, &begin);
-			}
-			else
-			{
-				pb(ab, &begin);
-				pb(ab, &begin);
-			}
-			return (2);
-		}
-	}
-	else
-	{
-		ft_printf("##############################################\n");
-	} 
-	return (0);
-}
-
 int sort_stack_under_3(t_stacks *ab, t_dlist *begin, t_dlist *end, int push_on_a)
 {
 	ft_printf("push_on_a:%d\n", push_on_a);
@@ -434,7 +387,35 @@ int sort_stack_under_3(t_stacks *ab, t_dlist *begin, t_dlist *end, int push_on_a
 		}
 		return (2);
 	}
+	else if (size_stack(begin, end) == 1)
+	{
+		ft_printf("SIZE = 1 CA DEGAGE*****************************************\n");
+		sort_stack_size_2_reverse(&begin, push_on_a ? 'a' : 'b');
+		if (push_on_a)
+		{
+			pa(ab, &begin);
+			pa(ab, &begin);
+		}
+		else
+		{
+			pb(ab, &begin);
+			pb(ab, &begin);
+		}
+		return (1);
+	}
 	return (0);
+}
+
+int first_is_smaller_in_stack_n(t_dlist *stack, int size)
+{
+	t_dlist *tmp = stack;
+	while (size-- && tmp != stack)
+	{
+		if (get_value(tmp) < get_value(stack))
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);	
 }
 
 /**
@@ -461,6 +442,7 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push
 	print_dlist_line(ab->stack_b, ab->name_b);
 	begin = find_node(push_on_a ? ab->stack_b : ab->stack_a, get_value(begin));
 	end = find_node(push_on_a ? ab->stack_b : ab->stack_a, get_value(end));
+	int size = size_stack(begin, end);
 	if (size_stack(begin, end) <= 3)
 		return (sort_stack_under_3(ab, begin, end, push_on_a));
 	if (!(median = find_median_maintenance(begin, end)))
@@ -500,20 +482,21 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push
 	deep++;
 	ft_printf("INFERIEURS!!!!!!!!!!!!!!!!!!!!\n");
 	if (ab->stack_b)
-		cpt = 1 + sort_quick_maintenance(ab, ab->stack_b, ab->stack_b->prev, push_on_a);
+		cpt = sort_quick_maintenance(ab, ab->stack_b, ab->stack_b->prev, ab->size_b);
 	else
 		ft_printf("done-b\n");
 	// int moved = cpt;
-	while (cpt--)
-		ra(ab);
 	deep--;
 	ft_printf("INFERIEURS&&&&&&&&&&&&&&&&&&&&\n");
-
-
-	// tmp = ab->stack_a;
-	// while (moved--)
-	// 	tmp = tmp->next;
 	
+	
+	while (cpt--)
+		ra(ab);
+	ft_printf("wwwwwwwwwwwwwww %d\n", first_is_smaller_in_stack_n(ab->stack_a, size));
+	if (begin != ab->stack_a)
+		ra(ab);
+	
+
 
 	// SUPERIEURS	
 	print_dlist_line(ab->stack_a, ab->name_a);
@@ -527,10 +510,14 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push
 		cpt = sort_quick_maintenance(ab, begin, end, ab->size_b);
 	else
 		ft_printf("done-a\n");
-	while (cpt--)
-		ra(ab);
 	deep--;
 	ft_printf("SUPERIEURS&&&&&&&&&&&&&&&&&&&&\n");
+	ft_printf("tdeep = %d\n", deep);
+	
+	
+	while (cpt--)
+		ra(ab);
+	
 	// print_dlist_line(ab->stack_a, ab->name_a);
 	// print_dlist_line(ab->stack_b, ab->name_b);
 	

@@ -6,11 +6,55 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/19 10:33:14 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/19 11:58:36 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+/**
+ * Sort a stack of 3 node with the smallest number of instructions possible
+ * @param stack	stack of size 3 to sort
+ * @param name	name of the stack we are working on
+ **/
+void	sort_stack_size_2_reverse(t_dlist **st, char name)
+{
+	if (ft_dlstsize((*st)) != 2 || checker((*st)))
+		return ;
+	swap(st);
+	ft_printf("s%c\n", name);
+}
+
+/**
+ * Sort a stack of 3 node with the smallest number of instructions possible
+ * @param stack	stack of size 3 to sort
+ * @param name	name of the stack we are working on
+ **/
+void	sort_stack_size_3_reverse(t_dlist **st, char name)
+{
+	if (ft_dlstsize((*st)) != 3 || checker((*st)))
+		return ;
+	if (get_value((*st))					< get_value((*st)->next) &&
+			get_value((*st)->next)			> get_value((*st)->next->next) &&
+			get_value((*st)->next->next)	< get_value((*st)))
+		sort1(st, name);
+	else if (get_value((*st))				< get_value((*st)->next) &&
+			get_value((*st)->next)			< get_value((*st)->next->next) &&
+			get_value((*st)->next->next)	> get_value((*st)))
+		sort2(st, name);
+	else if (get_value((*st))				< get_value((*st)->next) &&
+			get_value((*st)->next)			> get_value((*st)->next->next) &&
+			get_value((*st)->next->next)	> get_value((*st)))
+		sort3(st, name);
+	else if (get_value((*st))				> get_value((*st)->next) &&
+			get_value((*st)->next)			< get_value((*st)->next->next) &&
+			get_value((*st)->next->next)	< get_value((*st)))
+		sort4(st, name);
+	else if (get_value((*st))				> get_value((*st)->next) &&
+			get_value((*st)->next)			< get_value((*st)->next->next) &&
+			get_value((*st)->next->next)	> get_value((*st)))
+		sort5(st, name);
+}
 
 int		*ft_dlst_to_tabn(t_dlist *dlst, int max)
 {
@@ -275,39 +319,108 @@ void	swap_stacks(t_stacks *ab)
 	ab->size_b = s;
 }
 
+
+
+int sort_stack_under_31(t_stacks *ab, t_dlist *begin, t_dlist *end, int push_on_a)
+{
+	ft_printf("push_on_a:%d\n", push_on_a);
+	if (!find_node(ab->stack_a, get_value(begin)))
+	{
+		if (size_stack(begin, end) == 3)
+		{
+			ft_printf("SIZE = 3 CA DEGAGE\n");
+			sort_stack_size_3_reverse(&begin, push_on_a ? 'a': 'b');
+			if (push_on_a)
+			{
+				pa(ab, &begin);
+				pa(ab, &begin);
+				pa(ab, &begin);
+			}
+			// else
+			// {
+			// 	pb(ab, &begin);
+			// 	pb(ab, &begin);
+			// 	pb(ab, &begin);
+			// }
+			return (3);
+		}
+		else if (size_stack(begin, end) == 2)
+		{
+			ft_printf("SIZE = 2 CA DEGAGE\n");
+			sort_stack_size_2_reverse(&begin, push_on_a ? 'a' : 'b');
+			if (push_on_a)
+			{
+				pa(ab, &begin);
+				pa(ab, &begin);
+			}
+			else
+			{
+				pb(ab, &begin);
+				pb(ab, &begin);
+			}
+			return (2);
+		}
+	}
+	else
+	{
+		ft_printf("##############################################\n");
+	} 
+	return (0);
+}
+
 int sort_stack_under_3(t_stacks *ab, t_dlist *begin, t_dlist *end, int push_on_a)
 {
+	ft_printf("push_on_a:%d\n", push_on_a);
 	if (size_stack(begin, end) == 3)
 	{
 		ft_printf("SIZE = 3 CA DEGAGE\n");
-		sort_stack_size_3(&begin, push_on_a ? 'a': 'b');
-		if (push_on_a)
+		sort_stack_size_3_reverse(&begin, push_on_a ? 'b': 'a');
+		if (find_node(ab->stack_a, get_value(begin)))
 		{
-			pa(ab, &begin);
-			pa(ab, &begin);
-			pa(ab, &begin);
+			if (push_on_a)
+			{
+				pa(ab, &begin);
+				pa(ab, &begin);
+				pa(ab, &begin);
+			}
+			// else
+			// {
+			// 	pb(ab, &begin);
+			// 	pb(ab, &begin);
+			// 	pb(ab, &begin);
+			// }
 		}
-		// else
-		// {
-		// 	pb(ab, &begin);
-		// 	pb(ab, &begin);
-		// 	pb(ab, &begin);
-		// }
+		else 
+		{
+			if (push_on_a)
+			{
+				pa(ab, &begin);
+				pa(ab, &begin);
+				pa(ab, &begin);
+			}
+		}
 		return (3);
 	}
 	else if (size_stack(begin, end) == 2)
 	{
 		ft_printf("SIZE = 2 CA DEGAGE\n");
-		sort_stack_size_2(&begin, push_on_a ? 'b' : 'a');
-		if (push_on_a)
+		sort_stack_size_2_reverse(&begin, push_on_a ? 'a' : 'b');
+		if (!find_node(ab->stack_a, get_value(begin)))
 		{
-			pa(ab, &begin);
-			pa(ab, &begin);
+			if (push_on_a)
+			{
+				pa(ab, &begin);
+				pa(ab, &begin);
+			}
+			else
+			{
+				pb(ab, &begin);
+				pb(ab, &begin);
+			}
 		}
-		else
+		else 
 		{
-			pb(ab, &begin);
-			pb(ab, &begin);
+			ft_printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 		}
 		return (2);
 	}
@@ -329,11 +442,15 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push
 	t_dlist	*tmp;
 	int		i;
 	int static deep = 0;
-	if (!ab || begin == end)
+	if (!ab || !begin || !end || begin == end)
 		return (0);
 	ft_printf("deep = %d\n", deep);
+	ft_printf("begin= %d\n", get_value(begin));
+	ft_printf("end  = %d\n", get_value(end));
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
+	begin = find_node(push_on_a ? ab->stack_b : ab->stack_a, get_value(begin));
+	end = find_node(push_on_a ? ab->stack_b : ab->stack_a, get_value(end));
 	if (size_stack(begin, end) <= 3)
 		return (sort_stack_under_3(ab, begin, end, push_on_a));
 	if (!(median = find_median_maintenance(begin, end)))
@@ -349,10 +466,6 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push
 		ft_printf("%d", get_value(tmp));
 		divide_stack(ab, &tmp, get_value(median), push_on_a, &begin, &end);
 	}
-	ft_printf("begin= %d\n", get_value(begin));
-	ft_printf("end  = %d\n", get_value(end));
-	print_dlist_line(ab->stack_a, ab->name_a);
-	print_dlist_line(ab->stack_b, ab->name_b);
 	if (push_on_a)
 		rra(ab);
 	else
@@ -364,34 +477,34 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push
 	// INFERIEURS
 	push_on_a = ab->size_b;
 	ft_printf("1deep = %d\n", deep);
-	ft_printf("1begin= %d\n", get_value(begin));
-	ft_printf("1end  = %d\n", get_value(end));
+	// ft_printf("1begin= %d\n", get_value(begin));
+	// ft_printf("1end  = %d\n", get_value(end));
 	deep++;
-	ft_printf("11111111111111111111111111\n");
+	ft_printf("INFERIEURS!!!!!!!!!!!!!!!!!!!!\n");
 	if (ab->stack_b)
-		cpt = sort_quick_maintenance(ab, ab->stack_b, ab->stack_b->prev, push_on_a);
+		cpt = 1 + sort_quick_maintenance(ab, ab->stack_b, ab->stack_b->prev, push_on_a);
 	else
 		ft_printf("done-b\n");
-	int moved = cpt;
+	// int moved = cpt;
 	while (cpt--)
 		ra(ab);
 	deep--;
-	ft_printf("111111&&&&&&&&&&&&&&&&&&&&\n");
+	ft_printf("INFERIEURS&&&&&&&&&&&&&&&&&&&&\n");
 
 
-	tmp = ab->stack_a;
-	while (moved--)
-		tmp = tmp->next;
+	// tmp = ab->stack_a;
+	// while (moved--)
+	// 	tmp = tmp->next;
 	
 
 	// SUPERIEURS	
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
 	ft_printf("2deep = %d\n", deep);
-	ft_printf("2begin= %d\n", get_value(begin));
-	ft_printf("2end  = %d\n", get_value(end));
+	// ft_printf("2begin= %d\n", get_value(begin));
+	// ft_printf("2end  = %d\n", get_value(end));
 	deep++;
-	ft_printf("22222222222222222222222222\n");
+	ft_printf("SUPERIEURS!!!!!!!!!!!!!!!!!!!!\n");
 	if (ab->stack_a)
 		cpt = sort_quick_maintenance(ab, begin, end, ab->size_b);
 	else
@@ -399,32 +512,34 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push
 	while (cpt--)
 		ra(ab);
 	deep--;
-	ft_printf("222222&&&&&&&&&&&&&&&&&&&&\n");
-
+	ft_printf("SUPERIEURS&&&&&&&&&&&&&&&&&&&&\n");
+	// print_dlist_line(ab->stack_a, ab->name_a);
+	// print_dlist_line(ab->stack_b, ab->name_b);
+	
 
 	// ft_printf("SUB-b\n");
 	// sort_quick(ab, ab->size_a, push_on_a);
 	// put_at_top(&ab->stack_b, find_node(ab->stack_b, get_value(median)), ab->name_b);
 
-	i = size_stack(begin, end) / 2;
-	// size = ab->size_b;
-	while (i--)
-	{
-		ft_printf("%d", get_value(ab->stack_b));
-		reverse(&ab->stack_a);
-		ft_printf("rr%c\n", ab->name_a);
-	}
-	while (ab->stack_b)
-	{
-		ft_printf("%d", get_value(ab->stack_b));
-		push(&ab->stack_a, &ab->stack_b);
-		ab->size_a++;
-		ab->size_b--;
-		ft_printf("p%c\n", ab->name_a);
-	}
+	// i = size_stack(begin, end) / 2;
+	// // size = ab->size_b;
+	// while (i--)
+	// {
+	// 	ft_printf("%d", get_value(ab->stack_b));
+	// 	reverse(&ab->stack_a);
+	// 	ft_printf("rr%c\n", ab->name_a);
+	// }
+	// while (ab->stack_b)
+	// {
+	// 	ft_printf("%d", get_value(ab->stack_b));
+	// 	push(&ab->stack_a, &ab->stack_b);
+	// 	ab->size_a++;
+	// 	ab->size_b--;
+	// 	ft_printf("p%c\n", ab->name_a);
+	// }
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
-	return (1);
+	return (0);
 }
 
 /**

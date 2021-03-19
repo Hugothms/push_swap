@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:37:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/18 15:15:10 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/19 11:56:58 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
  **/
 void	sort_stack_size_2(t_dlist **st, char name)
 {
-	if (ft_dlstsize((*st)) != 2 || checker((*st)))
+	if (ft_dlstsize((*st)) != 2 || !checker((*st)))
 		return ;
 	swap(st);
 	ft_printf("s%c\n", name);

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/18 19:52:25 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/19 09:41:02 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,9 +130,9 @@ t_dlist	*find_median_maintenance(t_dlist *stack, t_dlist *end)
 	int		size;
 	
 	size = size_stack(stack, end);
-	ft_printf("start:%d\n", get_value(stack));
-	ft_printf("end: %d\n", get_value(end));
-	ft_printf("size: %d\n", size);
+	ft_printf("start :%d\n", get_value(stack));
+	ft_printf("finish:%d\n", get_value(end));
+	ft_printf("size  :%d\n", size);
 	if (!stack || size < 0)
 		return (NULL);
 	tab = ft_dlst_to_tabn(stack, size);
@@ -182,11 +182,26 @@ t_dlist	*find_smaller_than(t_dlist *stack, int value)
  * @param stack	current node (on which the loop iterates)
  * @param value	median pivot value
  **/
-void divide_stack(t_stacks *ab, t_dlist **stack, int value, int work_on_a)
+void divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dlist **begin, t_dlist **end)
 {
 	if (find_node(ab->stack_a, get_value(*stack)))
 	{
-		if (!work_on_a)
+		if (push_on_a)
+		{
+			if (get_value(*stack) < value)
+			{
+				if (!*begin)
+					*begin = *stack;
+				*end = *stack;
+				ra(ab);
+				*stack = (*stack)->next;
+			}
+			else
+			{
+				pb(ab, stack);
+			}
+		}
+		else
 		{
 			if (get_value(*stack) == value)
 			{
@@ -195,34 +210,34 @@ void divide_stack(t_stacks *ab, t_dlist **stack, int value, int work_on_a)
 			}
 			else if (get_value(*stack) > value)
 			{
+				if (!*begin)
+					*begin = *stack;
+				*end = *stack;
 				ra(ab);
 				*stack = (*stack)->next;
 			}
 			else
-				pb(ab, stack);
-		}
-		else
-		{
-			if (get_value(*stack) < value)
 			{
-				ra(ab);
-				*stack = (*stack)->next;
-			}
-			else
 				pb(ab, stack);
+			}
 		}
 	}
 	else
 	{
-		if (!work_on_a)
+		if (!push_on_a)
 		{
 			if (get_value(*stack) > value)
 			{
+				if (!*begin)
+					*begin = *stack;
+				*end = *stack;
 				rb(ab);
 				*stack = (*stack)->next;
 			}
 			else
+			{
 				pa(ab, stack);
+			}
 		}
 		else
 		{
@@ -231,13 +246,18 @@ void divide_stack(t_stacks *ab, t_dlist **stack, int value, int work_on_a)
 				pa(ab, stack);
 				ra(ab);
 			}
-			if (get_value(*stack) < value)
+			else if (get_value(*stack) < value)
 			{
+				if (!*begin)
+					*begin = *stack;
+				*end = *stack;
 				rb(ab);
 				*stack = (*stack)->next;
 			}
 			else
+			{
 				pa(ab, stack);
+			}
 		}
 	}
 }
@@ -255,13 +275,13 @@ void	swap_stacks(t_stacks *ab)
 	ab->size_b = s;
 }
 
-int sort_stack_under_3(t_stacks *ab, t_dlist *begin, t_dlist *end, int work_on_a)
+int sort_stack_under_3(t_stacks *ab, t_dlist *begin, t_dlist *end, int push_on_a)
 {
 	if (size_stack(begin, end) == 3)
 	{
 		ft_printf("SIZE = 3 CA DEGAGE\n");
-		sort_stack_size_3(&begin, work_on_a ? 'a': 'b');
-		if (work_on_a)
+		sort_stack_size_3(&begin, push_on_a ? 'a': 'b');
+		if (push_on_a)
 		{
 			pa(ab, &begin);
 			pa(ab, &begin);
@@ -278,8 +298,8 @@ int sort_stack_under_3(t_stacks *ab, t_dlist *begin, t_dlist *end, int work_on_a
 	else if (size_stack(begin, end) == 2)
 	{
 		ft_printf("SIZE = 2 CA DEGAGE\n");
-		sort_stack_size_2(&begin, work_on_a ? 'b' : 'a');
-		if (work_on_a)
+		sort_stack_size_2(&begin, push_on_a ? 'b' : 'a');
+		if (push_on_a)
 		{
 			pa(ab, &begin);
 			pa(ab, &begin);
@@ -301,36 +321,39 @@ int sort_stack_under_3(t_stacks *ab, t_dlist *begin, t_dlist *end, int work_on_a
  * @param ab		pointer on the struct tu coco
  * @param begin		start of the stack to sort
  * @param end		end of the stack to sort
- * @param work_on_a	change the comparaison in divide_stack
+ * @param push_on_a	change the comparaison in divide_stack
  **/
-int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int work_on_a)
+int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push_on_a)
 {
 	t_dlist	*median;
 	t_dlist	*tmp;
 	int		i;
 	int static deep = 0;
-	ft_printf("---------------------------------------\n");
 	if (!ab || begin == end)
 		return (0);
 	ft_printf("deep = %d\n", deep);
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
 	if (size_stack(begin, end) <= 3)
-		return (sort_stack_under_3(ab, begin, end, work_on_a));
+		return (sort_stack_under_3(ab, begin, end, push_on_a));
 	if (!(median = find_median_maintenance(begin, end)))
 		return (0);
-	// work_on_a = ab->size_b;
-	ft_printf("work_on_a:%d\n", work_on_a);
+	// push_on_a = ab->size_b;
+	ft_printf("push_on_a:%d\n", push_on_a);
 	tmp = begin;
 	i = size_stack(begin, end);
+	begin = NULL;
+	end = NULL;
 	while (i--)
 	{
 		ft_printf("%d", get_value(tmp));
-		divide_stack(ab, &tmp, get_value(median), work_on_a);
+		divide_stack(ab, &tmp, get_value(median), push_on_a, &begin, &end);
 	}
+	ft_printf("begin= %d\n", get_value(begin));
+	ft_printf("end  = %d\n", get_value(end));
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
-	if (work_on_a)
+	if (push_on_a)
 		rra(ab);
 	else
 		rrb(ab);
@@ -339,20 +362,21 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int work
 
 	int cpt = 0;	
 	// INFERIEURS
-	work_on_a = ab->size_b;
-	ft_printf("1deep= %d\n", deep);
-	ft_printf("1SUB-b\n");
+	push_on_a = ab->size_b;
+	ft_printf("1deep = %d\n", deep);
+	ft_printf("1begin= %d\n", get_value(begin));
+	ft_printf("1end  = %d\n", get_value(end));
 	deep++;
+	ft_printf("11111111111111111111111111\n");
 	if (ab->stack_b)
-		cpt = sort_quick_maintenance(ab, ab->stack_b, ab->stack_b->prev, work_on_a);
+		cpt = sort_quick_maintenance(ab, ab->stack_b, ab->stack_b->prev, push_on_a);
 	else
 		ft_printf("done-b\n");
 	int moved = cpt;
 	while (cpt--)
 		ra(ab);
 	deep--;
-	ft_printf("&&&&&&&&&&&&&&&&&&&&&&&&&&\n");
-	ft_printf("END 1SUB-a\n");
+	ft_printf("111111&&&&&&&&&&&&&&&&&&&&\n");
 
 
 	tmp = ab->stack_a;
@@ -363,22 +387,23 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int work
 	// SUPERIEURS	
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);
-	ft_printf("2deep= %d\n", deep);
-	ft_printf("2SUB-a\n");
+	ft_printf("2deep = %d\n", deep);
+	ft_printf("2begin= %d\n", get_value(begin));
+	ft_printf("2end  = %d\n", get_value(end));
 	deep++;
+	ft_printf("11111111111111111111111111\n");
 	if (ab->stack_a)
-		cpt = sort_quick_maintenance(ab, ab->stack_a, tmp, ab->size_b);
+		cpt = sort_quick_maintenance(ab, begin, end, ab->size_b);
 	else
 		ft_printf("done-a\n");
 	while (cpt--)
 		ra(ab);
 	deep--;
-	ft_printf("&&&&&&&&&&&&&&&&&&&&&&&&&&\n");
-	ft_printf("END 2SUB-a\n");
+	ft_printf("222222&&&&&&&&&&&&&&&&&&&&\n");
 
 
 	// ft_printf("SUB-b\n");
-	// sort_quick(ab, ab->size_a, work_on_a);
+	// sort_quick(ab, ab->size_a, push_on_a);
 	// put_at_top(&ab->stack_b, find_node(ab->stack_b, get_value(median)), ab->name_b);
 
 	i = size_stack(begin, end) / 2;
@@ -428,7 +453,7 @@ t_dlist	*sort_quick(t_stacks *ab, int size, int parity)
 	while (i--)
 	{
 		ft_printf("%d", get_value(tmp));
-		divide_stack(ab, &tmp, get_value(median), parity);
+		divide_stack(ab, &tmp, get_value(median), parity, NULL, NULL);
 	}
 	print_dlist_line(ab->stack_a, ab->name_a);
 	print_dlist_line(ab->stack_b, ab->name_b);

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/19 16:07:59 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/19 16:34:07 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ void	sort_stack_size_3_reverse(t_dlist **st, char name)
 	if (get_value((*st))					> get_value((*st)->next) &&
 			get_value((*st)->next)			< get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	> get_value((*st)))
-		sort5(st, name);//!
+		sort5(st, name);
 	else if (get_value((*st))				< get_value((*st)->next) &&
 			get_value((*st)->next)			< get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	> get_value((*st)))
-		sort2(st, name);//!
+		sort2(st, name);
 	else if (get_value((*st))				> get_value((*st)->next) &&
 			get_value((*st)->next)			< get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	< get_value((*st)))
-		sort4(st, name);//!
+		sort4(st, name);
 	else if (get_value((*st))				< get_value((*st)->next) &&
 			get_value((*st)->next)			> get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	> get_value((*st)))
-		sort3(st, name);//!
+		sort3(st, name);
 	else if (get_value((*st))				< get_value((*st)->next) &&
 			get_value((*st)->next)			> get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	< get_value((*st)))
@@ -336,11 +336,11 @@ int	divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dlis
 
 int sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int push_on_a)
 {
-	ft_printf("push_on_a:%d\n", push_on_a);
 	if (size_stack(*begin, end) == 3)
 	{
 		ft_printf("SIZE = 3 CA DEGAGE\n");
 		sort_stack_size_3_reverse(begin, push_on_a ? 'b': 'a');
+		// ab->stack_a = *begin;
 		if (find_node(ab->stack_a, get_value(*begin)))
 		{
 			if (push_on_a)
@@ -348,6 +348,7 @@ int sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int push_on_
 				pa(ab, begin);
 				pa(ab, begin);
 				pa(ab, begin);
+				print_dlist_line(ab->stack_a, '1');
 			}
 			// else
 			// {
@@ -360,9 +361,12 @@ int sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int push_on_
 		{
 			if (push_on_a)
 			{
+				print_dlist_line(*begin, 'b');
 				pa(ab, begin);
 				pa(ab, begin);
 				pa(ab, begin);
+				print_dlist_line(ab->stack_a, '2');
+				print_dlist_line(*begin, 'b');
 			}
 		}
 		return (3);
@@ -484,6 +488,7 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push
 	// ft_printf("1end  = %d\n", get_value(end));
 	deep++;
 	ft_printf("INFERIEURS!!!!!!!!!!!!!!!!!!!!\n");
+	print_dlist_line(ab->stack_a, 'q');
 	if (ab->stack_b)
 		cpt = sort_quick_maintenance(ab, ab->stack_b, ab->stack_b->prev, ab->size_b);
 	else
@@ -491,7 +496,8 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push
 	// int moved = cpt;
 	deep--;
 	ft_printf("INFERIEURS&&&&&&&&&&&&&&&&&&&&\n");
-	
+	print_dlist_line(ab->stack_a, 'w');
+
 	
 	while (cpt--)
 		ra(ab);

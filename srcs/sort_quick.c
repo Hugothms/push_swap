@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/19 09:41:02 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/19 10:33:14 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,22 +224,7 @@ void divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dli
 	}
 	else
 	{
-		if (!push_on_a)
-		{
-			if (get_value(*stack) > value)
-			{
-				if (!*begin)
-					*begin = *stack;
-				*end = *stack;
-				rb(ab);
-				*stack = (*stack)->next;
-			}
-			else
-			{
-				pa(ab, stack);
-			}
-		}
-		else
+		if (push_on_a)
 		{
 			if (get_value(*stack) == value)
 			{
@@ -248,14 +233,29 @@ void divide_stack(t_stacks *ab, t_dlist **stack, int value, int push_on_a, t_dli
 			}
 			else if (get_value(*stack) < value)
 			{
-				if (!*begin)
-					*begin = *stack;
-				*end = *stack;
 				rb(ab);
 				*stack = (*stack)->next;
 			}
 			else
 			{
+				if (!*end)
+					*end = *stack;
+				*begin = *stack;
+				pa(ab, stack);
+			}
+		}
+		else
+		{
+			if (get_value(*stack) > value)
+			{
+				rb(ab);
+				*stack = (*stack)->next;
+			}
+			else
+			{
+				if (!*end)
+					*end = *stack;
+				*begin = *stack;
 				pa(ab, stack);
 			}
 		}
@@ -391,7 +391,7 @@ int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push
 	ft_printf("2begin= %d\n", get_value(begin));
 	ft_printf("2end  = %d\n", get_value(end));
 	deep++;
-	ft_printf("11111111111111111111111111\n");
+	ft_printf("22222222222222222222222222\n");
 	if (ab->stack_a)
 		cpt = sort_quick_maintenance(ab, begin, end, ab->size_b);
 	else

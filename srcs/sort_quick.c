@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/19 16:34:07 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/21 00:25:40 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -339,34 +339,34 @@ int sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int push_on_
 	if (size_stack(*begin, end) == 3)
 	{
 		ft_printf("SIZE = 3 CA DEGAGE\n");
-		sort_stack_size_3_reverse(begin, push_on_a ? 'b': 'a');
+		sort_stack_size_3_reverse(push_on_a ? &ab->stack_b : &ab->stack_a, push_on_a ? 'b': 'a');
 		// ab->stack_a = *begin;
 		if (find_node(ab->stack_a, get_value(*begin)))
 		{
 			if (push_on_a)
 			{
-				pa(ab, begin);
-				pa(ab, begin);
-				pa(ab, begin);
+				pa(ab, push_on_a ? &ab->stack_b : &ab->stack_a);
+				pa(ab, push_on_a ? &ab->stack_b : &ab->stack_a);
+				pa(ab, push_on_a ? &ab->stack_b : &ab->stack_a);
 				print_dlist_line(ab->stack_a, '1');
 			}
 			// else
 			// {
-			// 	pb(ab, begin);
-			// 	pb(ab, begin);
-			// 	pb(ab, begin);
+			// 	pb(ab, push_on_a ? &ab->stack_b : &ab->stack_a);
+			// 	pb(ab, push_on_a ? &ab->stack_b : &ab->stack_a);
+			// 	pb(ab, push_on_a ? &ab->stack_b : &ab->stack_a);
 			// }
 		}
 		else 
 		{
 			if (push_on_a)
 			{
-				print_dlist_line(*begin, 'b');
-				pa(ab, begin);
-				pa(ab, begin);
-				pa(ab, begin);
+				print_dlist_line(push_on_a ? ab->stack_b : ab->stack_a, 'b');
+				pa(ab, push_on_a ? &ab->stack_b : &ab->stack_a);
+				pa(ab, push_on_a ? &ab->stack_b : &ab->stack_a);
+				pa(ab, push_on_a ? &ab->stack_b : &ab->stack_a);
 				print_dlist_line(ab->stack_a, '2');
-				print_dlist_line(*begin, 'b');
+				print_dlist_line(push_on_a ? ab->stack_b : ab->stack_a, 'b');
 			}
 		}
 		return (3);

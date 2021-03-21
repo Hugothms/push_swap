@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/21 00:25:40 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/21 01:16:44 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	sort_stack_size_3_reverse(t_dlist **st, char name)
 		sort1(st, name);
 }
 
-int		*ft_dlst_to_tabn(t_dlist *dlst, int max)
+int	*ft_dlst_to_tabn(t_dlist *dlst, int max)
 {
 	t_dlist	*tmp;
 	int		*tab;
@@ -434,7 +434,7 @@ int first_is_smaller_in_stack_n(t_dlist *stack, int size)
  * @param end		end of the stack to sort
  * @param push_on_a	change the comparaison in divide_stack
  **/
-int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push_on_a)
+int	sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push_on_a)
 {
 	t_dlist	*median;
 	t_dlist	*tmp;

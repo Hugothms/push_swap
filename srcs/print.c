@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:37:07 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 13:07:14 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/21 01:17:54 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	print_dlist_line(t_dlist *stack, char name)
 void	print_first_item_dlist(t_dlist *dlist)
 {
 	if (dlist)
-		ft_printf("%d ", *((int*)dlist->content));
+		ft_printf("%d ", *((int *)dlist->content));
 }
 
 void	print_clean_dlist(t_dlist *a, t_dlist *b)

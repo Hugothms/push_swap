@@ -6,13 +6,13 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 20:00:24 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 11:20:49 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/21 01:17:54 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int		get_value(t_dlist *stack)
+int	get_value(t_dlist *stack)
 {
-	return (*(int*)(stack->content));
+	return (*(int *)(stack->content));
 }

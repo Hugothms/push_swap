@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 11:47:45 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/21 01:17:54 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@
  * Check if the given list is sorted
  * @return	0 if the list is sorted, otherwise return 1
  **/
-int		checker(t_dlist *stack)
+int	checker(t_dlist *stack)
 {
 	t_dlist	*tmp;
 
 	if (!stack)
 		return (0);
 	tmp = stack;
-	if (*(int*)(stack->content) > *(int*)(stack->next->content))
+	if (*(int *)(stack->content) > *(int *)(stack->next->content))
 		return (1);
 	tmp = tmp->next;
 	while (tmp && tmp->next != stack)
 	{
-		if (*(int*)(tmp->content) > *(int*)(tmp->next->content))
+		if (*(int *)(tmp->content) > *(int *)(tmp->next->content))
 			return (1);
 		tmp = tmp->next;
 	}

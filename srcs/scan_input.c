@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:13:23 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/13 09:56:45 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/21 01:16:44 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	error(void)
  * check if there are duplicates in the list
  * @return	0 if no duplicates where found, 1 otherwise
  **/
-int		duplicates(t_dlist *a)
+int	duplicates(t_dlist *a)
 {
 	t_dlist	*tmp;
 	t_dlist	*tmp2;
@@ -42,7 +42,7 @@ int		duplicates(t_dlist *a)
 	return (0);
 }
 
-int		int_overflow(char const *str, int sign)
+int	int_overflow(char const *str, int sign)
 {
 	if (sign)
 		return (ft_strlen(str) == 10 && (ft_strcmp(str, "2147483648")) > 0);

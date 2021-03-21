@@ -6,13 +6,13 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/18 19:31:33 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/21 01:16:44 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int		main(int argc, char const *argv[])
+int	main(int argc, char const *argv[])
 {
 	t_stacks *ab;
 	

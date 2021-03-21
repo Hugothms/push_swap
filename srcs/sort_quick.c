@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/21 15:45:27 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/21 23:14:21 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	sort_stack_size_3_reverse(t_dlist **st, char name)
 	if (get_value((*st))					> get_value((*st)->next) &&
 			get_value((*st)->next)			< get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	> get_value((*st)))
-		sort5(st, name);
+		sort4(st, name);
 	else if (get_value((*st))				< get_value((*st)->next) &&
 			get_value((*st)->next)			< get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	> get_value((*st)))
@@ -48,7 +48,7 @@ void	sort_stack_size_3_reverse(t_dlist **st, char name)
 	else if (get_value((*st))				> get_value((*st)->next) &&
 			get_value((*st)->next)			< get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	< get_value((*st)))
-		sort4(st, name);
+		sort5(st, name);
 	else if (get_value((*st))				< get_value((*st)->next) &&
 			get_value((*st)->next)			> get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	> get_value((*st)))
@@ -56,6 +56,8 @@ void	sort_stack_size_3_reverse(t_dlist **st, char name)
 	else if (get_value((*st))				< get_value((*st)->next) &&
 			get_value((*st)->next)			> get_value((*st)->next->next) &&
 			get_value((*st)->next->next)	< get_value((*st)))
+		sort1(st, name);
+	else
 		sort1(st, name);
 }
 
@@ -340,7 +342,6 @@ int sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int push_on_
 	{
 		ft_printf("SIZE = 3 CA DEGAGE\n");
 		sort_stack_size_3_reverse(push_on_a ? &ab->stack_b : &ab->stack_a, push_on_a ? 'b': 'a');
-		// ab->stack_a = *begin;
 		if (find_node(ab->stack_a, get_value(*begin)))
 		{
 			if (push_on_a)
@@ -366,7 +367,7 @@ int sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int push_on_
 				pa(ab, push_on_a ? &ab->stack_b : &ab->stack_a);
 				pa(ab, push_on_a ? &ab->stack_b : &ab->stack_a);
 				print_dlist_line(ab->stack_a, '2');
-				print_dlist_line(push_on_a ? ab->stack_b : ab->stack_a, 'n');
+				print_dlist_line(ab->stack_a, 'n');
 			}
 		}
 		return (3);

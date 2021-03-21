@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/21 00:37:40 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/21 23:19:51 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char const *argv[])
 		error();
 	while(get_next_line(&line ,0))
 	{
-		ft_printf("\nExec %s:\n", line);
+		// ft_printf("\nExec %s:\n", line);
 		if (!ft_strncmp(line, "s", 1))
 			swap_help(&a, &b, line, &ret);
 		else if (!ft_strncmp(line, "p", 1))

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/21 01:16:44 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/21 15:45:27 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -361,12 +361,12 @@ int sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int push_on_
 		{
 			if (push_on_a)
 			{
-				print_dlist_line(push_on_a ? ab->stack_b : ab->stack_a, 'b');
+				print_dlist_line(push_on_a ? ab->stack_b : ab->stack_a, 'm');
 				pa(ab, push_on_a ? &ab->stack_b : &ab->stack_a);
 				pa(ab, push_on_a ? &ab->stack_b : &ab->stack_a);
 				pa(ab, push_on_a ? &ab->stack_b : &ab->stack_a);
 				print_dlist_line(ab->stack_a, '2');
-				print_dlist_line(push_on_a ? ab->stack_b : ab->stack_a, 'b');
+				print_dlist_line(push_on_a ? ab->stack_b : ab->stack_a, 'n');
 			}
 		}
 		return (3);

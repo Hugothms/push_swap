@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/21 01:17:54 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/23 14:05:45 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	checker(t_dlist *stack)
 {
 	t_dlist	*tmp;
 
-	if (!stack)
+	if (!stack | !stack->next)
 		return (0);
 	tmp = stack;
 	if (*(int *)(stack->content) > *(int *)(stack->next->content))

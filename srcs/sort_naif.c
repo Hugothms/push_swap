@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:37:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/21 01:16:44 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/23 15:17:22 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	sort_stack_size_2(t_dlist **st, char name)
 	if (ft_dlstsize((*st)) != 2 || !checker((*st)))
 		return ;
 	swap(st);
-	ft_printf("s%c\n", name);
+	printf("s%c\n", name);
 }
 
 /**
@@ -114,14 +114,14 @@ void	put_at_top(t_dlist **stack, t_dlist *node, char name)
 
 	pos = pos_node(*stack, node);
 	// if (pos >= ft_dlstsize(*stack))
-	// 	ft_printf("Ca va pas chef\n");
-	// ft_printf("node:%d is at pos:%d\n", get_value(node), pos);
+	// 	printf("Ca va pas chef\n");
+	// printf("node:%d is at pos:%d\n", get_value(node), pos);
 	top = is_in_first_half(*stack, pos);
 	if (top)
 	{
 		while (pos--)
 		{
-			ft_printf("r%c\n", name);
+			printf("r%c\n", name);
 			rotate(stack);
 		}
 	}
@@ -129,7 +129,7 @@ void	put_at_top(t_dlist **stack, t_dlist *node, char name)
 	{
 		while (pos++ % ft_dlstsize(*stack))
 		{
-			ft_printf("rr%c\n", name);
+			printf("rr%c\n", name);
 			reverse(stack);
 		}
 	}
@@ -173,19 +173,19 @@ void	sort_naif(t_dlist **stack, char name)
 	{		
 		t_dlist *smallest = find_smallest(*stack);
 		// print_dlist_line(*stack, 'a');
-		// ft_printf("smallest Node:\nstack[%d]", pos_node(*stack, smallest));
-		// ft_printf("=%d\n", get_value(smallest));
-		// ft_printf("size:%d ", ft_dlstsize(*stack));
-		// ft_printf("%s\n", is_in_first_half(*stack, pos_node(*stack, smallest)) ? "top" : "bottom");
+		// printf("smallest Node:\nstack[%d]", pos_node(*stack, smallest));
+		// printf("=%d\n", get_value(smallest));
+		// printf("size:%d ", ft_dlstsize(*stack));
+		// printf("%s\n", is_in_first_half(*stack, pos_node(*stack, smallest)) ? "top" : "bottom");
 	
 		put_at_top(stack, smallest, name);
-		ft_printf("pb\n");
+		printf("pb\n");
 		push(&b, stack);
 	}
 	sort_stack_size_3(stack, name);
 	while(ft_dlstsize(b))
 	{
-		ft_printf("pa\n");
+		printf("pa\n");
 		push(stack, &b);
 	}
 }

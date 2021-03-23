@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/21 23:39:00 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/23 11:03:24 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ t_dlist	*find_node(t_dlist *stack, int value)
 {
 	t_dlist	*tmp;
 	
+	if (!stack)
+		return (NULL);
 	if (get_value(stack) == value)
 		return (stack);
 	tmp = stack->next;
@@ -136,15 +138,15 @@ t_dlist	*find_median(t_dlist *stack, int max)
 	int		*tab;
 	int		median_value;
 	
-	printf("start:%d\n", get_value(stack));
-	printf("size: %d\n", max);
+	ft_printf("start:%d\n", get_value(stack));
+	ft_printf("size: %d\n", max);
 	if (!stack || max < 0)
 		return (NULL);
 	tab = ft_dlst_to_tabn(stack, max);
 	sort_int(tab, max);
 	median_value = tab[(max - 1) / 2];
 	free(tab);
-	printf("median_value:%d\n", median_value);
+	ft_printf("median_value:%d\n", median_value);
 	return (find_node(stack, median_value));
 }
 
@@ -155,7 +157,7 @@ int size_stack(t_dlist *begin, t_dlist *end)
 
 	cpt = 0;
 	tmp = begin;
-	if (!find_node(begin, get_value(end)))
+	if (!begin || !end || !find_node(begin, get_value(end)))
 		return (0);
 	while (tmp != end)
 	{
@@ -177,16 +179,16 @@ t_dlist	*find_median_maintenance(t_dlist *stack, t_dlist *end)
 	int		size;
 	
 	size = size_stack(stack, end);
-	printf("start :%d\n", get_value(stack));
-	printf("finish:%d\n", get_value(end));
-	printf("size  :%d\n", size);
+	ft_printf("start :%d\n", get_value(stack));
+	ft_printf("finish:%d\n", get_value(end));
+	ft_printf("size  :%d\n", size);
 	if (!stack || size < 0)
 		return (NULL);
 	tab = ft_dlst_to_tabn(stack, size);
 	sort_int(tab, size);
 	median_value = tab[(size - 1) / 2];
 	free(tab);
-	// printf("%smedian_value:%d%s\n", RED, median_value, RESET);
+	printf("%smedian_value:%d%s\n", RED, median_value, RESET);
 	return (find_node(stack, median_value));
 }
 
@@ -338,7 +340,7 @@ int sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int push_on_
 {
 	if (size_stack(*begin, end) == 3)
 	{
-		printf("SIZE = 3 CA DEGAGE\n");
+		ft_printf("SIZE = 3 CA DEGAGE\n");
 		if (push_on_a)
 			sort_stack_size_3_reverse(&ab->stack_b, 'b');
 		else
@@ -375,7 +377,7 @@ int sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int push_on_
 	}
 	else if (size_stack(*begin, end) == 2)
 	{
-		printf("SIZE = 2 CA DEGAGE\n");
+		ft_printf("SIZE = 2 CA DEGAGE\n");
 		sort_stack_size_2_reverse(begin, push_on_a ? 'a' : 'b');
 		if (!find_node(ab->stack_a, get_value(*begin)))
 		{
@@ -392,22 +394,20 @@ int sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int push_on_
 		}
 		else 
 		{
-			printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+			ft_printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 		}
 		return (2);
 	}
 	else if (size_stack(*begin, end) == 1)
 	{
-		printf("SIZE = 1 CA DEGAGE*****************************************\n");
+		ft_printf("SIZE = 1 CA DEGAGE*****************************************\n");
 		sort_stack_size_2_reverse(begin, push_on_a ? 'a' : 'b');
 		if (push_on_a)
 		{
 			pa(ab, begin);
-			pa(ab, begin);
 		}
 		else
 		{
-			pb(ab, begin);
 			pb(ab, begin);
 		}
 		return (1);
@@ -442,16 +442,17 @@ int	sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push_
 	t_dlist	*tmp;
 	int		i;
 	int static deep = 0;
-	if (!ab || !begin || !end || begin == end)
+	if (!ab || !begin || !end)
 		return (0);
-	printf("deep = %d\n", deep);
-	printf("begin= %d\n", get_value(begin));
-	printf("end  = %d\n", get_value(end));
-	// print_dlist_line(ab->stack_a, ab->name_a);
-	// print_dlist_line(ab->stack_b, ab->name_b);
-	printf("push_on_a:%d\n", push_on_a);
+	ft_printf("deep = %d\n", deep);
+	ft_printf("begin= %d\n", get_value(begin));
+	ft_printf("end  = %d\n", get_value(end));
+	print_dlist_line(ab->stack_a, ab->name_a);
+	print_dlist_line(ab->stack_b, ab->name_b);
+	ft_printf("push_on_a:%d\n", push_on_a);
 	begin = find_node(push_on_a ? ab->stack_b : ab->stack_a, get_value(begin));
 	end = find_node(push_on_a ? ab->stack_b : ab->stack_a, get_value(end));
+	ft_printf("qsdfgh\n");
 	if (size_stack(begin, end) <= 3)
 		return (sort_stack_under_3(ab, &begin, end, push_on_a));
 	if (!(median = find_median_maintenance(begin, end)))
@@ -464,19 +465,19 @@ int	sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push_
 	int later = 0;
 	while (i--)
 	{
-		printf("%d", get_value(tmp));
+		ft_printf("%d", get_value(tmp));
 		later += divide_stack(ab, &tmp, get_value(median), push_on_a, &begin, &end);
 	}
 	if (push_on_a)
 		rra(ab);
 	else
 		rrb(ab);
-	// print_dlist_line(ab->stack_a, ab->name_a);
-	// print_dlist_line(ab->stack_b, ab->name_b);
+	print_dlist_line(ab->stack_a, ab->name_a);
+	print_dlist_line(ab->stack_b, ab->name_b);
 
 	while (later--)
 	{
-		printf("%d", get_value(ab->stack_a->prev));
+		ft_printf("%d", get_value(ab->stack_a->prev));
 		reverse(&ab->stack_a);
 		ft_printf("rr%c\n", ab->name_a);
 	}
@@ -484,55 +485,56 @@ int	sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push_
 	int cpt = 0;	
 	// INFERIEURS
 	push_on_a = ab->size_b;
-	printf("1deep = %d\n", deep);
-	printf("1begin= %d\n", get_value(begin));
-	printf("1end  = %d\n", get_value(end));
+	ft_printf("1deep = %d\n", deep);
+	ft_printf("1begin= %d\n", get_value(begin));
+	ft_printf("1end  = %d\n", get_value(end));
+	ft_printf("1push_on_a:%d\n", ab->size_b);
 	deep++;
-	printf("INFERIEURS!!!!!!!!!!!!!!!!!!!!\n");
+	ft_printf("INFERIEURS!!!!!!!!!!!!!!!!!!!!\n");
 	// print_dlist_line(ab->stack_a, 'q');
 	if (ab->stack_b)
 		cpt = sort_quick_maintenance(ab, ab->stack_b, ab->stack_b->prev, ab->size_b);
 	else
-		printf("done-b\n");
+		ft_printf("done-b\n");
 	// int moved = cpt;
 	deep--;
-	printf("INFERIEURS&&&&&&&&&&&&&&&&&&&&\n");
+	ft_printf("INFERIEURS&&&&&&&&&&&&&&&&&&&&\n");
 	// print_dlist_line(ab->stack_a, 'w');
 
 	
 	while (cpt--)
 		ra(ab);
-
+	ft_printf("azerty\n");
 	if (begin != ab->stack_a)
 		ra(ab);
 	
 
 
 	// SUPERIEURS	
-	// print_dlist_line(ab->stack_a, ab->name_a);
-	// print_dlist_line(ab->stack_b, ab->name_b);
-	printf("2deep = %d\n", deep);
-	printf("2begin= %d\n", get_value(begin));
-	printf("2end  = %d\n", get_value(end));
+	print_dlist_line(ab->stack_a, ab->name_a);
+	print_dlist_line(ab->stack_b, ab->name_b);
+	ft_printf("2deep = %d\n", deep);
+	ft_printf("2begin= %d\n", get_value(begin));
+	ft_printf("2end  = %d\n", get_value(end));
+	ft_printf("2push_on_a:%d\n", ab->size_b);
 	deep++;
-	printf("SUPERIEURS!!!!!!!!!!!!!!!!!!!!\n");
+	ft_printf("SUPERIEURS!!!!!!!!!!!!!!!!!!!!\n");
 	if (ab->stack_a)
 		cpt = sort_quick_maintenance(ab, begin, end, ab->size_b);
 	else
-		printf("done-a\n");
+		ft_printf("done-a\n");
 	deep--;
-	printf("SUPERIEURS&&&&&&&&&&&&&&&&&&&&\n");
-	printf("tdeep = %d\n", deep);
-	
-	
+	ft_printf("SUPERIEURS&&&&&&&&&&&&&&&&&&&&\n");
+	ft_printf("tdeep = %d\n", deep);
+
 	while (cpt--)
 		ra(ab);
-	
+
 	// print_dlist_line(ab->stack_a, ab->name_a);
 	// print_dlist_line(ab->stack_b, ab->name_b);
 	
 
-	printf("SUB-b\n");
+	ft_printf("SUB-b\n");
 	// sort_quick(ab, ab->size_a, push_on_a);
 	// put_at_top(&ab->stack_b, find_node(ab->stack_b, get_value(median)), ab->name_b);
 
@@ -551,65 +553,65 @@ int	sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int push_
 	return (0);
 }
 
-/**
- * Sort a stack with the help of a second stack using only the 
- * autorized operations and print them
- * The algo used is a kind of quick sort modified to work with 2 stacks
- * @param ab		pointer on the struct tu coco
- * @param size		max number of nodes to iterate on the stack a
- * @param parity	change the comparaison in divide_stack
- **/
-t_dlist	*sort_quick(t_stacks *ab, int size, int parity)
-{
-	t_dlist	*median;
-	t_dlist	*tmp;
-	int		i;
+// /**
+//  * Sort a stack with the help of a second stack using only the 
+//  * autorized operations and print them
+//  * The algo used is a kind of quick sort modified to work with 2 stacks
+//  * @param ab		pointer on the struct tu coco
+//  * @param size		max number of nodes to iterate on the stack a
+//  * @param parity	change the comparaison in divide_stack
+//  **/
+// t_dlist	*sort_quick(t_stacks *ab, int size, int parity)
+// {
+// 	t_dlist	*median;
+// 	t_dlist	*tmp;
+// 	int		i;
 
-	ft_printf("____________________________________\n");
-	if (!ab->stack_a || size < 1)
-		return (NULL);
-	print_dlist_line(ab->stack_a, ab->name_a);
-	print_dlist_line(ab->stack_b, ab->name_b);
-	if (!(median = find_median(ab->stack_a, size)))
-		return (NULL);
-	tmp = ab->stack_a;
-	i = size;
-	while (i--)
-	{
-		ft_printf("%d", get_value(tmp));
-		divide_stack(ab, &tmp, get_value(median), parity, NULL, NULL);
-	}
-	print_dlist_line(ab->stack_a, ab->name_a);
-	print_dlist_line(ab->stack_b, ab->name_b);
+// 	ft_printf("____________________________________\n");
+// 	if (!ab->stack_a || size < 1)
+// 		return (NULL);
+// 	print_dlist_line(ab->stack_a, ab->name_a);
+// 	print_dlist_line(ab->stack_b, ab->name_b);
+// 	if (!(median = find_median(ab->stack_a, size)))
+// 		return (NULL);
+// 	tmp = ab->stack_a;
+// 	i = size;
+// 	while (i--)
+// 	{
+// 		ft_printf("%d", get_value(tmp));
+// 		divide_stack(ab, &tmp, get_value(median), parity, NULL, NULL);
+// 	}
+// 	print_dlist_line(ab->stack_a, ab->name_a);
+// 	print_dlist_line(ab->stack_b, ab->name_b);
 
-	put_at_top(&ab->stack_b, find_node(ab->stack_b, get_value(median)), ab->name_b);
+// 	put_at_top(&ab->stack_b, find_node(ab->stack_b, get_value(median)), ab->name_b);
 	
-	ft_printf("SUB-a\n");
-	sort_quick(ab, ab->size_a, parity);
-	// swap_stacks(ab);
-	printf("SUB-b\n");
-	// sort_quick(ab, ab->size_a, parity);
+// 	ft_printf("SUB-a\n");
+// 	sort_quick(ab, ab->size_a, parity);
+// 	// swap_stacks(ab);
+// 	ft_printf("SUB-b\n");
+// 	// sort_quick(ab, ab->size_a, parity);
 
-	i = size / 2;
-	size = ab->size_b;
-	while (i--)
-	{
-		ft_printf("%d", get_value(ab->stack_b));
-		reverse(&ab->stack_a);
-		ft_printf("rr%c\n", ab->name_a);
-	}
-	while (ab->stack_b)
-	{
-		ft_printf("%d", get_value(ab->stack_b));
-		push(&ab->stack_a, &ab->stack_b);
-		ab->size_a++;
-		ab->size_b--;
-		ft_printf("p%c\n", ab->name_a);
-	}
-	print_dlist_line(ab->stack_a, ab->name_a);
-	print_dlist_line(ab->stack_b, ab->name_b);
-	return (ab->stack_a);
-}
+// 	i = size / 2;
+// 	size = ab->size_b;
+// 	while (i--)
+// 	{
+// 		ft_printf("%d", get_value(ab->stack_b));
+// 		reverse(&ab->stack_a);
+// 		ft_printf("rr%c\n", ab->name_a);
+// 	}
+// 	while (ab->stack_b)
+// 	{
+// 		ft_printf("%d", get_value(ab->stack_b));
+// 		push(&ab->stack_a, &ab->stack_b);
+// 		ab->size_a++;
+// 		ab->size_b--;
+// 		ft_printf("p%c\n", ab->name_a);
+// 	}
+// 	print_dlist_line(ab->stack_a, ab->name_a);
+// 	print_dlist_line(ab->stack_b, ab->name_b);
+// 	return (ab->stack_a);
+// }
 
 /** ALGO QUICK SORT
  * tant que swap

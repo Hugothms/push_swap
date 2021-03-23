@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/23 14:20:18 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/23 20:18:55 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 typedef struct	s_stacks
 {
 	t_dlist		*stack_a;
@@ -88,7 +90,7 @@ void	print_clean_dlist(t_dlist *a, t_dlist *b);
 void	error(char *str);
 int		duplicates(t_dlist *a);
 int		int_overflow(char const *str, int sign);
-t_dlist *scan_input(int argc, char const *argv[], int *print);
+t_dlist *scan_input(int argc, char const *argv[], int *print, int *fd);
 
 /*
 ** sort_utils

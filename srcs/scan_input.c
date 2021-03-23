@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:13:23 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/23 15:26:51 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/23 20:40:39 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,49 +50,83 @@ int	int_overflow(char const *str, int sign)
 		return (ft_strlen(str) == 10 && (ft_strcmp(str, "2147483647")) > 0);
 }
 
-void	function(t_dlist **a, char const *argv[], int *i)
+void	scan_input2(t_dlist **a, char const *argv[], int *i)
 {
 	int		*num;
 	int		j;
 
 	j = 0;
-	if (argv[*i][j] == '-' && argv[*i][j])
+	if (argv[*i][j] && argv[*i][j] == '-')
 		j++;
 	if (ft_strlen(&argv[*i][j]) > 10 || int_overflow(&argv[*i][j], j))
-		error(NULL);
+		error("a");
 	while (argv[*i][j])
 	{
-		if (!ft_isdigit(argv[*i][j]))
-			error(NULL);
+		if (!ft_isdigit(argv[*i][j]) && argv[*i][j] != 'f' && argv[*i][j] != 'v')
+			error("z");
 		j++;
 	}
 	num = malloc(sizeof(int));
 	if (!num)
-		error(NULL);
+		error("e");
 	*num = ft_atol(argv[(*i)++]);
 	ft_dlstadd_back(a, ft_dlstnew(num));
 }
 
-t_dlist	*scan_input(int argc, char const *argv[], int *print)
+// void	remove_elem_from_tab(int argc, char const *argv[], int i)
+// {
+// 	while (i < argc - 1)
+// 	{
+// 		argv[i] = argv[i + 1];
+// 		i++;
+// 	}
+// 	// free(argv[i]);
+// 	argv[i] = NULL;
+// 	argc--;
+// }
+
+void	scan_input_bonus(int argc, char const *argv[], int *print, int *fd)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	*print = 0;
+	*fd = 0;
+	while (i < argc)
+	{
+		if (argv[i] && !ft_strcmp(argv[i], "-v")) // pb on passe pas le premier argv si -v
+			*print = 1;
+		else if (argv[i] && argv[i + 1] && !ft_strcmp(argv[i], "-f"))
+			*fd = open(argv[i + 1], O_RDONLY);
+		else
+		{
+			j = 0;
+			while (argv[i][j])
+			{
+				if (!ft_isdigit(argv[i][j]))
+					error("r");
+				j++;
+			}
+		}
+		// argv[i] = ft_strdup("-\1\0");
+		argv[i] = "-\1";
+		i++;
+	}
+}
+
+t_dlist	*scan_input(int argc, char const *argv[], int *print, int *fd)
 {
 	int		i;
 	t_dlist	*a;
 
 	a = NULL;
-	if (print)
-		*print = 0;
-	if (print && ((argv[1] && !ft_strcmp(argv[1], "-v"))
-			|| !ft_strcmp(argv[argc - 1], "-v"))) // pb on passe pas le premier argv si -v
-	{
-		argc--;
-		*print = 1;
-	}
-		i = 1;
+	if (print && fd)
+		scan_input_bonus(argc, argv, print, fd);
+	i = 1;
 	while (i < argc)
-	{
-		function(&a, argv, &i);
-	}
+		scan_input2(&a, argv, &i);
 	if (duplicates(a))
-		error(NULL);
+		error("t");
 	return (a);
 }

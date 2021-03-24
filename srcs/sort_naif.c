@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:37:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 12:00:54 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 14:55:35 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ void	sort_naif(t_dlist **stack, char name)
 		push(&b, stack);
 	}
 	sort_stack_3(stack, name);
+	sort_stack_2(stack, name);
 	while (ft_dlstsize(b))
 	{
 		printf("pa\n");

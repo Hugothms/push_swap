@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/23 14:05:45 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 11:16:46 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	push(t_dlist **a, t_dlist **b)
 	num = (*b)->content;
 	tmp = *b;
 	ft_dlstremove_one(b, *b);
-	if (!(tmp = ft_dlstnew(num)))
+	tmp = ft_dlstnew(num);
+	if (!tmp)
 		return ;
 	ft_dlstadd_front(a, tmp);
 }
@@ -78,7 +79,8 @@ void	rotate(t_dlist **stack)
 {
 	t_dlist	*tmp;
 
-	if ((tmp = ft_dlstremove_one(stack, *stack)))
+	tmp = ft_dlstremove_one(stack, *stack);
+	if (tmp)
 		ft_dlstadd_back(stack, tmp);
 }
 
@@ -90,6 +92,7 @@ void	reverse(t_dlist **stack)
 {
 	t_dlist	*tmp;
 
-	if ((tmp = ft_dlstremove_one(stack, ft_dlstlast(*stack))))
+	tmp = ft_dlstremove_one(stack, ft_dlstlast(*stack));
+	if (tmp)
 		ft_dlstadd_front(stack, tmp);
 }

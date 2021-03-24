@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:03:12 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/23 15:17:22 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 11:07:27 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,4 @@ void	rra(t_stacks *ab)
 {
 	reverse(&ab->stack_a);
 	printf("rr%c\n", ab->name_a);
-}
-
-void	rrb(t_stacks *ab)
-{
-	reverse(&ab->stack_b);
-	printf("rr%c\n", ab->name_b);
 }

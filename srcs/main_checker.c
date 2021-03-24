@@ -6,13 +6,13 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 09:39:04 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 11:01:22 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void exec_operation(t_dlist **a, t_dlist **b, char *line, int print)
+void	exec_operation(t_dlist **a, t_dlist **b, char *line, int print)
 {
 	int		ret;
 
@@ -35,11 +35,27 @@ void exec_operation(t_dlist **a, t_dlist **b, char *line, int print)
 	}
 }
 
+void	main2(t_dlist **a, t_dlist **b, int print)
+{
+	char	*line;
+
+	if (print)
+	{
+		print_dlist_line(*a, 'a');
+		print_dlist_line(*b, 'b');
+	}
+	while (get_next_line(&line, 0))
+		exec_operation(a, b, line, print);
+	if (*b || (checker(*a)))
+		printf("KO\n");
+	else
+		printf("OK\n");
+}
+
 int	main(int argc, char const *argv[])
 {
 	t_dlist	*a;
 	t_dlist	*b;
-	char	*line;
 	int		print;
 	int		fd;
 
@@ -49,16 +65,6 @@ int	main(int argc, char const *argv[])
 	a = scan_input(argc, argv, &print, &fd);
 	if (!a)
 		error("y");
-	if (print)
-	{
-		print_dlist_line(a, 'a');
-		print_dlist_line(b, 'b');
-	}
-	while (get_next_line(&line, 0))
-		exec_operation(&a, &b, line, print);
-	if (b || (checker(a)))
-		printf("KO\n");
-	else
-		printf("OK\n");
+	main2(&a, &b, print);
 	return (0);
 }

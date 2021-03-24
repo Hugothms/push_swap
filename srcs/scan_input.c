@@ -6,17 +6,11 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:13:23 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 09:40:02 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 11:00:46 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	error(char *str)
-{
-	printf("Error: %s\n", str);
-	exit (1);
-}
 
 /**
  * check if there are duplicates in the list
@@ -62,12 +56,12 @@ void	scan_input2(t_dlist **a, char const *argv[], int *i)
 		error("a");
 	while (argv[*i][j])
 	{
-		if ((argv[*i][j] == 'f' || argv[*i][j] == 'v') && !argv[*i][j + 1])
+		if (argv[*i][j] == 'v' && !argv[*i][j + 1])
 		{
 			(*i)++;
 			return ;
 		}
-		if (!ft_isdigit(argv[*i][j]) && argv[*i][j] != 'f' && argv[*i][j] != 'v')
+		else if (!ft_isdigit(argv[*i][j]))
 			error("z");
 		j++;
 	}
@@ -78,18 +72,6 @@ void	scan_input2(t_dlist **a, char const *argv[], int *i)
 	ft_dlstadd_back(a, ft_dlstnew(num));
 }
 
-// void	remove_elem_from_tab(int argc, char const *argv[], int i)
-// {
-// 	while (i < argc - 1)
-// 	{
-// 		argv[i] = argv[i + 1];
-// 		i++;
-// 	}
-// 	// free(argv[i]);
-// 	argv[i] = NULL;
-// 	argc--;
-// }
-
 void	scan_input_bonus(int argc, char const *argv[], int *print, int *fd)
 {
 	int	i;
@@ -99,10 +81,8 @@ void	scan_input_bonus(int argc, char const *argv[], int *print, int *fd)
 	*fd = 0;
 	while (i < argc)
 	{
-		if (argv[i] && !ft_strcmp(argv[i], "-v")) // pb on passe pas le premier argv si -v
+		if (argv[i] && !ft_strcmp(argv[i], "-v"))
 			*print = 1;
-		else if (argv[i] && argv[i + 1] && !ft_strcmp(argv[i], "-f"))
-			*fd = open(argv[i + 1], O_RDONLY);
 		i++;
 	}
 }

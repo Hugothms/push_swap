@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:37:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/23 15:17:22 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 11:22:57 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,25 @@ void	sort_stack_size_3(t_dlist **st, char name)
 {
 	if (ft_dlstsize((*st)) != 3 || !checker((*st)))
 		return ;
-	if (get_value((*st))					> get_value((*st)->next) &&
-			get_value((*st)->next)			< get_value((*st)->next->next) &&
-			get_value((*st)->next->next)	> get_value((*st)))
+	if (get_value((*st)) > get_value((*st)->next)
+		&& get_value((*st)->next) < get_value((*st)->next->next)
+		&& get_value((*st)->next->next) > get_value((*st)))
 		sort1(st, name);
-	else if (get_value((*st))				> get_value((*st)->next) &&
-			get_value((*st)->next)			> get_value((*st)->next->next) &&
-			get_value((*st)->next->next)	< get_value((*st)))
+	else if (get_value((*st)) > get_value((*st)->next)
+		&& get_value((*st)->next) > get_value((*st)->next->next)
+		&& get_value((*st)->next->next) < get_value((*st)))
 		sort2(st, name);
-	else if (get_value((*st))				> get_value((*st)->next) &&
-			get_value((*st)->next)			< get_value((*st)->next->next) &&
-			get_value((*st)->next->next)	< get_value((*st)))
+	else if (get_value((*st)) > get_value((*st)->next)
+		&& get_value((*st)->next) < get_value((*st)->next->next)
+		&& get_value((*st)->next->next) < get_value((*st)))
 		sort3(st, name);
-	else if (get_value((*st))				< get_value((*st)->next) &&
-			get_value((*st)->next)			> get_value((*st)->next->next) &&
-			get_value((*st)->next->next)	> get_value((*st)))
+	else if (get_value((*st)) < get_value((*st)->next)
+		&& get_value((*st)->next) > get_value((*st)->next->next)
+		&& get_value((*st)->next->next) > get_value((*st)))
 		sort4(st, name);
-	else if (get_value((*st))				< get_value((*st)->next) &&
-			get_value((*st)->next)			> get_value((*st)->next->next) &&
-			get_value((*st)->next->next)	< get_value((*st)))
+	else if (get_value((*st)) < get_value((*st)->next)
+		&& get_value((*st)->next) > get_value((*st)->next->next)
+		&& get_value((*st)->next->next) < get_value((*st)))
 		sort5(st, name);
 }
 
@@ -113,9 +113,6 @@ void	put_at_top(t_dlist **stack, t_dlist *node, char name)
 	int	top;
 
 	pos = pos_node(*stack, node);
-	// if (pos >= ft_dlstsize(*stack))
-	// 	printf("Ca va pas chef\n");
-	// printf("node:%d is at pos:%d\n", get_value(node), pos);
 	top = is_in_first_half(*stack, pos);
 	if (top)
 	{
@@ -148,7 +145,7 @@ t_dlist	*find_smallest(t_dlist *stack)
 	smallest = stack;
 	tmp = stack->next;
 	if (get_value(tmp) < get_value(smallest))
-			smallest = tmp;
+		smallest = tmp;
 	while (tmp != stack)
 	{
 		if (get_value(tmp) < get_value(smallest))
@@ -167,23 +164,18 @@ t_dlist	*find_smallest(t_dlist *stack)
 void	sort_naif(t_dlist **stack, char name)
 {
 	t_dlist	*b;
-	b = NULL;
+	t_dlist	*smallest;
 
+	b = NULL;
 	while (ft_dlstsize(*stack) > 3)
 	{		
-		t_dlist *smallest = find_smallest(*stack);
-		// print_dlist_line(*stack, 'a');
-		// printf("smallest Node:\nstack[%d]", pos_node(*stack, smallest));
-		// printf("=%d\n", get_value(smallest));
-		// printf("size:%d ", ft_dlstsize(*stack));
-		// printf("%s\n", is_in_first_half(*stack, pos_node(*stack, smallest)) ? "top" : "bottom");
-	
+		smallest = find_smallest(*stack);
 		put_at_top(stack, smallest, name);
 		printf("pb\n");
 		push(&b, stack);
 	}
 	sort_stack_size_3(stack, name);
-	while(ft_dlstsize(b))
+	while (ft_dlstsize(b))
 	{
 		printf("pa\n");
 		push(stack, &b);

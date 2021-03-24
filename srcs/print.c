@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:37:07 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/23 15:17:22 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 11:04:44 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ void	print_first_item_dlist(t_dlist *dlist)
 		printf("%d ", *((int *)dlist->content));
 }
 
+void	print_firsts(t_dlist *a, t_dlist *b)
+{
+	print_first_item_dlist(a);
+	print_first_item_dlist(b);
+	printf("\n");
+}
+
 void	print_clean_dlist(t_dlist *a, t_dlist *b)
 {
 	t_dlist	*tmp_a;
@@ -46,13 +53,11 @@ void	print_clean_dlist(t_dlist *a, t_dlist *b)
 
 	tmp_a = a;
 	tmp_b = b;
-	print_first_item_dlist(a);
-	print_first_item_dlist(b);
-	printf("\n");
+	print_firsts(a, b);
 	if (tmp_a)
-	tmp_a = tmp_a->next;
+		tmp_a = tmp_a->next;
 	if (tmp_b)
-	tmp_b = tmp_b->next;
+		tmp_b = tmp_b->next;
 	while ((tmp_a && tmp_a != a) || (tmp_b && tmp_b != b))
 	{
 		if (tmp_a != a)

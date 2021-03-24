@@ -6,16 +6,21 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 14:21:28 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 14:50:58 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+void function()
+{
+	
+}
+
 /**
  * Sort a stack with the help of a second stack using only the 
- * autorized operations and print them
- * The algo used is a kind of quick sort modified to work with 2 stacks
+ * autorized operations and print them. 
+ * The algo used is kind of a quick sort modified to work with 2 stacks
  * @param ab		pointer on the struct tu coco
  * @param begin		start of the stack to sort
  * @param end		end of the stack to sort
@@ -49,9 +54,14 @@ int	sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end, int p_a)
 	begin = NULL;
 	end = NULL;
 	int	later;
+	t_norm *be;
+
 	later = 0;
+	be = malloc(sizeof(*be));
+	be->begin = &begin;
+	be->end = &end;
 	while (i--)
-		later += divide_stack(ab, &tmp, get_value(median), &begin, &end);
+		later += divide_stack(ab, &tmp, get_value(median), be);
 	if (p_a)
 		rra(ab);
 	else
@@ -59,19 +69,18 @@ int	sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end, int p_a)
 	while (later--)
 	{
 		reverse(&ab->stack_a);
-		printf("rr%c\n", ab->name_a);
+		printf("rr%c\n", 'a');
 	}
 	int	cpt;
 	cpt = 0;
-	p_a = ab->size_b;
 	if (ab->stack_b)
-		cpt = sort_quick(ab, ab->stack_b, ab->stack_b->prev, ab->size_b);
+		cpt = sort_quick(ab, ab->stack_b, ab->stack_b->prev, ft_dlstsize(ab->stack_b));
 	while (cpt--)
 		ra(ab);
 	if (begin != ab->stack_a)
 		ra(ab);
 	if (ab->stack_a)
-		cpt = sort_quick(ab, begin, end, ab->size_b);
+		cpt = sort_quick(ab, begin, end, ft_dlstsize(ab->stack_b));
 	while (cpt--)
 		ra(ab);
 	return (0);

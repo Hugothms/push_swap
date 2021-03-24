@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 12:25:57 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 12:39:06 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int	first_is_smaller_in_stack_n(t_dlist *stack, int size)
 			return (1);
 		tmp = tmp->next;
 	}
-	return (0);	
+	return (0);
 }
 
 /**

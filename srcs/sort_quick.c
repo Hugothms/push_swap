@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 16:46:37 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:48:40 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	end_quicksort(t_stacks *ab, t_dlist *begin, t_dlist *end, t_sp *norm)
 	int	cpt;
 
 	cpt = 0;
-		norm->i = ft_dlstsize(ab->stack_b);
+	norm->i = ft_dlstsize(ab->stack_b);
 	if (ab->stack_b)
 		cpt = sort_quick(ab, ab->stack_b, ab->stack_b->prev,
 				norm);
@@ -75,13 +75,12 @@ void	function(t_stacks *ab, t_dlist **tmp, t_begin_end *be, t_sp *norm)
  **/
 int	sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end, t_sp *norm)
 {
-	t_dlist	*median;
+	t_dlist		*median;
+	t_dlist		*tmp;
+	t_begin_end	*be;
 
 	if (!ab || !begin || !end)
 		return (0);
-	// norm = malloc(sizeof(*norm));
-	// if (!norm)
-	// 	error(NULL);
 	init_begin_end(ab, &begin, &end, norm->i);
 	if (size_stack(begin, end) <= 3)
 		return (sort_stack_under_3(ab, &begin, end, norm->i));
@@ -89,21 +88,15 @@ int	sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end, t_sp *norm)
 	if (!median)
 		return (0);
 	norm->index = get_value(median);
-	
-	t_dlist	*tmp;
 	tmp = begin;
-	
 	norm->len = size_stack(begin, end);
 	begin = NULL;
 	end = NULL;
-
-	t_begin_end	*be;
 	be = malloc(sizeof(*be));
 	if (!be)
 		error(NULL);
 	be->begin = &begin;
 	be->end = &end;
-
 	function(ab, &tmp, be, norm);
 	end_quicksort(ab, begin, end, norm);
 	return (0);
@@ -115,10 +108,12 @@ int	sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end, t_sp *norm)
  * 		return
  * 	find median node
  * 	if (on stack a):
- * 		put lowers than median on stack b and median at the end of stack (with rb after pb)
+ * 		put lowers than median on stack b
+ * 		put median at the end of stack (with rb after pb)
  * 		then rrb to put the median at the rigth place
  * 	else:
- * 		put biggers than median on stack a and median at the end of stack (with ra after pa)
+ * 		put biggers than median on stack a
+ * 		put median at the end of stack (with ra after pa)
  * 		then rra to put the median at the rigth place
  * 
  * 	recursion on lowers (stack to median)

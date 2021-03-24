@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 16:36:27 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:46:37 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,22 @@ void	init_begin_end(t_stacks *ab, t_dlist **begin, t_dlist **end, int p_a)
 	}	
 }
 
-void	end_quicksort(t_stacks *ab, t_dlist *begin, t_dlist *end)
+void	end_quicksort(t_stacks *ab, t_dlist *begin, t_dlist *end, t_sp *norm)
 {
 	int	cpt;
 
 	cpt = 0;
+		norm->i = ft_dlstsize(ab->stack_b);
 	if (ab->stack_b)
 		cpt = sort_quick(ab, ab->stack_b, ab->stack_b->prev,
-				ft_dlstsize(ab->stack_b));
+				norm);
 	while (cpt--)
 		ra(ab);
 	if (begin != ab->stack_a)
 		ra(ab);
+	norm->i = ft_dlstsize(ab->stack_b);
 	if (ab->stack_a)
-		cpt = sort_quick(ab, begin, end, ft_dlstsize(ab->stack_b));
+		cpt = sort_quick(ab, begin, end, norm);
 	while (cpt--)
 		ra(ab);
 }
@@ -71,25 +73,25 @@ void	function(t_stacks *ab, t_dlist **tmp, t_begin_end *be, t_sp *norm)
  * @param end		end of the stack to sort
  * @param p_a	change the comparaison in divide_stack
  **/
-int	sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end, int p_a)
+int	sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end, t_sp *norm)
 {
 	t_dlist	*median;
 
 	if (!ab || !begin || !end)
 		return (0);
-	init_begin_end(ab, &begin, &end, p_a);
+	// norm = malloc(sizeof(*norm));
+	// if (!norm)
+	// 	error(NULL);
+	init_begin_end(ab, &begin, &end, norm->i);
 	if (size_stack(begin, end) <= 3)
-		return (sort_stack_under_3(ab, &begin, end, p_a));
+		return (sort_stack_under_3(ab, &begin, end, norm->i));
 	median = find_median(begin, end);
 	if (!median)
 		return (0);
+	norm->index = get_value(median);
 	
 	t_dlist	*tmp;
 	tmp = begin;
-	t_sp	*norm;
-	norm = malloc(sizeof(*norm));
-	if (!norm)
-		error(NULL);
 	
 	norm->len = size_stack(begin, end);
 	begin = NULL;
@@ -102,10 +104,8 @@ int	sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end, int p_a)
 	be->begin = &begin;
 	be->end = &end;
 
-	norm->i = p_a;
-	norm->index = get_value(median);
 	function(ab, &tmp, be, norm);
-	end_quicksort(ab, begin, end);
+	end_quicksort(ab, begin, end, norm);
 	return (0);
 }
 

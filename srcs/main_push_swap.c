@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 16:35:41 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:39:43 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char const *argv[])
 		error("i");
 	ab->stack_b = NULL;
 	if (ft_dlstsize(ab->stack_a) > 5)
-		sort_quick(ab, ab->stack_a, ab->stack_a->prev, 0);
+		sort_quick(ab, ab->stack_a, ab->stack_a->prev, norm);
 	else if (ft_dlstsize(ab->stack_a) > 1)
 		sort_naif(&ab->stack_a, 'a');
 	ft_dlstclear(&ab->stack_a, ab->stack_a, &free);

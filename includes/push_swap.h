@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 16:40:23 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:50:57 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-typedef struct	s_stacks
+typedef struct s_stacks
 {
 	t_dlist		*stack_a;
 	t_dlist		*stack_b;
 }				t_stacks;
 
-typedef struct	s_begin_end
+typedef struct s_begin_end
 {
-				t_dlist **begin;
-				t_dlist **end;
-}				t_begin_end;
+	t_dlist		**begin;
+	t_dlist		**end;
+}	t_begin_end;
 
 /*
 ** divide_stack
@@ -88,7 +88,7 @@ void	print_clean_dlist(t_dlist *a, t_dlist *b);
 */
 int		duplicates(t_dlist *a);
 int		int_overflow(char const *str, int sign);
-t_dlist *scan_input(int argc, char const *argv[], int *print, int *fd);
+t_dlist	*scan_input(int argc, char const *argv[], int *print, int *fd);
 
 /*
 ** sort_naif_utils
@@ -118,7 +118,7 @@ int		sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end,
 ** sort_stack_2
 */
 void	sort_stack_2(t_dlist **st, char name);
-void	sort_stack_2_reverse(t_dlist **st, int push_on_a, char n_a,  char n_b);
+void	sort_stack_2_reverse(t_dlist **st, int push_on_a, char n_a, char n_b);
 
 /*
 ** sort_stack_2
@@ -129,7 +129,8 @@ void	sort_stack_3_reverse(t_dlist **st, char name);
 /*
 ** sort_stack_under_3
 */
-int	sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int p_a);
+int		sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end,
+			int p_a);
 
 /*
 ** utils

@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/24 12:34:07 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/24 14:00:16 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRCS_CHECKER	=	srcs/main_checker.c			\
 					$(SRCS_COMMON)
 						
 
-SRCS_PUSH_SWAP	=	srcs/main_push_swap.c		\
+SRCS_PUSH_SWAP	=	srcs/divide_stack.c			\
+					srcs/main_push_swap.c		\
 					srcs/sort_naif.c			\
 					srcs/sort_quick.c			\
 					$(SRCS_COMMON)

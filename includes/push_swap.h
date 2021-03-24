@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 12:31:03 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 14:18:04 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ typedef struct	s_stacks
 	char		name_a;
 	char		name_b;
 }				t_stacks;
+
+/*
+** divide_stack
+*/
+int		divide_stack(t_stacks *ab, t_dlist **stack, int value, 
+			t_dlist **begin, t_dlist **end);
 
 /*
 ** find_median

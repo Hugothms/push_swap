@@ -6,84 +6,11 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 13:57:02 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 14:21:28 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-int push_on_a(t_stacks *ab, t_dlist **stack, int value, t_dlist **begin, t_dlist **end)
-{
-	if (get_value(*stack) > value)
-	{
-		if (!*begin)
-			*begin = *stack;
-		if (get_value(*stack) != value)
-			*end = *stack;
-		ra(ab);
-		*stack = (*stack)->next;
-		return (1);
-	}
-	else if (get_value(*stack) == value)
-	{
-		pb(ab, stack);
-		rb(ab);
-	}
-	else
-		pb(ab, stack);
-	return (0);
-}
-
-int push_on_b(t_stacks *ab, t_dlist **stack, int value, t_dlist **begin, t_dlist **end)
-{
-	if (get_value(*stack) < value)
-	{
-		rb(ab);
-		*stack = (*stack)->next;
-	}
-	else if (get_value(*stack) == value)
-	{
-		pa(ab, stack);
-		ra(ab);
-	}
-	else
-	{
-		if (!*end)
-			*end = *stack;
-		*begin = *stack;
-		pa(ab, stack);
-	}
-	return (0);
-}
-
-/**
- * If the number is biger then value, puts it at 
- * the end of the current stack, otherwise push it on the other stack
- * @param ab	pointer on the struct tu coco
- * @param stack	current node (on which the loop iterates)
- * @param value	median pivot value
- **/
-int	divide_stack(t_stacks *ab, t_dlist **stack, int value, t_dlist **begin, t_dlist **end)
-{
-	if (find_node(ab->stack_a, get_value(*stack)))
-		return (push_on_a(ab, stack, value, begin, end));
-	else
-		return (push_on_b(ab, stack, value, begin, end));
-}
-
-int	first_is_smaller_in_stack_n(t_dlist *stack, int size)
-{
-	t_dlist	*tmp;
-
-	tmp = stack;
-	while (size-- && tmp != stack)
-	{
-		if (get_value(tmp) < get_value(stack))
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
 
 /**
  * Sort a stack with the help of a second stack using only the 

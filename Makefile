@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/24 11:08:59 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/24 12:34:07 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,20 +16,23 @@ CC				=	gcc
 CFLAGS			=	-Wall -Werror -Wextra
 LDFLAGS			=	-g3 -fsanitize=address
 
-SRCS_COMMON		=	srcs/operations.c			\
+SRCS_COMMON		=	srcs/find_median.c			\
+					srcs/operations_precise.c	\
+					srcs/operations_precise2.c	\
 					srcs/operations_redir.c		\
-					srcs/utils.c				\
+					srcs/operations.c			\
 					srcs/print.c				\
-					srcs/scan_input.c
+					srcs/sort_naif_utils.c		\
+					srcs/scan_input.c 			\
+					srcs/sort_stack_2.c			\
+					srcs/sort_stack_under_3.c	\
+					srcs/utils.c
 
 SRCS_CHECKER	=	srcs/main_checker.c			\
 					$(SRCS_COMMON)
 						
 
 SRCS_PUSH_SWAP	=	srcs/main_push_swap.c		\
-					srcs/operations_precise.c	\
-					srcs/operations_precise2.c	\
-					srcs/sort_naif_utils.c		\
 					srcs/sort_naif.c			\
 					srcs/sort_quick.c			\
 					$(SRCS_COMMON)

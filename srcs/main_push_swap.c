@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 11:10:37 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 12:29:47 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char const *argv[])
 	ab->size_a = ft_dlstsize(ab->stack_a);
 	ab->size_b = 0;
 	if (ab->size_a > 5)
-		sort_quick_maintenance(ab, ab->stack_a, ab->stack_a->prev, 0);
+		sort_quick(ab, ab->stack_a, ab->stack_a->prev, 0);
 	else if (ab->size_a > 1)
 		sort_naif(&ab->stack_a, 'a');
 	ft_dlstclear(&ab->stack_a, ab->stack_a, &free);

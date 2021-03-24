@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 11:35:04 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 12:31:03 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,26 @@ typedef struct	s_stacks
 	char		name_b;
 }				t_stacks;
 
+/*
+** find_median
+*/
+t_dlist	*find_node(t_dlist *stack, int value);
+int		size_stack(t_dlist *begin, t_dlist *end);
+t_dlist	*find_median(t_dlist *stack, t_dlist *end);
 
 /*
-** sort_naif
+** operations_precise
 */
-void	sort_stack_size_2(t_dlist **st, char name);
-void	sort_stack_size_3(t_dlist **st, char name);
-int		pos_node(t_dlist *stack, t_dlist *node);
-int		first_half(t_dlist *stack, int pos);
-void	put_at_top(t_dlist **stack, t_dlist *node, char name);
-t_dlist	*find_smallest(t_dlist *stack);
-void	sort_naif(t_dlist **stack, char name);
+void	pb(t_stacks *ab, t_dlist **stack);
+void	pa(t_stacks *ab, t_dlist **stack);
+void	ra(t_stacks *ab);
+void	rb(t_stacks *ab);
+void	rra(t_stacks *ab);
 
 /*
-** sort_quick
+** operations_precise2
 */
-void	sort_stack_size_2_reverse(t_dlist **st, int push_on_a, char n_a,  char n_b);
-void	sort_stack_size_3_reverse(t_dlist **st, char name);
-int		sort_quick_maintenance(t_stacks *ab, t_dlist *begin, t_dlist *end, int parity);
-t_dlist	*sort_quick(t_stacks *ab, int size, int parity);
+void	rrb(t_stacks *ab);
 
 /*
 ** operations_redir
@@ -68,16 +69,6 @@ void	rotate(t_dlist **stack);
 void	reverse(t_dlist **stack);
 
 /*
-** operations_precise
-*/
-void	pb(t_stacks *ab, t_dlist **stack);
-void	pa(t_stacks *ab, t_dlist **stack);
-void	ra(t_stacks *ab);
-void	rb(t_stacks *ab);
-void	rra(t_stacks *ab);
-void	rrb(t_stacks *ab);
-
-/*
 ** print
 */
 void	print_dlist_line(t_dlist *stack, char name);
@@ -87,13 +78,12 @@ void	print_clean_dlist(t_dlist *a, t_dlist *b);
 /*
 ** scan_input
 */
-void	error(char *str);
 int		duplicates(t_dlist *a);
 int		int_overflow(char const *str, int sign);
 t_dlist *scan_input(int argc, char const *argv[], int *print, int *fd);
 
 /*
-** sort_utils
+** sort_naif_utils
 */
 void	sort1(t_dlist **stack, char name);
 void	sort2(t_dlist **stack, char name);
@@ -102,9 +92,43 @@ void	sort4(t_dlist **stack, char name);
 void	sort5(t_dlist **stack, char name);
 
 /*
+** sort_naif
+*/
+int		pos_node(t_dlist *stack, t_dlist *node);
+int		first_half(t_dlist *stack, int pos);
+void	put_at_top(t_dlist **stack, t_dlist *node, char name);
+t_dlist	*find_smallest(t_dlist *stack);
+void	sort_naif(t_dlist **stack, char name);
+
+/*
+** sort_quick
+*/
+int		sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end,
+			 int parity);
+
+/*
+** sort_stack_2
+*/
+void	sort_stack_2(t_dlist **st, char name);
+void	sort_stack_2_reverse(t_dlist **st, int push_on_a, char n_a,  char n_b);
+
+/*
+** sort_stack_2
+*/
+void	sort_stack_3(t_dlist **st, char name);
+void	sort_stack_3_reverse(t_dlist **st, char name);
+
+/*
+** sort_stack_under_3
+*/
+int	sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int p_a);
+
+/*
 ** utils
 */
+void	error(char *str);
 int		get_value(t_dlist *stack);
+void	push_n_times(t_stacks *ab, t_dlist **begin, char c, int n);
 
 # define RESET	"\x1B[0m"
 # define RED	"\x1B[31m"

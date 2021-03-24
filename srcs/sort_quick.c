@@ -6,11 +6,55 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 12:39:06 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 13:57:02 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int push_on_a(t_stacks *ab, t_dlist **stack, int value, t_dlist **begin, t_dlist **end)
+{
+	if (get_value(*stack) > value)
+	{
+		if (!*begin)
+			*begin = *stack;
+		if (get_value(*stack) != value)
+			*end = *stack;
+		ra(ab);
+		*stack = (*stack)->next;
+		return (1);
+	}
+	else if (get_value(*stack) == value)
+	{
+		pb(ab, stack);
+		rb(ab);
+	}
+	else
+		pb(ab, stack);
+	return (0);
+}
+
+int push_on_b(t_stacks *ab, t_dlist **stack, int value, t_dlist **begin, t_dlist **end)
+{
+	if (get_value(*stack) < value)
+	{
+		rb(ab);
+		*stack = (*stack)->next;
+	}
+	else if (get_value(*stack) == value)
+	{
+		pa(ab, stack);
+		ra(ab);
+	}
+	else
+	{
+		if (!*end)
+			*end = *stack;
+		*begin = *stack;
+		pa(ab, stack);
+	}
+	return (0);
+}
 
 /**
  * If the number is biger then value, puts it at 
@@ -19,96 +63,12 @@
  * @param stack	current node (on which the loop iterates)
  * @param value	median pivot value
  **/
-int	divide_stack(t_stacks *ab, t_dlist **stack, int value, int p_a, t_dlist **begin, t_dlist **end)
+int	divide_stack(t_stacks *ab, t_dlist **stack, int value, t_dlist **begin, t_dlist **end)
 {
 	if (find_node(ab->stack_a, get_value(*stack)))
-	{
-		if (p_a)
-		{
-			if (get_value(*stack) < value)
-			{
-				if (!*begin)
-					*begin = *stack;
-				if (get_value(*stack) != value)
-					*end = *stack;
-				ra(ab);
-				*stack = (*stack)->next;
-				return (1);
-			}
-			else
-			{
-				pb(ab, stack);
-				return (0);
-			}
-		}
-		else
-		{
-			if (get_value(*stack) == value)
-			{
-				pb(ab, stack);
-				rb(ab);
-				return (0);
-			}
-			else if (get_value(*stack) > value)
-			{
-				if (!*begin)
-					*begin = *stack;
-				if (get_value(*stack) != value)
-					*end = *stack;
-				ra(ab);
-				*stack = (*stack)->next;
-				return (1);
-			}
-			else
-			{
-				pb(ab, stack);
-				return (0);
-			}
-		}
-	}
+		return (push_on_a(ab, stack, value, begin, end));
 	else
-	{
-		if (p_a)
-		{
-			if (get_value(*stack) == value)
-			{
-				pa(ab, stack);
-				ra(ab);
-				return (0);
-			}
-			else if (get_value(*stack) < value)
-			{
-				rb(ab);
-				*stack = (*stack)->next;
-				return (0);
-			}
-			else
-			{
-				if (!*end)
-					*end = *stack;
-				*begin = *stack;
-				pa(ab, stack);
-				return (0);
-			}
-		}
-		else
-		{
-			if (get_value(*stack) > value)
-			{
-				rb(ab);
-				*stack = (*stack)->next;
-				return (0);
-			}
-			else
-			{
-				if (!*end)
-					*end = *stack;
-				*begin = *stack;
-				pa(ab, stack);
-				return (0);
-			}
-		}
-	}
+		return (push_on_b(ab, stack, value, begin, end));
 }
 
 int	first_is_smaller_in_stack_n(t_dlist *stack, int size)
@@ -164,7 +124,7 @@ int	sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end, int p_a)
 	int	later;
 	later = 0;
 	while (i--)
-		later += divide_stack(ab, &tmp, get_value(median), p_a, &begin, &end);
+		later += divide_stack(ab, &tmp, get_value(median), &begin, &end);
 	if (p_a)
 		rra(ab);
 	else

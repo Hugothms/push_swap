@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 14:51:05 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:35:41 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 int	main(int argc, char const *argv[])
 {
+	t_sp		*norm;
 	t_stacks	*ab;
 
 	if (argc == 1)
 		return (0);
+	norm = malloc(sizeof(*norm));
+	if (!norm)
+		error("u");
+	norm->i = 0;
 	ab = malloc(sizeof(*ab));
 	if (!ab)
 		error("u");

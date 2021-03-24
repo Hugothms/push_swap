@@ -6,13 +6,13 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:58:07 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 14:37:28 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 15:08:28 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	push_on_a(t_stacks *ab, t_dlist **stack, int value, t_norm *be)
+int	push_on_a(t_stacks *ab, t_dlist **stack, int value, t_begin_end *be)
 {
 	if (get_value(*stack) > value)
 	{
@@ -34,7 +34,7 @@ int	push_on_a(t_stacks *ab, t_dlist **stack, int value, t_norm *be)
 	return (0);
 }
 
-int	push_on_b(t_stacks *ab, t_dlist **stack, int value, t_norm *be)
+int	push_on_b(t_stacks *ab, t_dlist **stack, int value, t_begin_end *be)
 {
 	if (get_value(*stack) < value)
 	{
@@ -63,7 +63,7 @@ int	push_on_b(t_stacks *ab, t_dlist **stack, int value, t_norm *be)
  * @param stack	current node (on which the loop iterates)
  * @param value	median pivot value
  **/
-int	divide_stack(t_stacks *ab, t_dlist **st, int value, t_norm *be)
+int	divide_stack(t_stacks *ab, t_dlist **st, int value, t_begin_end *be)
 {
 	if (find_node(ab->stack_a, get_value(*st)))
 		return (push_on_a(ab, st, value, be));

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 14:50:35 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:35:31 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ typedef struct	s_stacks
 	t_dlist		*stack_b;
 }				t_stacks;
 
-typedef struct	s_norm
+typedef struct	s_begin_end
 {
 				t_dlist **begin;
 				t_dlist **end;
-}				t_norm;
+}				t_begin_end;
 
 /*
 ** divide_stack
 */
-int		divide_stack(t_stacks *ab, t_dlist **stack, int value, t_norm *be);
+int		divide_stack(t_stacks *ab, t_dlist **stack, int value, t_begin_end *be);
 
 /*
 ** find_median

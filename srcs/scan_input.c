@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:13:23 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/23 20:40:39 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 09:40:02 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ void	scan_input2(t_dlist **a, char const *argv[], int *i)
 		error("a");
 	while (argv[*i][j])
 	{
+		if ((argv[*i][j] == 'f' || argv[*i][j] == 'v') && !argv[*i][j + 1])
+		{
+			(*i)++;
+			return ;
+		}
 		if (!ft_isdigit(argv[*i][j]) && argv[*i][j] != 'f' && argv[*i][j] != 'v')
 			error("z");
 		j++;
@@ -88,9 +93,8 @@ void	scan_input2(t_dlist **a, char const *argv[], int *i)
 void	scan_input_bonus(int argc, char const *argv[], int *print, int *fd)
 {
 	int	i;
-	int	j;
 
-	i = 0;
+	i = 1;
 	*print = 0;
 	*fd = 0;
 	while (i < argc)
@@ -99,18 +103,6 @@ void	scan_input_bonus(int argc, char const *argv[], int *print, int *fd)
 			*print = 1;
 		else if (argv[i] && argv[i + 1] && !ft_strcmp(argv[i], "-f"))
 			*fd = open(argv[i + 1], O_RDONLY);
-		else
-		{
-			j = 0;
-			while (argv[i][j])
-			{
-				if (!ft_isdigit(argv[i][j]))
-					error("r");
-				j++;
-			}
-		}
-		// argv[i] = ft_strdup("-\1\0");
-		argv[i] = "-\1";
 		i++;
 	}
 }

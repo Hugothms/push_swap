@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/23 19:58:49 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 09:39:04 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char const *argv[])
 		return (0);
 	a = scan_input(argc, argv, &print, &fd);
 	if (!a)
-		error(NULL);
+		error("y");
 	if (print)
 	{
 		print_dlist_line(a, 'a');

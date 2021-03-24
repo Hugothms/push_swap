@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/23 20:00:57 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/24 09:39:20 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	main(int argc, char const *argv[])
 	if (argc == 1)
 		return (0);
 	if (!(ab = malloc(sizeof(*ab))))
-		error(NULL);
+		error("u");
 	if (!(ab->stack_a = scan_input(argc, argv, NULL, NULL)))
-		error(NULL);
+		error("i");
 	ab->stack_b = NULL;
 	ab->name_a = 'a';
 	ab->name_b = 'b';

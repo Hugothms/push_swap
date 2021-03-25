@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 10:31:49 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 10:44:52 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ int	main(int argc, char const *argv[])
 	ab->stack_a = scan_input(argc, argv, NULL, NULL);
 	if (!ab->stack_a)
 		error("Malloc failed");
+	if (!checker(ab->stack_a))
+		return (0);
 	ab->stack_b = NULL;
-	if (ft_dlstsize(ab->stack_a) > 5)
+	if (ft_dlstsize(ab->stack_a) > 50)
 		sort_quick(ab, ab->stack_a, ab->stack_a->prev, norm);
 	else if (ft_dlstsize(ab->stack_a) > 1)
 		sort_naif(&ab->stack_a, 'a');

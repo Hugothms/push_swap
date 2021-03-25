@@ -6,15 +6,15 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/24 14:58:37 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/25 13:10:49 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	push_swap
 
-CC				=	gcc
+CC				=	clang
 CFLAGS			=	-Wall -Werror -Wextra
-LDFLAGS			=	-g3 -fsanitize=address
+LDFLAGS			=	-g3 -fsanitize=address #-fsanitize=leak
 
 SRCS_COMMON		=	srcs/find_median.c			\
 					srcs/operations_precise.c	\

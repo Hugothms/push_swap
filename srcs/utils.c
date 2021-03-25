@@ -6,15 +6,37 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 20:00:24 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 12:12:39 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 13:22:37 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	error(char *str)
+void	error(char *str, t_dlist *a, t_stacks *ab, t_sp *norm)
 {
 	printf("Error: %s\n", str);
+	if (a)
+		ft_dlstclear(&a, a, free);
+	if (ab)
+	{
+		if (ab->stack_a)
+			ft_dlstclear(&ab->stack_a, ab->stack_a, free);
+		if (ab->stack_b)
+			ft_dlstclear(&ab->stack_b, ab->stack_b, free);
+		free(ab);
+	}
+	if (norm)
+		free(norm);
+	exit (1);
+}
+
+void	error_a_b(char *str, t_dlist *a, t_dlist *b)
+{
+	printf("Error: %s\n", str);
+	if (a)
+		ft_dlstclear(&a, a, free);
+	if (b)
+		ft_dlstclear(&b, b, free);
 	exit (1);
 }
 

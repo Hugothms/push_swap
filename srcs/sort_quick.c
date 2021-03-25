@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 16:33:24 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:10:26 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	end_quicksort(t_stacks *ab, t_dlist *begin, t_dlist *end, t_sp *norm)
 		ra(ab);
 }
 
-void	function(t_stacks *ab, t_dlist **tmp, t_begin_end *be, t_sp *norm)
+void	sort_quick2(t_stacks *ab, t_dlist **tmp, t_begin_end *be, t_sp *norm)
 {
 	int	later;
 
@@ -82,7 +82,7 @@ void	function(t_stacks *ab, t_dlist **tmp, t_begin_end *be, t_sp *norm)
 	while (later--)
 	{
 		reverse(&ab->stack_a);
-		printf("rr%c\n", 'a');
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("rra\n")));
 	}
 }
 
@@ -118,7 +118,7 @@ int		sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end, t_sp *norm)
 	be = malloc(sizeof(*be));
 	be->begin = &begin;
 	be->end = &end;
-	function(ab, &tmp, be, norm);
+	sort_quick2(ab, &tmp, be, norm);
 	free(be);
 	end_quicksort(ab, begin, end, norm);
 	return (0);

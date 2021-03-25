@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 20:00:24 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 16:33:42 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:18:23 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ void	error_a_b(char *str, t_dlist *a, t_dlist *b)
 int		get_value(t_dlist *stack)
 {
 	return (*(int *)(stack->content));
+}
+
+char	*get_str(t_dlist *stack)
+{
+	return ((char *)(stack->content));
 }
 
 void	push_n_times(t_stacks *ab, t_dlist **begin, char c, int n)

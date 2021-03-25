@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 16:51:27 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:18:40 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct	s_stacks
 {
 	t_dlist		*stack_a;
 	t_dlist		*stack_b;
+	t_dlist		*operations;
 }				t_stacks;
 
 typedef struct	s_begin_end
@@ -81,8 +82,7 @@ void			reverse(t_dlist **stack);
 ** print
 */
 void			print_dlist_line(t_dlist *stack, char name);
-void			print_first_item_dlist(t_dlist *dlist);
-void			print_clean_dlist(t_dlist *a, t_dlist *b);
+void			print_clean_dlist(t_dlist *operations);
 
 /*
 ** scan_input
@@ -94,20 +94,20 @@ t_dlist			*scan_input(int argc, char const *argv[], int *print, int *fd);
 /*
 ** sort_naif_utils
 */
-void			sort1(t_dlist **stack, char name);
-void			sort2(t_dlist **stack, char name);
-void			sort3(t_dlist **stack, char name);
-void			sort4(t_dlist **stack, char name);
-void			sort5(t_dlist **stack, char name);
+void			sort1(t_stacks *ab, t_dlist **stack, char name);
+void			sort2(t_stacks *ab, t_dlist **stack, char name);
+void			sort3(t_stacks *ab, t_dlist **stack, char name);
+void			sort4(t_stacks *ab, t_dlist **stack, char name);
+void			sort5(t_stacks *ab, t_dlist **stack, char name);
 
 /*
 ** sort_naif
 */
 int				pos_node(t_dlist *stack, t_dlist *node);
 int				first_half(t_dlist *stack, int pos);
-void			put_at_top(t_dlist **stack, t_dlist *node, char name);
+void			put_at_top(t_stacks *ab, t_dlist **stack, t_dlist *node, char name);
 t_dlist			*find_smallest(t_dlist *stack);
-void			sort_naif(t_dlist **stack, char name);
+void			sort_naif(t_stacks *ab, t_dlist **stack, char name);
 
 /*
 ** sort_quick
@@ -118,15 +118,15 @@ int				sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end,
 /*
 ** sort_stack_2
 */
-void			sort_stack_2(t_dlist **st, char name);
-void			sort_stack_2_reverse(t_dlist **st, int push_on_a, char n_a,
+void			sort_stack_2(t_stacks *ab, t_dlist **st, char name);
+void			sort_stack_2_reverse(t_stacks *ab, t_dlist **st, int push_on_a, char n_a,
 					char n_b);
 
 /*
 ** sort_stack_2
 */
-void			sort_stack_3(t_dlist **st, char name);
-void			sort_stack_3_reverse(t_dlist **st, char name);
+void			sort_stack_3(t_stacks *ab, t_dlist **st, char name);
+void			sort_stack_3_reverse(t_stacks *ab, t_dlist **st, char name);
 
 /*
 ** sort_stack_under_3
@@ -140,6 +140,7 @@ int				sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end,
 void			error(char *str, t_dlist *a, t_stacks *ab, t_sp *norm);
 void			error_a_b(char *str, t_dlist *a, t_dlist *b);
 int				get_value(t_dlist *stack);
+char			*get_str(t_dlist *stack);
 void			push_n_times(t_stacks *ab, t_dlist **begin, char c, int n);
 
 # define RESET	"\x1B[0m"

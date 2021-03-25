@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:37:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 16:27:46 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:13:29 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		is_in_first_half(t_dlist *stack, int pos)
 ** @param name	name of the stack we are working on
 */
 
-void	put_at_top(t_dlist **stack, t_dlist *node, char name)
+void	put_at_top(t_stacks *ab, t_dlist **stack, t_dlist *node, char name)
 {
 	int	pos;
 	int	top;
@@ -78,7 +78,10 @@ void	put_at_top(t_dlist **stack, t_dlist *node, char name)
 	{
 		while (pos--)
 		{
-			printf("r%c\n", name);
+			if (name == 'a')
+				ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("ra\n")));
+			else
+				ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("rb\n")));
 			rotate(stack);
 		}
 	}
@@ -86,7 +89,10 @@ void	put_at_top(t_dlist **stack, t_dlist *node, char name)
 	{
 		while (pos++ % ft_dlstsize(*stack))
 		{
-			printf("rr%c\n", name);
+			if (name == 'a')
+				ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("rra\n")));
+			else
+				ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("rrb\n")));
 			reverse(stack);
 		}
 	}
@@ -123,7 +129,7 @@ t_dlist	*find_smallest(t_dlist *stack)
 ** @param name	name of the stack we are working on
 */
 
-void	sort_naif(t_dlist **stack, char name)
+void	sort_naif(t_stacks *ab, t_dlist **stack, char name)
 {
 	t_dlist	*b;
 	t_dlist	*smallest;
@@ -132,15 +138,15 @@ void	sort_naif(t_dlist **stack, char name)
 	while (ft_dlstsize(*stack) > 3)
 	{
 		smallest = find_smallest(*stack);
-		put_at_top(stack, smallest, name);
-		printf("pb\n");
+		put_at_top(ab, stack, smallest, name);
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("pb\n")));
 		push(&b, stack);
 	}
-	sort_stack_3(stack, name);
-	sort_stack_2(stack, name);
+	sort_stack_3(ab, stack, name);
+	sort_stack_2(ab, stack, name);
 	while (ft_dlstsize(b))
 	{
-		printf("pa\n");
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("pa\n")));
 		push(stack, &b);
 	}
 }

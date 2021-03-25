@@ -6,42 +6,63 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 11:43:36 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/23 15:17:22 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:19:36 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	sort1(t_dlist **stack, char name)
+void	sort1(t_stacks *ab, t_dlist **stack, char name)
 {
-	printf("s%c\n", name);
+	if (name == 'a')
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("sa%c\n")));
+	else
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("sb\n")));
 	swap(stack);
 }
 
-void	sort2(t_dlist **stack, char name)
+void	sort2(t_stacks *ab, t_dlist **stack, char name)
 {
-	printf("s%c\n", name);
+	if (name == 'a')
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("sa%c\n")));
+	else
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("sb\n")));
 	swap(stack);
-	printf("rr%c\n", name);
+	if (name == 'a')
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("rra\n")));
+	else
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("rrb\n")));
 	reverse(stack);
 }
 
-void	sort3(t_dlist **stack, char name)
+void	sort3(t_stacks *ab, t_dlist **stack, char name)
 {
-	printf("r%c\n", name);
+	if (name == 'a')
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("ra%c\n")));
+	else
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("rb\n")));
 	rotate(stack);
 }
 
-void	sort4(t_dlist **stack, char name)
+void	sort4(t_stacks *ab, t_dlist **stack, char name)
 {
-	printf("s%c\n", name);
+	if (name == 'a')
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("sa%c\n")));
+	else
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("sb\n")));
 	swap(stack);
-	printf("r%c\n", name);
+	if (name == 'a')
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("ra%c\n")));
+	else
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("rb\n")));
 	rotate(stack);
 }
 
-void	sort5(t_dlist **stack, char name)
+void	sort5(t_stacks *ab, t_dlist **stack, char name)
 {
-	printf("rr%c\n", name);
+	if (name == 'a')
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("rra\n")));
+	else
+		ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("rrb\n")));
 	reverse(stack);
 }

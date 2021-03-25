@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:37:07 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 11:04:44 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:19:10 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,44 +33,23 @@ void	print_dlist_line(t_dlist *stack, char name)
 	printf("\n");
 }
 
-void	print_first_item_dlist(t_dlist *dlist)
+void	print_clean_dlist(t_dlist *operations)
 {
-	if (dlist)
-		printf("%d ", *((int *)dlist->content));
-}
+	t_dlist	*tmp;
 
-void	print_firsts(t_dlist *a, t_dlist *b)
-{
-	print_first_item_dlist(a);
-	print_first_item_dlist(b);
-	printf("\n");
-}
-
-void	print_clean_dlist(t_dlist *a, t_dlist *b)
-{
-	t_dlist	*tmp_a;
-	t_dlist	*tmp_b;
-
-	tmp_a = a;
-	tmp_b = b;
-	print_firsts(a, b);
-	if (tmp_a)
-		tmp_a = tmp_a->next;
-	if (tmp_b)
-		tmp_b = tmp_b->next;
-	while ((tmp_a && tmp_a != a) || (tmp_b && tmp_b != b))
+	tmp = operations;
+	if (tmp)
 	{
-		if (tmp_a != a)
-		{
-			print_first_item_dlist(tmp_a);
-			tmp_a = tmp_a->next;
-		}
-		if (tmp_b != b)
-		{
-			print_first_item_dlist(tmp_b);
-			tmp_b = tmp_b->next;
-		}
-		printf("\n");
+		printf("%s", get_str(tmp));
+		tmp = tmp->next;
 	}
-	printf("- -\na b\n\n");
+	while (tmp && tmp != operations)
+	{
+		if (tmp != operations)
+		{
+			printf("%s", get_str(tmp));
+			tmp = tmp->next;
+		}
+		// printf("\n");
+	}
 }

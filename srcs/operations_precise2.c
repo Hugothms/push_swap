@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 11:07:39 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 14:50:53 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:10:26 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	rrb(t_stacks *ab)
 {
 	reverse(&ab->stack_b);
-	printf("rr%c\n", 'b');
+	ft_dlstadd_back(&ab->operations, ft_dlstnew(ft_strdup("rrb\n")));
 }

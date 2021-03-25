@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 12:01:12 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 17:09:46 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:25:59 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int		sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int p_a)
 		return (sort_stack_under_3_pre(ab, begin, p_a));
 	else if (size_stack(*begin, end) == 2)
 	{
-		sort_stack_2_reverse(ab, begin, p_a, 'a', 'b');
+		sort_stack_2_reverse(ab, begin, p_a);
 		if (!find_node(ab->stack_a, get_value(*begin)))
 		{
 			if (p_a)

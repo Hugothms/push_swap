@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:37:07 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 17:19:10 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:24:23 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,22 @@ void	print_dlist_line(t_dlist *stack, char name)
 	printf("\n");
 }
 
-void	print_clean_dlist(t_dlist *operations)
+void	print_clean_dlist(t_dlist *oper)
 {
 	t_dlist	*tmp;
 
-	tmp = operations;
+	tmp = oper;
 	if (tmp)
 	{
 		printf("%s", get_str(tmp));
 		tmp = tmp->next;
 	}
-	while (tmp && tmp != operations)
+	while (tmp && tmp != oper)
 	{
-		if (tmp != operations)
+		if (tmp != oper)
 		{
 			printf("%s", get_str(tmp));
 			tmp = tmp->next;
 		}
-		// printf("\n");
 	}
 }

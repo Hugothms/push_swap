@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 17:18:40 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:25:52 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_stacks
 {
 	t_dlist		*stack_a;
 	t_dlist		*stack_b;
-	t_dlist		*operations;
+	t_dlist		*oper;
 }				t_stacks;
 
 typedef struct	s_begin_end
@@ -105,7 +105,8 @@ void			sort5(t_stacks *ab, t_dlist **stack, char name);
 */
 int				pos_node(t_dlist *stack, t_dlist *node);
 int				first_half(t_dlist *stack, int pos);
-void			put_at_top(t_stacks *ab, t_dlist **stack, t_dlist *node, char name);
+void			put_at_top(t_stacks *ab, t_dlist **stack, t_dlist *node,
+					char name);
 t_dlist			*find_smallest(t_dlist *stack);
 void			sort_naif(t_stacks *ab, t_dlist **stack, char name);
 
@@ -119,8 +120,7 @@ int				sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end,
 ** sort_stack_2
 */
 void			sort_stack_2(t_stacks *ab, t_dlist **st, char name);
-void			sort_stack_2_reverse(t_stacks *ab, t_dlist **st, int push_on_a, char n_a,
-					char n_b);
+void			sort_stack_2_reverse(t_stacks *ab, t_dlist **st, int push_on_a);
 
 /*
 ** sort_stack_2

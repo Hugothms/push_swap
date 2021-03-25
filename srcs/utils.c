@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 20:00:24 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 17:18:23 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:22:50 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	error(char *str, t_dlist *a, t_stacks *ab, t_sp *norm)
 	}
 	if (norm)
 		free(norm);
-	exit (1);
+	exit(1);
 }
 
 void	error_a_b(char *str, t_dlist *a, t_dlist *b)
@@ -37,7 +37,7 @@ void	error_a_b(char *str, t_dlist *a, t_dlist *b)
 		ft_dlstclear(&a, a, free);
 	if (b)
 		ft_dlstclear(&b, b, free);
-	exit (1);
+	exit(1);
 }
 
 int		get_value(t_dlist *stack)

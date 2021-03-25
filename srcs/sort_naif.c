@@ -6,28 +6,28 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:37:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 14:55:35 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:22:24 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
 /** ALGO NAIF
- * tant que size list > 3
- * 		trouver le plus petit node
- * 		le mettre en haut de a
- * 		le push sur b (pb)
- * ensuite trier les 3 node restants
- * remettre tout sur a (pa)
- * DONE
- **/
+** tant que size list > 3
+** 		trouver le plus petit node
+** 		le mettre en haut de a
+** 		le push sur b (pb)
+** ensuite trier les 3 node restants
+** remettre tout sur a (pa)
+** DONE
+*/
 
-/**
- * Find the position of the node in the stack
- * @param stack	the stack containing node
- * @param node	node to check the position
- * @return		position of the given node
- **/
+/*
+** Find the position of the node in the stack
+** @param stack	the stack containing node
+** @param node	node to check the position
+** @return		position of the given node
+*/
 int	pos_node(t_dlist *stack, t_dlist *node)
 {
 	t_dlist	*tmp;
@@ -45,24 +45,24 @@ int	pos_node(t_dlist *stack, t_dlist *node)
 	return (pos);
 }
 
-/**
- * Check if the given node is in the first half of the stack
- * @param stack	the stack containing node
- * @param node	node to check the position
- * @return		1 if node is in the first half, 0 otherwise
- **/
+/*
+** Check if the given node is in the first half of the stack
+** @param stack	the stack containing node
+** @param node	node to check the position
+** @return		1 if node is in the first half, 0 otherwise
+*/
 int	is_in_first_half(t_dlist *stack, int pos)
 {
 	return (pos < (ft_dlstsize(stack) + 1) / 2);
 }
 
-/**
- * Put an node at the top of the stack without changing the order of 
- * the other nodes
- * @param stack	stack to modify
- * @param node	node to put at the top
- * @param name	name of the stack we are working on
- **/
+/*
+** Put an node at the top of the stack without changing the order of 
+** the other nodes
+** @param stack	stack to modify
+** @param node	node to put at the top
+** @param name	name of the stack we are working on
+*/
 void	put_at_top(t_dlist **stack, t_dlist *node, char name)
 {
 	int	pos;
@@ -88,11 +88,11 @@ void	put_at_top(t_dlist **stack, t_dlist *node, char name)
 	}
 }
 
-/**
- * Find and return the smallest node of the stack 
- * @param stack	stack where to find the smallest node
- * @return		the smallest node found in the stack
- **/
+/*
+** Find and return the smallest node of the stack 
+** @param stack	stack where to find the smallest node
+** @return		the smallest node found in the stack
+*/
 t_dlist	*find_smallest(t_dlist *stack)
 {
 	t_dlist	*tmp;
@@ -111,12 +111,12 @@ t_dlist	*find_smallest(t_dlist *stack)
 	return (smallest);
 }
 
-/**
- * Sort a stack with the help of a second stack using only the 
- * autorized operations and print them
- * @param stack	pointer on the first node of the stack to sort
- * @param name	name of the stack we are working on
- **/
+/*
+** Sort a stack with the help of a second stack using only the 
+** autorized operations and print them
+** @param stack	pointer on the first node of the stack to sort
+** @param name	name of the stack we are working on
+*/
 void	sort_naif(t_dlist **stack, char name)
 {
 	t_dlist	*b;

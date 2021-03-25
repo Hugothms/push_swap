@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:58:07 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 15:08:28 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:22:24 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ int	push_on_b(t_stacks *ab, t_dlist **stack, int value, t_begin_end *be)
 	return (0);
 }
 
-/**
- * If the number is biger then value, puts it at 
- * the *be->end of the current stack, otherwise push it on the other stack
- * @param ab	pointer on the struct tu coco
- * @param stack	current node (on which the loop iterates)
- * @param value	median pivot value
- **/
+/*
+** If the number is biger then value, puts it at 
+** the *be->end of the current stack, otherwise push it on the other stack
+** @param ab	pointer on the struct tu coco
+** @param stack	current node (on which the loop iterates)
+** @param value	median pivot value
+ */
 int	divide_stack(t_stacks *ab, t_dlist **st, int value, t_begin_end *be)
 {
 	if (find_node(ab->stack_a, get_value(*st)))

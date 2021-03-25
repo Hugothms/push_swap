@@ -6,17 +6,17 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 12:01:12 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 12:11:49 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:22:24 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/**
- * Sort a stack of 3 node with the smallest number of instructions possible
- * @param stack	stack of size 3 to sort
- * @param name	name of the stack we are working on
- **/
+/*
+** Sort a stack of 3 node with the smallest number of instructions possible
+** @param stack	stack of size 3 to sort
+** @param name	name of the stack we are working on
+*/
 void	sort_stack_3(t_dlist **st, char name)
 {
 	if (ft_dlstsize((*st)) != 3 || !checker((*st)))
@@ -43,11 +43,11 @@ void	sort_stack_3(t_dlist **st, char name)
 		sort5(st, name);
 }
 
-/**
- * Sort a stack of 3 node with the smallest number of instructions possible
- * @param stack	stack of size 3 to sort
- * @param name	name of the stack we are working on
- **/
+/*
+** Sort a stack of 3 node with the smallest number of instructions possible
+** @param stack	stack of size 3 to sort
+** @param name	name of the stack we are working on
+*/
 void	sort_stack_3_reverse(t_dlist **st, char name)
 {
 	if (ft_dlstsize((*st)) != 3)

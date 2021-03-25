@@ -6,16 +6,16 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:13:23 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 10:31:35 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:22:24 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/**
- * check if there are duplicates in the list
- * @return	0 if no duplicates where found, 1 otherwise
- **/
+/*
+** check if there are duplicates in the list
+** @return	0 if no duplicates where found, 1 otherwise
+*/
 int	duplicates(t_dlist *a)
 {
 	t_dlist	*tmp;

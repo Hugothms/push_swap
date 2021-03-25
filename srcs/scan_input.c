@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:13:23 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 16:28:42 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 16:33:14 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	scan_input2(t_dlist **a, char const *argv[], int *i)
 	if (argv[*i][j] && argv[*i][j] == '-')
 		j++;
 	if (ft_strlen(&argv[*i][j]) > 10 || int_overflow(&argv[*i][j], j))
-		error("Int overflow");
+		error_a_b("Int overflow", *a, NULL);
 	while (argv[*i][j])
 	{
 		if (argv[*i][j] == 'v' && !argv[*i][j + 1])
@@ -63,12 +63,12 @@ void	scan_input2(t_dlist **a, char const *argv[], int *i)
 			return ;
 		}
 		else if (!ft_isdigit(argv[*i][j]))
-			error("Is not number");
+			error_a_b("Is not number", *a, NULL);
 		j++;
 	}
 	num = malloc(sizeof(int));
 	if (!num)
-		error("Malloc failed");
+		error_a_b("Malloc failed", *a, NULL);
 	*num = ft_atol(argv[(*i)++]);
 	ft_dlstadd_back(a, ft_dlstnew(num));
 }
@@ -100,6 +100,6 @@ t_dlist	*scan_input(int argc, char const *argv[], int *print, int *fd)
 	while (i < argc)
 		scan_input2(&a, argv, &i);
 	if (duplicates(a))
-		error("Duplicates");
+		error_a_b("Duplicates", a, NULL);
 	return (a);
 }

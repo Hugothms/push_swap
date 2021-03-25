@@ -6,15 +6,15 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/25 15:15:30 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/25 16:34:34 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	push_swap
 
-CC				=	gcc
+CC				=	clang
 CFLAGS			=	-Wall -Werror -Wextra
-LDFLAGS			=	-g3 -fsanitize=address
+LDFLAGS			=	-g3 -fsanitize=address #-fsanitize=leak
 
 SRCS_COMMON		=	srcs/find_median.c			\
 					srcs/operations_precise.c	\
@@ -30,7 +30,7 @@ SRCS_COMMON		=	srcs/find_median.c			\
 
 SRCS_CHECKER	=	srcs/main_checker.c			\
 					$(SRCS_COMMON)
-						
+
 
 SRCS_PUSH_SWAP	=	srcs/divide_stack.c			\
 					srcs/main_push_swap.c		\
@@ -110,14 +110,14 @@ echoFCLEAN :
 
 ########################### TEST
 
-ARG= -3 -8
+ARG= -3 -8 7 4 2 1 9 6 3 45 78 96 36 25 58 12
 
 test:			checker $(NAME)
 	./$(NAME) $(ARG); ./$(NAME) $(ARG) | wc -l; ./$(NAME) $(ARG) | ./checker $(ARG)
 
 test_push_swap:	checker $(NAME)
 	./$(NAME) $(ARG)
-	
+
 test_checker:	checker
 	./$< $(ARG)
 

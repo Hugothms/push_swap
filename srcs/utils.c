@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 20:00:24 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 17:22:50 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:27:49 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	error(char *str, t_dlist *a, t_stacks *ab, t_sp *norm)
 			ft_dlstclear(&ab->stack_a, ab->stack_a, free);
 		if (ab->stack_b)
 			ft_dlstclear(&ab->stack_b, ab->stack_b, free);
+		if (ab->oper)
+			ft_dlstclear(&ab->oper, ab->oper, free);
 		free(ab);
 	}
 	if (norm)

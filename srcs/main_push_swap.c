@@ -6,11 +6,34 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 17:24:26 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:31:49 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+void	remove_useless_operations(t_dlist **oper)
+{
+	int		removed;
+	t_dlist	*tmp;
+
+	removed = 1;
+	tmp = *oper;
+	while (removed)
+	{
+		removed = 0;
+		while (tmp != *oper)
+		{
+			if (!ft_strcmp(get_str(tmp)))
+			{
+				/* code */
+			}
+
+			tmp = tmp->next;
+		}
+
+	}
+}
+
 
 int	main(int argc, char const *argv[])
 {
@@ -35,6 +58,7 @@ int	main(int argc, char const *argv[])
 		sort_quick(ab, ab->stack_a, ab->stack_a->prev, norm);
 	else if (ft_dlstsize(ab->stack_a) > 1)
 		sort_naif(ab, &ab->stack_a, 'a');
+	remove_useless_operations(&ab->oper);
 	print_clean_dlist(ab->oper);
 	ft_dlstclear(&ab->stack_a, ab->stack_a, &free);
 	return (0);

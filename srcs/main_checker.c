@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 10:32:11 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 16:26:45 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	main2(t_dlist **a, t_dlist **b, int print)
 		printf("OK\n");
 }
 
-int	main(int argc, char const *argv[])
+int		main(int argc, char const *argv[])
 {
 	t_dlist	*a;
 	t_dlist	*b;

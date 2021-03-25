@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 15:22:24 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 16:27:35 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 ** Check if the given list is sorted
 ** @return	0 if the list is sorted, otherwise return 1
 */
-int	checker(t_dlist *stack)
+
+int		checker(t_dlist *stack)
 {
 	t_dlist	*tmp;
 
@@ -39,6 +40,7 @@ int	checker(t_dlist *stack)
 ** Swap the ﬁrst 2 nodes at the top of stack
 ** Do nothing if there is only one or no nodes)
 */
+
 void	swap(t_dlist **stack)
 {
 	int		*num;
@@ -55,6 +57,7 @@ void	swap(t_dlist **stack)
 ** Take the ﬁrst node at the top of b and put it at the top of a
 ** Do nothing if b is empty
 */
+
 void	push(t_dlist **a, t_dlist **b)
 {
 	int		*num;
@@ -75,6 +78,7 @@ void	push(t_dlist **a, t_dlist **b)
 ** Shift up all nodes of stack a by 1
 ** The ﬁrst node becomes the last one
 */
+
 void	rotate(t_dlist **stack)
 {
 	t_dlist	*tmp;
@@ -88,6 +92,7 @@ void	rotate(t_dlist **stack)
 ** Shift down all nodes of stack a by 1
 ** The last node becomes the ﬁrst one.
 */
+
 void	reverse(t_dlist **stack)
 {
 	t_dlist	*tmp;

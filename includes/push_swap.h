@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 10:32:17 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:30:02 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,28 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-typedef struct s_stacks
+typedef struct	s_stacks
 {
 	t_dlist		*stack_a;
 	t_dlist		*stack_b;
 }				t_stacks;
 
-typedef struct s_begin_end
+typedef struct	s_begin_end
 {
 	t_dlist		**begin;
 	t_dlist		**end;
-}	t_begin_end;
+}				t_begin_end;
 
 /*
 ** divide_stack
 */
+
 int		divide_stack(t_stacks *ab, t_dlist **stack, int value, t_begin_end *be);
 
 /*
 ** find_median
 */
+
 t_dlist	*find_node(t_dlist *stack, int value);
 int		size_stack(t_dlist *begin, t_dlist *end);
 t_dlist	*find_median(t_dlist *stack, t_dlist *end);
@@ -48,6 +50,7 @@ t_dlist	*find_median(t_dlist *stack, t_dlist *end);
 /*
 ** operations_precise
 */
+
 void	pb(t_stacks *ab, t_dlist **stack);
 void	pa(t_stacks *ab, t_dlist **stack);
 void	ra(t_stacks *ab);
@@ -57,11 +60,13 @@ void	rra(t_stacks *ab);
 /*
 ** operations_precise2
 */
+
 void	rrb(t_stacks *ab);
 
 /*
 ** operations_redir
 */
+
 void	swap_help(t_dlist **a, t_dlist **b, char *line, int *ret);
 void	push_help(t_dlist **a, t_dlist **b, char *line, int *ret);
 void	rotate_help(t_dlist **a, t_dlist **b, char *line, int *ret);
@@ -70,6 +75,7 @@ void	reverse_help(t_dlist **a, t_dlist **b, char *line, int *ret);
 /*
 ** operations
 */
+
 int		checker(t_dlist *stack);
 void	swap(t_dlist **stack);
 void	push(t_dlist **a, t_dlist **b);
@@ -79,6 +85,7 @@ void	reverse(t_dlist **stack);
 /*
 ** print
 */
+
 void	print_dlist_line(t_dlist *stack, char name);
 void	print_first_item_dlist(t_dlist *dlist);
 void	print_clean_dlist(t_dlist *a, t_dlist *b);
@@ -86,6 +93,7 @@ void	print_clean_dlist(t_dlist *a, t_dlist *b);
 /*
 ** scan_input
 */
+
 int		duplicates(t_dlist *a);
 int		int_overflow(char const *str, int sign);
 t_dlist	*scan_input(int argc, char const *argv[], int *print, int *fd);
@@ -93,6 +101,7 @@ t_dlist	*scan_input(int argc, char const *argv[], int *print, int *fd);
 /*
 ** sort_naif_utils
 */
+
 void	sort1(t_dlist **stack, char name);
 void	sort2(t_dlist **stack, char name);
 void	sort3(t_dlist **stack, char name);
@@ -102,6 +111,7 @@ void	sort5(t_dlist **stack, char name);
 /*
 ** sort_naif
 */
+
 int		pos_node(t_dlist *stack, t_dlist *node);
 int		first_half(t_dlist *stack, int pos);
 void	put_at_top(t_dlist **stack, t_dlist *node, char name);
@@ -111,30 +121,35 @@ void	sort_naif(t_dlist **stack, char name);
 /*
 ** sort_quick
 */
+
 int		sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end,
 			 t_sp *norm);
 
 /*
 ** sort_stack_2
 */
+
 void	sort_stack_2(t_dlist **st, char name);
 void	sort_stack_2_reverse(t_dlist **st, int push_on_a, char n_a, char n_b);
 
 /*
 ** sort_stack_2
 */
+
 void	sort_stack_3(t_dlist **st, char name);
 void	sort_stack_3_reverse(t_dlist **st, char name);
 
 /*
 ** sort_stack_under_3
 */
+
 int		sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end,
 			int p_a);
 
 /*
 ** utils
 */
+
 void	error(char *str);
 int		get_value(t_dlist *stack);
 void	push_n_times(t_stacks *ab, t_dlist **begin, char c, int n);

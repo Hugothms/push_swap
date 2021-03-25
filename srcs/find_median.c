@@ -6,13 +6,13 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 12:10:52 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 15:22:24 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 16:25:53 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	*ft_dlst_to_tabn(t_dlist *dlst, int max)
+int		*ft_dlst_to_tabn(t_dlist *dlst, int max)
 {
 	t_dlist	*tmp;
 	int		*tab;
@@ -28,7 +28,7 @@ int	*ft_dlst_to_tabn(t_dlist *dlst, int max)
 	max--;
 	i = 1;
 	while (tmp != dlst && max--)
-	{		
+	{
 		tab[i] = get_value(tmp);
 		tmp = tmp->next;
 		i++;
@@ -42,6 +42,7 @@ int	*ft_dlst_to_tabn(t_dlist *dlst, int max)
 ** @param value	value of the node we are looking for
 ** @return		node with the corresponding value
 */
+
 t_dlist	*find_node(t_dlist *stack, int value)
 {
 	t_dlist	*tmp;
@@ -60,7 +61,7 @@ t_dlist	*find_node(t_dlist *stack, int value)
 	return (NULL);
 }
 
-int	size_stack(t_dlist *begin, t_dlist *end)
+int		size_stack(t_dlist *begin, t_dlist *end)
 {
 	int		cpt;
 	t_dlist	*tmp;
@@ -82,6 +83,7 @@ int	size_stack(t_dlist *begin, t_dlist *end)
 ** @param stack	stack where to find the node
 ** @return		the median node
 */
+
 t_dlist	*find_median(t_dlist *stack, t_dlist *end)
 {
 	int		*tab;

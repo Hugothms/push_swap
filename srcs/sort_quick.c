@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 16:48:40 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 10:30:24 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end, t_sp *norm)
 	end = NULL;
 	be = malloc(sizeof(*be));
 	if (!be)
-		error(NULL);
+		error("Malloc failed");
 	be->begin = &begin;
 	be->end = &end;
 	function(ab, &tmp, be, norm);

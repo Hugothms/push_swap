@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 11:01:22 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/25 10:32:11 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	exec_operation(t_dlist **a, t_dlist **b, char *line, int print)
 	else
 		rotate_help(a, b, line, &ret);
 	if (ret)
-		error(line);
+		error("Operation invalid");
 	if (print)
 	{
 		print_dlist_line(*a, 'a');
@@ -64,7 +64,7 @@ int	main(int argc, char const *argv[])
 		return (0);
 	a = scan_input(argc, argv, &print, &fd);
 	if (!a)
-		error("y");
+		error("Malloc failed");
 	main2(&a, &b, print);
 	return (0);
 }

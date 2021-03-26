@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/26 11:52:40 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/26 12:15:18 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	remove_useless_operations(t_dlist **oper)
 
 	while ((*oper)->next && *oper != (*oper)->next && useless_sequence(*oper))
 	{
-		ft_dlstremove_one(oper, *oper);
-		ft_dlstremove_one(oper, *oper);
+		free(ft_dlstremove_one(oper, *oper));
+		free(ft_dlstremove_one(oper, *oper));
 	}
 	tmp = (*oper)->next;
 	while (tmp != *oper && tmp != (*oper)->prev)
@@ -39,8 +39,9 @@ void	remove_useless_operations(t_dlist **oper)
 		{
 			printf("removed: %s %s\n", get_str(tmp), get_str(tmp->next));
 			tmp = tmp->prev;
-			ft_dlstremove_one(oper, tmp->next);
-			ft_dlstremove_one(oper, tmp->next);
+
+			free(ft_dlstremove_one(oper, tmp->next));
+			free(ft_dlstremove_one(oper, tmp->next));
 			if (tmp != *oper)
 				tmp = tmp->prev;
 		}
@@ -74,5 +75,10 @@ int		main(int argc, char const *argv[])
 	remove_useless_operations(&ab->oper);
 	print_clean_dlist(ab->oper);
 	ft_dlstclear(&ab->stack_a, ab->stack_a, &free);
+	ft_dlstclear(&ab->oper, ab->oper, &free);
+	while (1)
+	{
+
+	}
 	return (0);
 }

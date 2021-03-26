@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 17:24:39 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/26 11:07:43 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	sort_quick2(t_stacks *ab, t_dlist **tmp, t_begin_end *be, t_sp *norm)
 	while (later--)
 	{
 		reverse(&ab->stack_a);
-		ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("rra\n")));
+		ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("rra")));
 	}
 }
 

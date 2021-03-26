@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:37:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 17:25:32 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/26 11:08:06 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	put_at_top(t_stacks *ab, t_dlist **stack, t_dlist *node, char name)
 		while (pos--)
 		{
 			if (name == 'a')
-				ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("ra\n")));
+				ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("ra")));
 			else
-				ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("rb\n")));
+				ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("rb")));
 			rotate(stack);
 		}
 	}
@@ -88,9 +88,9 @@ void	put_at_top(t_stacks *ab, t_dlist **stack, t_dlist *node, char name)
 		while (pos++ % ft_dlstsize(*stack))
 		{
 			if (name == 'a')
-				ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("rra\n")));
+				ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("rra")));
 			else
-				ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("rrb\n")));
+				ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("rrb")));
 			reverse(stack);
 		}
 	}
@@ -137,14 +137,14 @@ void	sort_naif(t_stacks *ab, t_dlist **stack, char name)
 	{
 		smallest = find_smallest(*stack);
 		put_at_top(ab, stack, smallest, name);
-		ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("pb\n")));
+		ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("pb")));
 		push(&b, stack);
 	}
 	sort_stack_3(ab, stack, name);
 	sort_stack_2(ab, stack, name);
 	while (ft_dlstsize(b))
 	{
-		ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("pa\n")));
+		ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("pa")));
 		push(stack, &b);
 	}
 }

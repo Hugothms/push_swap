@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:37:07 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 17:24:23 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/26 11:11:27 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ void	print_clean_dlist(t_dlist *oper)
 	tmp = oper;
 	if (tmp)
 	{
-		printf("%s", get_str(tmp));
+		printf("%s\n", get_str(tmp));
 		tmp = tmp->next;
 	}
 	while (tmp && tmp != oper)
 	{
 		if (tmp != oper)
 		{
-			printf("%s", get_str(tmp));
+			printf("%s\n", get_str(tmp));
 			tmp = tmp->next;
 		}
 	}

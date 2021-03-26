@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 12:06:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 17:24:24 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/26 11:08:19 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	sort_stack_2(t_stacks *ab, t_dlist **st, char name)
 		return ;
 	swap(st);
 	if (name == 'a')
-		ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("sa\n")));
+		ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("sa")));
 	else
-		ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("sb\n")));
+		ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("sb")));
 }
 
 /*
@@ -41,11 +41,11 @@ void	sort_stack_2_reverse(t_stacks *ab, t_dlist **st, int p_a)
 	if (!p_a && get_value(*st) > get_value((*st)->next))
 	{
 		swap(st);
-		ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("sa\n")));
+		ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("sa")));
 	}
 	else if (p_a && get_value(*st) < get_value((*st)->next))
 	{
 		swap(st);
-		ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("sb\n")));
+		ft_dlstadd_back(&ab->oper, ft_dlstnew(ft_strdup("sb")));
 	}
 }

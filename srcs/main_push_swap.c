@@ -6,36 +6,56 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 17:31:49 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/26 11:49:40 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int		useless_sequence(t_dlist *l)
+{
+	return (
+		!(ft_strcmp(get_str(l), "pa") || ft_strcmp(get_str(l->next), "pb")) ||
+		!(ft_strcmp(get_str(l), "pb") || ft_strcmp(get_str(l->next), "pa")) ||
+		!(ft_strcmp(get_str(l), "ra") || ft_strcmp(get_str(l->next), "rra")) ||
+		!(ft_strcmp(get_str(l), "rra") || ft_strcmp(get_str(l->next), "ra")) ||
+		!(ft_strcmp(get_str(l), "rb") || ft_strcmp(get_str(l->next), "rrb")) ||
+		!(ft_strcmp(get_str(l), "rrb") || ft_strcmp(get_str(l->next), "rb")));
+}
+
 void	remove_useless_operations(t_dlist **oper)
 {
 	int		removed;
 	t_dlist	*tmp;
 
 	removed = 1;
-	tmp = *oper;
-	while (removed)
-	{
-		removed = 0;
-		while (tmp != *oper)
+	// while (removed)
+	// {
+	// 	removed = 0;
+		while ((*oper)->next && *oper != (*oper)->next && useless_sequence(*oper))
 		{
-			if (!ft_strcmp(get_str(tmp)))
+			ft_dlstremove_one(oper, *oper);
+			ft_dlstremove_one(oper, *oper);
+		}
+		tmp = (*oper)->next;
+		while (tmp != *oper && tmp != (*oper)->prev)
+		{
+			if (tmp->next && useless_sequence(tmp))
 			{
-				/* code */
+				printf("removed: %s %s\n", get_str(tmp), get_str(tmp->next));
+				tmp = tmp->prev;
+				ft_dlstremove_one(oper, tmp->next);
+				ft_dlstremove_one(oper, tmp->next);
+				if (tmp != *oper)
+					tmp = tmp->prev;
+				removed = 1;
 			}
-
 			tmp = tmp->next;
 		}
-
-	}
+	// }
 }
 
-
-int	main(int argc, char const *argv[])
+int		main(int argc, char const *argv[])
 {
 	t_sp		*norm;
 	t_stacks	*ab;
@@ -54,7 +74,7 @@ int	main(int argc, char const *argv[])
 		return (0);
 	ab->stack_b = NULL;
 	ab->oper = NULL;
-	if (ft_dlstsize(ab->stack_a) > 50)
+	if (ft_dlstsize(ab->stack_a))
 		sort_quick(ab, ab->stack_a, ab->stack_a->prev, norm);
 	else if (ft_dlstsize(ab->stack_a) > 1)
 		sort_naif(ab, &ab->stack_a, 'a');
@@ -63,3 +83,5 @@ int	main(int argc, char const *argv[])
 	ft_dlstclear(&ab->stack_a, ab->stack_a, &free);
 	return (0);
 }
+
+// 1482

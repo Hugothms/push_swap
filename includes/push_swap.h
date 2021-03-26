@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 17:25:52 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/26 19:37:32 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ int				sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end,
 ** utils
 */
 void			error(char *str, t_dlist *a, t_stacks *ab, t_sp *norm);
-void			error_a_b(char *str, t_dlist *a, t_dlist *b);
+void			error_a_b(char *str, t_dlist *a, t_dlist *b, char *line);
 int				get_value(t_dlist *stack);
 char			*get_str(t_dlist *stack);
 void			push_n_times(t_stacks *ab, t_dlist **begin, char c, int n);

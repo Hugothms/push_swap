@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 16:32:56 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/26 19:36:52 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	exec_operation(t_dlist **a, t_dlist **b, char *line, int print)
 	else
 		rotate_help(a, b, line, &ret);
 	if (ret)
-		error_a_b("Operation invalid", *a, *b);
+		error_a_b("Operation invalid", *a, *b, line);
 	if (print)
 	{
 		print_dlist_line(*a, 'a');

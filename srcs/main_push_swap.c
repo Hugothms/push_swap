@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/26 11:49:40 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/26 11:52:40 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,34 +25,27 @@ int		useless_sequence(t_dlist *l)
 
 void	remove_useless_operations(t_dlist **oper)
 {
-	int		removed;
 	t_dlist	*tmp;
 
-	removed = 1;
-	// while (removed)
-	// {
-	// 	removed = 0;
-		while ((*oper)->next && *oper != (*oper)->next && useless_sequence(*oper))
+	while ((*oper)->next && *oper != (*oper)->next && useless_sequence(*oper))
+	{
+		ft_dlstremove_one(oper, *oper);
+		ft_dlstremove_one(oper, *oper);
+	}
+	tmp = (*oper)->next;
+	while (tmp != *oper && tmp != (*oper)->prev)
+	{
+		if (tmp->next && useless_sequence(tmp))
 		{
-			ft_dlstremove_one(oper, *oper);
-			ft_dlstremove_one(oper, *oper);
-		}
-		tmp = (*oper)->next;
-		while (tmp != *oper && tmp != (*oper)->prev)
-		{
-			if (tmp->next && useless_sequence(tmp))
-			{
-				printf("removed: %s %s\n", get_str(tmp), get_str(tmp->next));
+			printf("removed: %s %s\n", get_str(tmp), get_str(tmp->next));
+			tmp = tmp->prev;
+			ft_dlstremove_one(oper, tmp->next);
+			ft_dlstremove_one(oper, tmp->next);
+			if (tmp != *oper)
 				tmp = tmp->prev;
-				ft_dlstremove_one(oper, tmp->next);
-				ft_dlstremove_one(oper, tmp->next);
-				if (tmp != *oper)
-					tmp = tmp->prev;
-				removed = 1;
-			}
-			tmp = tmp->next;
 		}
-	// }
+		tmp = tmp->next;
+	}
 }
 
 int		main(int argc, char const *argv[])
@@ -83,5 +76,3 @@ int		main(int argc, char const *argv[])
 	ft_dlstclear(&ab->stack_a, ab->stack_a, &free);
 	return (0);
 }
-
-// 1482

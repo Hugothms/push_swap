@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/26 19:36:52 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/27 09:38:35 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,11 @@ int		main(int argc, char const *argv[])
 	t_dlist	*a;
 	t_dlist	*b;
 	int		print;
-	int		fd;
 
 	b = NULL;
 	if (argc == 1)
 		return (0);
-	a = scan_input(argc, argv, &print, &fd);
+	a = scan_input(argc, argv, &print);
 	main2(&a, &b, print);
 	return (0);
 }

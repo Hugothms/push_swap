@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:13:23 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/26 19:37:52 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/27 09:44:30 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	scan_input2(t_dlist **a, char const *argv[], int *i)
 		error_a_b("Int overflow", *a, NULL, NULL);
 	while (argv[*i][j])
 	{
-		if (argv[*i][j] == 'v' && !argv[*i][j + 1])
+		printf("%d:%s:%c\n", BONUS, argv[*i], argv[*i][j]);
+		if (BONUS && argv[*i][j] == 'v' && !argv[*i][j + 1])
 		{
 			(*i)++;
 			return ;
@@ -73,13 +74,11 @@ void	scan_input2(t_dlist **a, char const *argv[], int *i)
 	ft_dlstadd_back(a, ft_dlstnew(num));
 }
 
-void	scan_input_bonus(int argc, char const *argv[], int *print, int *fd)
+void	scan_input_bonus(int argc, char const *argv[], int *print)
 {
 	int	i;
 
 	i = 1;
-	*print = 0;
-	*fd = 0;
 	while (i < argc)
 	{
 		if (argv[i] && !ft_strcmp(argv[i], "-v"))
@@ -88,14 +87,18 @@ void	scan_input_bonus(int argc, char const *argv[], int *print, int *fd)
 	}
 }
 
-t_dlist	*scan_input(int argc, char const *argv[], int *print, int *fd)
+t_dlist	*scan_input(int argc, char const *argv[], int *print)
 {
 	int		i;
 	t_dlist	*a;
 
 	a = NULL;
-	if (print && fd)
-		scan_input_bonus(argc, argv, print, fd);
+	if (print)
+	{
+		*print = 0;
+		if (BONUS)
+			scan_input_bonus(argc, argv, print);
+	}
 	i = 1;
 	while (i < argc)
 		scan_input2(&a, argv, &i);

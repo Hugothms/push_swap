@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/26 19:38:25 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/27 09:38:46 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,36 @@ void	remove_useless_operations(t_dlist **oper)
 	}
 }
 
+void init_structs(t_sp **norm, t_stacks **ab, int argc, char const *argv[])
+{
+	*norm = malloc(sizeof(**norm));
+	if (!*norm)
+		error("Malloc failed", NULL, NULL, NULL);
+	(*norm)->i = 0;
+	*ab = malloc(sizeof(**ab));
+	if (!*ab)
+		error("Malloc failed", NULL, NULL, *norm);
+	(*ab)->stack_a = scan_input(argc, argv, NULL);
+	(*ab)->stack_b = NULL;
+	(*ab)->oper = NULL;
+}
+
 int		main(int argc, char const *argv[])
 {
 	t_sp		*norm;
 	t_stacks	*ab;
 
+	if (BONUS)
+	{
+		printf("text\n");
+		return 0;
+	}
+
 	if (argc == 1)
 		return (0);
-	norm = malloc(sizeof(*norm));
-	if (!norm)
-		error("Malloc failed", NULL, NULL, NULL);
-	norm->i = 0;
-	ab = malloc(sizeof(*ab));
-	if (!ab)
-		error("Malloc failed", NULL, NULL, norm);
-	ab->stack_a = scan_input(argc, argv, NULL, NULL);
+	init_structs(&norm, &ab, argc, argv);
 	if (!checker(ab->stack_a))
 		return (0);
-	ab->stack_b = NULL;
-	ab->oper = NULL;
 	if (ft_dlstsize(ab->stack_a))
 		sort_quick(ab, ab->stack_a, ab->stack_a->prev, norm);
 	else if (ft_dlstsize(ab->stack_a) > 1)

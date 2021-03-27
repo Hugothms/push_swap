@@ -6,12 +6,18 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/26 19:37:32 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/27 09:47:41 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# if BONUS
+#  define BONUS 1
+# else
+#  define BONUS 0
+# endif
 
 # include "../libft/includes/libft.h"
 # include <unistd.h>
@@ -89,7 +95,7 @@ void			print_clean_dlist(t_dlist *operations);
 */
 int				duplicates(t_dlist *a);
 int				int_overflow(char const *str, int sign);
-t_dlist			*scan_input(int argc, char const *argv[], int *print, int *fd);
+t_dlist			*scan_input(int argc, char const *argv[], int *print);
 
 /*
 ** sort_naif_utils

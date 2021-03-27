@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/27 09:38:46 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/27 14:23:24 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,6 @@ int		main(int argc, char const *argv[])
 {
 	t_sp		*norm;
 	t_stacks	*ab;
-
-	if (BONUS)
-	{
-		printf("text\n");
-		return 0;
-	}
 
 	if (argc == 1)
 		return (0);

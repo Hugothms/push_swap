@@ -6,15 +6,24 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/27 09:47:20 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/27 15:04:44 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	push_swap
 
-CC				=	clang
+CC				=	gcc
 CFLAGS			=	-Wall -Werror -Wextra
 LDFLAGS			=	#-g3 -fsanitize=address #-fsanitize=leak
+
+OBJS_CHECKER	=	$(SRCS_CHECKER:.c=.o)
+OBJS_PUSH_SWAP	=	$(SRCS_PUSH_SWAP:.c=.o)
+INCL			=	includes/
+HEADER			=	$(INCL)$(NAME).h
+
+LIBFT			=	libft.a
+LIBFTDIR		=	libft/
+LIBFTLINK		=	-L $(LIBFTDIR) -lft
 
 SRCS_COMMON		=	srcs/find_median.c			\
 					srcs/operations_precise.c	\
@@ -38,29 +47,20 @@ SRCS_PUSH_SWAP	=	srcs/divide_stack.c			\
 					srcs/sort_quick.c			\
 					$(SRCS_COMMON)
 
-OBJS_CHECKER	=	$(SRCS_CHECKER:.c=.o)
-OBJS_PUSH_SWAP	=	$(SRCS_PUSH_SWAP:.c=.o)
-INCL			=	includes/
-HEADER			=	$(INCL)$(NAME).h
-
-LIBFT			=	libft.a
-LIBFTDIR		=	libft/
-LIBFTLINK		=	-L $(LIBFTDIR) -lft
-
-
-########################### PROGRAM
+########################### EXEC
 all:		checker $(NAME)
 
 $(NAME):	complib $(OBJS_PUSH_SWAP)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS_PUSH_SWAP) $(LIBFTLINK) -D BONUS=0
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS_PUSH_SWAP) $(LIBFTLINK)
 
 checker:	complib $(OBJS_CHECKER)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS_CHECKER) $(LIBFTLINK) -D BONUS=0
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS_CHECKER) $(LIBFTLINK)
 
-bonus:		complib $(OBJS_CHECKER) $(NAME)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o checker $(OBJS_CHECKER) $(LIBFTLINK) -D BONUS=1
+bonus:		complib $(OBJS_CHECKER)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o push_swap $(OBJS_PUSH_SWAP) $(LIBFTLINK) -DFLAG
+	$(CC) $(CFLAGS) $(LDFLAGS) -o checker $(OBJS_CHECKER) $(LIBFTLINK) -DFLAG
 
-########################### LIBS
+########################### LIBARY
 complib:
 	$(MAKE) -C $(LIBFTDIR)
 
@@ -80,9 +80,8 @@ fclean: clean
 	rm -f $(NAME) checker a.out
 
 re:			fclean all
-.PHONY:		all re clean fclean
+.PHONY:		re clean fclean
 # .SILENT:
-
 
 ########################### TEST
 
@@ -97,5 +96,14 @@ test_push_swap:	checker $(NAME)
 	./push_swap $(ARG)
 
 test_checker:	checker
-	./$< $(ARG)
+	./checker $(ARG)
+
+test_bonus:				bonus
+	./push_swap $(ARG); ./push_swap $(ARG) | wc -l; ./push_swap $(ARG) | ./checker $(ARG)
+
+test_bonus_push_swap:	bonus
+	./push_swap $(ARG)
+
+test_bonus_checker:		bonus
+	./checher $(ARG)
 

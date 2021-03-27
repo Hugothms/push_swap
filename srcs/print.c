@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:37:07 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/26 11:11:27 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/27 14:24:33 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,21 @@ void	print_dlist_line(t_dlist *stack, char name)
 	int		*num;
 
 	tmp = stack;
-	printf("%c: ", name);
+	ft_putchar_fd(name, 2);
+	ft_putstr_fd(": ", 2);
 	while (tmp && tmp->next != stack)
 	{
 		num = tmp->content;
-		printf("%d ", *num);
+		ft_putnbr_fd(*num, 2);
+		ft_putchar_fd(' ', 2);
 		tmp = tmp->next;
 	}
 	if (tmp)
 	{
 		num = tmp->content;
-		printf("%d", *num);
+		ft_putnbr_fd(*num, 2);
 	}
-	printf("\n");
+	ft_putchar_fd('\n', 2);
 }
 
 void	print_clean_dlist(t_dlist *oper)

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/27 14:23:24 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/28 18:57:40 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	remove_useless_operations(t_dlist **oper)
 	}
 }
 
-void init_structs(t_sp **norm, t_stacks **ab, int argc, char const *argv[])
+void	init_structs(t_sp **norm, t_stacks **ab, int argc, char const *argv[])
 {
 	*norm = malloc(sizeof(**norm));
 	if (!*norm)

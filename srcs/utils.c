@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 20:00:24 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/26 19:37:58 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/28 18:57:29 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	error_a_b(char *str, t_dlist *a, t_dlist *b, char *line)
 		ft_dlstclear(&a, a, free);
 	if (b)
 		ft_dlstclear(&b, b, free);
-	if(line)
+	if (line)
 		free(line);
 	exit(1);
 }

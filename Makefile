@@ -6,13 +6,13 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/27 15:04:44 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/28 18:59:31 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	push_swap
 
-CC				=	gcc
+CC				=	clang
 CFLAGS			=	-Wall -Werror -Wextra
 LDFLAGS			=	#-g3 -fsanitize=address #-fsanitize=leak
 
@@ -57,8 +57,8 @@ checker:	complib $(OBJS_CHECKER)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS_CHECKER) $(LIBFTLINK)
 
 bonus:		complib $(OBJS_CHECKER)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o push_swap $(OBJS_PUSH_SWAP) $(LIBFTLINK) -DFLAG
-	$(CC) $(CFLAGS) $(LDFLAGS) -o checker $(OBJS_CHECKER) $(LIBFTLINK) -DFLAG
+	$(CC) $(CFLAGS) $(LDFLAGS) -o push_swap $(OBJS_PUSH_SWAP) $(LIBFTLINK) -DBONUS
+	$(CC) $(CFLAGS) $(LDFLAGS) -o checker $(OBJS_CHECKER) $(LIBFTLINK) -DBONUS
 
 ########################### LIBARY
 complib:

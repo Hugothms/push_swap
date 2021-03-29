@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:13:23 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/27 14:17:26 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/29 11:46:21 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	scan_input2(t_dlist **a, char const *argv[], int *i)
 	ft_dlstadd_back(a, ft_dlstnew(num));
 }
 
-void	scan_input_bonus(int argc, char const *argv[], int *print)
+void	scan_if_print(int argc, char const *argv[], int *print)
 {
 	int	i;
 
@@ -96,7 +96,7 @@ t_dlist	*scan_input(int argc, char const *argv[], int *print)
 	{
 		*print = 0;
 		if (BONUS)
-			scan_input_bonus(argc, argv, print);
+			scan_if_print(argc, argv, print);
 	}
 	i = 1;
 	while (i < argc)

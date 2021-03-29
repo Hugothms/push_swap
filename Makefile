@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/28 18:59:31 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/29 11:45:26 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,9 +56,8 @@ $(NAME):	complib $(OBJS_PUSH_SWAP)
 checker:	complib $(OBJS_CHECKER)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS_CHECKER) $(LIBFTLINK)
 
-bonus:		complib $(OBJS_CHECKER)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o push_swap $(OBJS_PUSH_SWAP) $(LIBFTLINK) -DBONUS
-	$(CC) $(CFLAGS) $(LDFLAGS) -o checker $(OBJS_CHECKER) $(LIBFTLINK) -DBONUS
+
+bonus:		complib $(OBJS_CHECKER) $(OBJS_PUSH_SWAP) compil_bonuses all
 
 ########################### LIBARY
 complib:
@@ -68,6 +67,9 @@ complib:
 %.o:		%.c $(HEADER)
 	$(CC) -c $(CFLAGS) $(LDFLAGS) -I $(INCL) -o $@ $<
 	@# printf "$(GREEN)██"
+
+compil_bonuses:
+	$(CC) -c $(CFLAGS) $(LDFLAGS) -I $(INCL) -o srcs/scan_input.o srcs/scan_input.c -D BONUS
 
 ########################### CLEAN
 clean:

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 16:27:35 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/29 15:30:07 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,17 @@ void	swap(t_dlist **stack)
 void	push(t_dlist **a, t_dlist **b)
 {
 	int		*num;
-	t_dlist	*tmp;
+	t_dlist	*new;
 
 	if (!*b)
 		return ;
 	num = (*b)->content;
-	tmp = *b;
-	ft_dlstremove_one(b, *b);
-	tmp = ft_dlstnew(num);
-	if (!tmp)
+	new = *b;
+	free(ft_dlstremove_one(b, *b));
+	new = ft_dlstnew(num);
+	if (!new)
 		return ;
-	ft_dlstadd_front(a, tmp);
+	ft_dlstadd_front(a, new);
 }
 
 /*

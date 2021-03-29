@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/29 12:25:40 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/29 15:26:50 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,7 @@ int		main(int argc, char const *argv[])
 	print_clean_dlist(ab->oper);
 	ft_dlstclear(&ab->stack_a, ab->stack_a, &free);
 	ft_dlstclear(&ab->oper, ab->oper, &free);
+	free(norm);
+	free(ab);
 	return (0);
 }

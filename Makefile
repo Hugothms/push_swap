@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/31 18:17:20 by hthomas          ###   ########.fr        #
+#    Updated: 2021/03/31 19:39:11 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,4 +108,5 @@ test_bonus_checker:		bonus
 	./checher $(ARG)
 
 test_leaks:		checker $(NAME)
-	leaks -atExit -- ./push_swap $(ARG)
+	leaks -atExit -- ./checker $(ARG)
+	# leaks -atExit -- ./push_swap $(ARG)

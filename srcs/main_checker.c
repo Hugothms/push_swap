@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/27 09:38:35 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/03/31 19:43:52 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	main2(t_dlist **a, t_dlist **b, int print)
 		exec_operation(a, b, line, print);
 		free(line);
 	}
+	free(line);
+	ft_dlstclear(b, *b, free);
 	if (*b || (checker(*a)))
 		printf("KO\n");
 	else
@@ -66,5 +68,6 @@ int		main(int argc, char const *argv[])
 		return (0);
 	a = scan_input(argc, argv, &print);
 	main2(&a, &b, print);
+	ft_dlstclear(&a, a, free);
 	return (0);
 }

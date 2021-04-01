@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/31 19:43:52 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/04/01 20:56:29 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	exec_operation(t_dlist **a, t_dlist **b, char *line, int print)
 	else if (!ft_strncmp(line, "p", 1))
 		push_help(a, b, line, &ret);
 	else if (!ft_strncmp(line, "rr", 2))
-		reverse_help(a, b, line, &ret);
-	else
 		rotate_help(a, b, line, &ret);
+	else
+		reverse_help(a, b, line, &ret);
 	if (ret)
 		error_a_b("Operation invalid", *a, *b, line);
 	if (print)

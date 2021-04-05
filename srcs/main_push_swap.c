@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/29 15:26:50 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/04/05 15:19:04 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,13 @@ int		main(int argc, char const *argv[])
 		return (0);
 	init_structs(&norm, &ab, argc, argv);
 	if (!checker(ab->stack_a))
+	{
+		ft_dlstclear(&ab->stack_a, ab->stack_a, &free);
+		ft_dlstclear(&ab->oper, ab->oper, &free);
+		free(norm);
+		free(ab);
 		return (0);
+	}
 	if (ft_dlstsize(ab->stack_a) > 50)
 		sort_quick(ab, ab->stack_a, ab->stack_a->prev, norm);
 	else if (ft_dlstsize(ab->stack_a) > 1)

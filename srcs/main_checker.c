@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/04/01 20:56:29 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/04/05 09:11:47 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	exec_operation(t_dlist **a, t_dlist **b, char *line, int print)
 		swap_help(a, b, line, &ret);
 	else if (!ft_strncmp(line, "p", 1))
 		push_help(a, b, line, &ret);
-	else if (!ft_strncmp(line, "rr", 2))
+	else if (!ft_strncmp(line, "r", 1) && ft_strlen(line) < 3)
 		rotate_help(a, b, line, &ret);
 	else
 		reverse_help(a, b, line, &ret);

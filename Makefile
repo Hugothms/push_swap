@@ -6,7 +6,7 @@
 #    By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 15:05:09 by hthomas           #+#    #+#              #
-#    Updated: 2021/03/31 19:55:12 by hthomas          ###   ########.fr        #
+#    Updated: 2021/04/05 12:43:07 by hthomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,12 +50,13 @@ SRCS_PUSH_SWAP	=	srcs/divide_stack.c			\
 ########################### EXEC
 all:		checker $(NAME)
 
-$(NAME):	complib $(OBJS_PUSH_SWAP)
+$(NAME):	$(OBJS_PUSH_SWAP)
+	$(MAKE) -C $(LIBFTDIR)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS_PUSH_SWAP) $(LIBFTLINK)
 
-checker:	complib $(OBJS_CHECKER)
+checker:	$(OBJS_CHECKER)
+	$(MAKE) -C $(LIBFTDIR)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS_CHECKER) $(LIBFTLINK)
-
 
 bonus:		complib $(OBJS_CHECKER) $(OBJS_PUSH_SWAP) compil_bonuses all
 
@@ -90,7 +91,9 @@ re:			fclean all
 ARG=3 1 2 9
 
 test:			checker $(NAME)
-	./push_swap $(ARG); ./push_swap $(ARG) | wc -l; ./push_swap $(ARG) | ./checker $(ARG)
+	./push_swap $(ARG);\
+	./push_swap $(ARG) | wc -l;\
+	./push_swap $(ARG) | ./checker $(ARG)
 
 test_push_swap:	checker $(NAME)
 	./push_swap $(ARG)
@@ -98,8 +101,10 @@ test_push_swap:	checker $(NAME)
 test_checker:	checker
 	./checker $(ARG)
 
-test_bonus:				bonus
-	./push_swap $(ARG); ./push_swap $(ARG) | wc -l; ./push_swap $(ARG) | ./checker $(ARG)
+test_bonus:		bonus
+	./push_swap $(ARG);\
+	./push_swap $(ARG) | wc -l;\
+	./push_swap $(ARG) | ./checker $(ARG)
 
 test_bonus_push_swap:	bonus
 	./push_swap $(ARG)
@@ -110,5 +115,5 @@ test_bonus_checker:		bonus
 test_leaks_checker:		checker
 	leaks -atExit -- ./checker $(ARG)
 
-test_leaks_push_swap:		$(NAME)
+test_leaks_push_swap:	$(NAME)
 	leaks -atExit -- ./$(NAME) $(ARG)

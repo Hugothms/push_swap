@@ -6,11 +6,11 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 17:06:58 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/24 11:11:47 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/04/13 12:01:45 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 void	swap_help(t_dlist **a, t_dlist **b, char *line, int *ret)
 {

@@ -6,11 +6,11 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 11:43:36 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/26 11:09:08 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/04/13 12:01:45 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 void	sort1(t_stacks *ab, t_dlist **stack, char name)
 {

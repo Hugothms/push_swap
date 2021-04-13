@@ -6,11 +6,11 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:58:07 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/25 16:25:47 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/04/13 12:01:45 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 int	push_on_a(t_stacks *ab, t_dlist **stack, int value, t_begin_end *be)
 {

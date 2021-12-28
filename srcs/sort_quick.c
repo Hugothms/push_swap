@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/04/13 12:01:45 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/12/28 12:15:11 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 ** 	(median is now in place)
 ** DONE
 */
-
 void	init_begin_end(t_stacks *ab, t_dlist **begin, t_dlist **end, int p_a)
 {
 	if (p_a)
@@ -95,7 +94,6 @@ void	sort_quick2(t_stacks *ab, t_dlist **tmp, t_begin_end *be, t_sp *norm)
 ** @param end		end of the stack to sort
 ** @param p_a	change the comparaison in divide_stack
 */
-
 int		sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end, t_sp *norm)
 {
 	t_dlist		*median;

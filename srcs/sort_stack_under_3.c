@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 12:01:12 by hthomas           #+#    #+#             */
-/*   Updated: 2021/04/13 12:01:45 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/12/28 12:15:11 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 ** @param stack	stack of size 3 to sort
 ** @param name	name of the stack we are working on
 */
-
 void	sort_stack_3(t_stacks *ab, t_dlist **st, char name)
 {
 	if (ft_dlstsize((*st)) != 3 || !checker((*st)))
@@ -49,7 +48,6 @@ void	sort_stack_3(t_stacks *ab, t_dlist **st, char name)
 ** @param stack	stack of size 3 to sort
 ** @param name	name of the stack we are working on
 */
-
 void	sort_stack_3_reverse(t_stacks *ab, t_dlist **st, char name)
 {
 	if (ft_dlstsize((*st)) != 3)

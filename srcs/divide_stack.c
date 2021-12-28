@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:58:07 by hthomas           #+#    #+#             */
-/*   Updated: 2021/04/13 12:01:45 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/12/28 12:15:11 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	push_on_b(t_stacks *ab, t_dlist **stack, int value, t_begin_end *be)
 ** @param stack	current node (on which the loop iterates)
 ** @param value	median pivot value
 */
-
 int	divide_stack(t_stacks *ab, t_dlist **st, int value, t_begin_end *be)
 {
 	if (find_node(ab->stack_a, get_value(*st)))

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:37:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/04/13 12:01:45 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/12/28 12:15:11 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,12 @@
 ** remettre tout sur a (pa)
 ** DONE
 */
-
 /*
 ** Find the position of the node in the stack
 ** @param stack	the stack containing node
 ** @param node	node to check the position
 ** @return		position of the given node
 */
-
 int		pos_node(t_dlist *stack, t_dlist *node)
 {
 	t_dlist	*tmp;
@@ -53,7 +51,6 @@ int		pos_node(t_dlist *stack, t_dlist *node)
 ** @param node	node to check the position
 ** @return		1 if node is in the first half, 0 otherwise
 */
-
 int		is_in_first_half(t_dlist *stack, int pos)
 {
 	return (pos < (ft_dlstsize(stack) + 1) / 2);
@@ -66,7 +63,6 @@ int		is_in_first_half(t_dlist *stack, int pos)
 ** @param node	node to put at the top
 ** @param name	name of the stack we are working on
 */
-
 void	put_at_top(t_stacks *ab, t_dlist **stack, t_dlist *node, char name)
 {
 	int	pos;
@@ -101,7 +97,6 @@ void	put_at_top(t_stacks *ab, t_dlist **stack, t_dlist *node, char name)
 ** @param stack	stack where to find the smallest node
 ** @return		the smallest node found in the stack
 */
-
 t_dlist	*find_smallest(t_dlist *stack)
 {
 	t_dlist	*tmp;
@@ -126,7 +121,6 @@ t_dlist	*find_smallest(t_dlist *stack)
 ** @param stack	pointer on the first node of the stack to sort
 ** @param name	name of the stack we are working on
 */
-
 void	sort_naif(t_stacks *ab, t_dlist **stack, char name)
 {
 	t_dlist	*b;

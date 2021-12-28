@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:26:40 by hthomas           #+#    #+#             */
-/*   Updated: 2021/03/28 18:59:58 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/12/28 12:28:21 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-typedef struct	s_stacks
+typedef struct s_stacks
 {
 	t_dlist		*stack_a;
 	t_dlist		*stack_b;
 	t_dlist		*oper;
 }				t_stacks;
 
-typedef struct	s_begin_end
+typedef struct s_begin_end
 {
 	t_dlist		**begin;
 	t_dlist		**end;

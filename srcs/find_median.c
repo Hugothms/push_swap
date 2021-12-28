@@ -6,13 +6,13 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 12:10:52 by hthomas           #+#    #+#             */
-/*   Updated: 2021/12/28 12:15:11 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/12/28 12:29:49 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		*ft_dlst_to_tabn(t_dlist *dlst, int max)
+int	*ft_dlst_to_tabn(t_dlist *dlst, int max)
 {
 	t_dlist	*tmp;
 	int		*tab;
@@ -60,7 +60,7 @@ t_dlist	*find_node(t_dlist *stack, int value)
 	return (NULL);
 }
 
-int		size_stack(t_dlist *begin, t_dlist *end)
+int	size_stack(t_dlist *begin, t_dlist *end)
 {
 	int		cpt;
 	t_dlist	*tmp;

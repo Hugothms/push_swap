@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 12:01:12 by hthomas           #+#    #+#             */
-/*   Updated: 2021/12/28 12:15:11 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/12/28 12:29:29 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	sort_stack_3_reverse(t_stacks *ab, t_dlist **st, char name)
 		sort1(ab, st, name);
 }
 
-int		sort_stack_under_3_pre(t_stacks *ab, t_dlist **begin, int p_a)
+int	sort_stack_under_3_pre(t_stacks *ab, t_dlist **begin, int p_a)
 {
 	if (!p_a)
 		push_n_times(ab, begin, 'b', 3);
@@ -88,7 +88,7 @@ int		sort_stack_under_3_pre(t_stacks *ab, t_dlist **begin, int p_a)
 	return (3);
 }
 
-int		sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int p_a)
+int	sort_stack_under_3(t_stacks *ab, t_dlist **begin, t_dlist *end, int p_a)
 {
 	if (size_stack(*begin, end) == 3)
 		return (sort_stack_under_3_pre(ab, begin, p_a));

@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:37:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/12/28 12:15:11 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/12/28 12:32:48 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 ** @param node	node to check the position
 ** @return		position of the given node
 */
-int		pos_node(t_dlist *stack, t_dlist *node)
+int	pos_node(t_dlist *stack, t_dlist *node)
 {
 	t_dlist	*tmp;
 	int		pos;
@@ -51,7 +51,7 @@ int		pos_node(t_dlist *stack, t_dlist *node)
 ** @param node	node to check the position
 ** @return		1 if node is in the first half, 0 otherwise
 */
-int		is_in_first_half(t_dlist *stack, int pos)
+int	is_in_first_half(t_dlist *stack, int pos)
 {
 	return (pos < (ft_dlstsize(stack) + 1) / 2);
 }

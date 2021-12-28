@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 20:00:24 by hthomas           #+#    #+#             */
-/*   Updated: 2021/04/13 12:01:45 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/12/28 12:31:34 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	error_a_b(char *str, t_dlist *a, t_dlist *b, char *line)
 	exit(1);
 }
 
-int		get_value(t_dlist *stack)
+int	get_value(t_dlist *stack)
 {
 	return (*(int *)(stack->content));
 }

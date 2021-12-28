@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/12/28 12:32:42 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/12/28 12:37:44 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	push(t_dlist **a, t_dlist **b)
 		return ;
 	num = (*b)->content;
 	new = *b;
-	free(ft_dlstremove_one(b, *b));
+	(ft_dlstremove_one(b, *b));
+	// free(ft_dlstremove_one(b, *b));
 	new = ft_dlstnew(num);
 	if (!new)
 		return ;

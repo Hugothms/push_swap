@@ -6,15 +6,15 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:13:23 by hthomas           #+#    #+#             */
-/*   Updated: 2021/12/29 21:49:21 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/12/29 22:10:20 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-** check if there are duplicates in the list
-** @return	0 if no duplicates where found, 1 otherwise
+* check if there are duplicates in the list
+* @return	0 if no duplicates where found, 1 otherwise
 */
 int	duplicates(t_dlist *a)
 {

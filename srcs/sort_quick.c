@@ -6,32 +6,32 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:40:14 by hthomas           #+#    #+#             */
-/*   Updated: 2021/12/29 21:49:21 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/12/29 22:10:20 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-** ALGO QUICK SORT
-** 	if size 2 or 3
-** 		sort + push on a if needed
-** 		return
-** 	find median node
-** 	if (on stack a):
-** 		put lowers than median on stack b
-** 		put median at the end of stack (with rb after pb)
-** 		then rrb to put the median at the rigth place
-** 	else:
-** 		put biggers than median on stack a
-** 		put median at the end of stack (with ra after pa)
-** 		then rra to put the median at the rigth place
+* ALGO QUICK SORT
+* 	if size 2 or 3
+* 		sort + push on a if needed
+* 		return
+* 	find median node
+* 	if (on stack a):
+* 		put lowers than median on stack b
+* 		put median at the end of stack (with rb after pb)
+* 		then rrb to put the median at the rigth place
+* 	else:
+* 		put biggers than median on stack a
+* 		put median at the end of stack (with ra after pa)
+* 		then rra to put the median at the rigth place
 **
-** 	recursion on lowers (stack to median)
-** 	recursion on biggers (stack from median)
-** 	push on current stack all nodes from other stack (smallers)
-** 	(median is now in place)
-** DONE
+* 	recursion on lowers (stack to median)
+* 	recursion on biggers (stack from median)
+* 	push on current stack all nodes from other stack (smallers)
+* 	(median is now in place)
+* DONE
 */
 void	init_begin_end(t_stacks *ab, t_dlist **begin, t_dlist **end, int p_a)
 {
@@ -86,13 +86,13 @@ void	sort_quick2(t_stacks *ab, t_dlist **tmp, t_begin_end *be, t_sp *norm)
 }
 
 /*
-** Sort a stack with the help of a second stack using only the
-** autorized operations and print them.
-** The algo used is kind of a quick sort modified to work with 2 stacks
-** @param ab		pointer on the struct tu coco
-** @param begin		start of the stack to sort
-** @param end		end of the stack to sort
-** @param p_a	change the comparaison in divide_stack
+* Sort a stack with the help of a second stack using only the
+* autorized operations and print them.
+* The algo used is kind of a quick sort modified to work with 2 stacks
+* @param ab		pointer on the struct tu coco
+* @param begin		start of the stack to sort
+* @param end		end of the stack to sort
+* @param p_a	change the comparaison in divide_stack
 */
 int	sort_quick(t_stacks *ab, t_dlist *begin, t_dlist *end, t_sp *norm)
 {

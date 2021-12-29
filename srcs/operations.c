@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:04:19 by hthomas           #+#    #+#             */
-/*   Updated: 2021/12/28 12:37:44 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/12/29 21:49:21 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	push(t_dlist **a, t_dlist **b)
 }
 
 /*
-** Shift up all nodes of stack a by 1
-** The ﬁrst node becomes the last one
+* Shift up all nodes of stack a by 1
+* The ﬁrst node becomes the last one
 */
 void	rotate(t_dlist **stack)
 {

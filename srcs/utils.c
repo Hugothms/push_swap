@@ -6,7 +6,7 @@
 /*   By: hthomas <hthomas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 20:00:24 by hthomas           #+#    #+#             */
-/*   Updated: 2021/12/28 12:31:34 by hthomas          ###   ########.fr       */
+/*   Updated: 2021/12/29 22:35:28 by hthomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,10 @@ char	*get_str(t_dlist *stack)
 
 void	push_n_times(t_stacks *ab, t_dlist **begin, char c, int n)
 {
-	while (n--)
-	{
-		if (c == 'a')
+	if (c == 'a')
+		while (n--)
 			pa(ab, begin);
-		else
+	else
+		while (n--)
 			pb(ab, begin);
-	}
 }
